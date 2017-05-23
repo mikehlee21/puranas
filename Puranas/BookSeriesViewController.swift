@@ -12,6 +12,9 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    var str: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -47,12 +50,19 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookSeriesCell", for: indexPath) as! BookSeriesTableViewCell
-        
+        cell.lblSeriesName.text = "Series Name \(indexPath.row)"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! BookSeriesTableViewCell
+        str = cell.lblSeriesName.text
         self.performSegue(withIdentifier: "Series2Book", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! BookViewController
+        vc.lblSeriesName = str
     }
     /*
     // MARK: - Navigation

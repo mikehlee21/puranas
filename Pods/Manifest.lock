@@ -1,0 +1,15 @@
+PODS:
+  - ICTextView (2.0.1)
+  - MIBlurPopup (0.1.1)
+
+DEPENDENCIES:
+  - ICTextView
+  - MIBlurPopup
+
+SPEC CHECKSUMS:
+  ICTextView: 937aca5dd49e39e9cca41ababe8c55bf99c634fc
+  MIBlurPopup: debbc8f4f631809797140d37b5476745a61e90be
+
+PODFILE CHECKSUM: 5efd5a60de93ce7717c8cab508ee47859b2e5001
+
+COCOAPODS: 1.2.1

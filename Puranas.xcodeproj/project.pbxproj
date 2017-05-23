@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5601483925B771C929004A8 /* Pods_Puranas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */; };
 		B33AF8E61ED4083300408F38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF8E51ED4083300408F38 /* AppDelegate.swift */; };
 		B33AF8E81ED4083300408F38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF8E71ED4083300408F38 /* ViewController.swift */; };
 		B33AF8EB1ED4083300408F38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33AF8E91ED4083300408F38 /* Main.storyboard */; };
@@ -18,6 +19,9 @@
 		B33AF9161ED4523100408F38 /* BookSeriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF9151ED4523100408F38 /* BookSeriesTableViewCell.swift */; };
 		B33AF91B1ED4619D00408F38 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF91A1ED4619D00408F38 /* BookTableViewCell.swift */; };
 		B33AF91D1ED461B800408F38 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF91C1ED461B800408F38 /* BookViewController.swift */; };
+		B33AF91F1ED4BB4400408F38 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF91E1ED4BB4400408F38 /* MainViewController.swift */; };
+		B33AF9211ED4BD0100408F38 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF9201ED4BD0100408F38 /* MainTableViewCell.swift */; };
+		B33AF9231ED4C7E000408F38 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF9221ED4C7E000408F38 /* PopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puranas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A9FD23A206E783834E36A58 /* Pods-Puranas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.debug.xcconfig"; sourceTree = "<group>"; };
+		A348DAEFB46F44B744F65E9A /* Pods-Puranas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.release.xcconfig"; sourceTree = "<group>"; };
 		B33AF8E21ED4083300408F38 /* Puranas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puranas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33AF8E51ED4083300408F38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33AF8E71ED4083300408F38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +62,9 @@
 		B33AF9151ED4523100408F38 /* BookSeriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookSeriesTableViewCell.swift; sourceTree = "<group>"; };
 		B33AF91A1ED4619D00408F38 /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		B33AF91C1ED461B800408F38 /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		B33AF91E1ED4BB4400408F38 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B33AF9201ED4BD0100408F38 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		B33AF9221ED4C7E000408F38 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5601483925B771C929004A8 /* Pods_Puranas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3291D85B0C1DDF99A1A4775D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B33AF8D91ED4083200408F38 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +108,8 @@
 				B33AF8F91ED4083300408F38 /* PuranasTests */,
 				B33AF9041ED4083300408F38 /* PuranasUITests */,
 				B33AF8E31ED4083300408F38 /* Products */,
+				C92CF397B34625A7DB077EE2 /* Pods */,
+				3291D85B0C1DDF99A1A4775D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +161,8 @@
 			children = (
 				B33AF9131ED4256600408F38 /* BookSeriesViewController.swift */,
 				B33AF91C1ED461B800408F38 /* BookViewController.swift */,
+				B33AF91E1ED4BB4400408F38 /* MainViewController.swift */,
+				B33AF9221ED4C7E000408F38 /* PopupViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -149,8 +172,18 @@
 			children = (
 				B33AF91A1ED4619D00408F38 /* BookTableViewCell.swift */,
 				B33AF9151ED4523100408F38 /* BookSeriesTableViewCell.swift */,
+				B33AF9201ED4BD0100408F38 /* MainTableViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		C92CF397B34625A7DB077EE2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A9FD23A206E783834E36A58 /* Pods-Puranas.debug.xcconfig */,
+				A348DAEFB46F44B744F65E9A /* Pods-Puranas.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B33AF90A1ED4083300408F38 /* Build configuration list for PBXNativeTarget "Puranas" */;
 			buildPhases = (
+				0B8D8AB60E53D89ABFD9E7CE /* [CP] Check Pods Manifest.lock */,
 				B33AF8DE1ED4083300408F38 /* Sources */,
 				B33AF8DF1ED4083300408F38 /* Frameworks */,
 				B33AF8E01ED4083300408F38 /* Resources */,
+				3E0599F2EC86942DEB51DB4C /* [CP] Embed Pods Frameworks */,
+				43D56A593761878C343DCEB2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -282,14 +318,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B8D8AB60E53D89ABFD9E7CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3E0599F2EC86942DEB51DB4C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Puranas/Pods-Puranas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43D56A593761878C343DCEB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Puranas/Pods-Puranas-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B33AF8DE1ED4083300408F38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33AF91F1ED4BB4400408F38 /* MainViewController.swift in Sources */,
 				B33AF9141ED4256600408F38 /* BookSeriesViewController.swift in Sources */,
+				B33AF9211ED4BD0100408F38 /* MainTableViewCell.swift in Sources */,
 				B33AF9161ED4523100408F38 /* BookSeriesTableViewCell.swift in Sources */,
 				B33AF8E81ED4083300408F38 /* ViewController.swift in Sources */,
+				B33AF9231ED4C7E000408F38 /* PopupViewController.swift in Sources */,
 				B33AF91D1ED461B800408F38 /* BookViewController.swift in Sources */,
 				B33AF91B1ED4619D00408F38 /* BookTableViewCell.swift in Sources */,
 				B33AF8E61ED4083300408F38 /* AppDelegate.swift in Sources */,
@@ -442,6 +529,7 @@
 		};
 		B33AF90B1ED4083300408F38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9FD23A206E783834E36A58 /* Pods-Puranas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Puranas/Info.plist;
@@ -454,6 +542,7 @@
 		};
 		B33AF90C1ED4083300408F38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A348DAEFB46F44B744F65E9A /* Pods-Puranas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Puranas/Info.plist;
@@ -537,6 +626,7 @@
 				B33AF90C1ED4083300408F38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33AF90D1ED4083300408F38 /* Build configuration list for PBXNativeTarget "PuranasTests" */ = {
 			isa = XCConfigurationList;
@@ -545,6 +635,7 @@
 				B33AF90F1ED4083300408F38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33AF9101ED4083300408F38 /* Build configuration list for PBXNativeTarget "PuranasUITests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +644,7 @@
 				B33AF9121ED4083300408F38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

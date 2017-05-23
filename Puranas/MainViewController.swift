@@ -1,29 +1,27 @@
 //
-//  BookViewController.swift
+//  MainViewController.swift
 //  Puranas
 //
-//  Created by Lucky Clover on 5/23/17.
+//  Created by Lucky Clover on 5/24/17.
 //  Copyright © 2017 Lucky Clover. All rights reserved.
 //
 
 import UIKit
 
-class BookViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
-    var lblSeriesName: String?
-    var strTitle: String?
+    
+    var lblBookName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.title = lblBookName
+        
         tableView.delegate = self
         tableView.dataSource = self
-        
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.title = lblSeriesName
-        
         // Do any additional setup after loading the view.
     }
 
@@ -35,35 +33,22 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     @IBAction func onBackTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
-    // Table View Delegate and DataSource
+
+
+    // Table View Delegate & DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BookTableViewCell
-        strTitle = cell.lblBookName.text
-        performSegue(withIdentifier: "Book2Reading", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! MainViewController
-        vc.lblBookName = strTitle
-    }
-
     /*
     // MARK: - Navigation
 
