@@ -41,25 +41,8 @@ class DBManager
     
     func dataFilePath() -> String
     {
-        /*
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        var url : String? = ""
-        
-        do{
-            try url = urls.first?.appendingPathComponent(Const.dbPath).path
-        }
-        catch{
-            print("Error is \(error)")
-        }
-        
-        return url!
- */
-        
-        let path = Bundle.main.path(forResource: "Veda-Vyasa", ofType: "sqlite")!
+        let path = Bundle.main.path(forResource: Const.dbName, ofType: "sqlite")!
         return path
-        //return Const.dbPath
     }
     
     func loadSeriesData() -> [Series]
@@ -102,7 +85,7 @@ class DBManager
         openDB()
         
         //reads all data
-        let query = "SELECT bookName, bookImage, seriesName, volumeNo, lang FROM \(Const.booksTable)"
+        let query = "SELECT bookName, bookImage, seriesName, volumeNo, lang, bookId FROM \(Const.booksTable)"
         var statement : OpaquePointer? = nil
         
         var res : [Book] = []
@@ -117,6 +100,7 @@ class DBManager
                 temp.seriesName = String.init(cString: sqlite3_column_text(statement, 2)!)
                 temp.volumeNo = Int(sqlite3_column_int(statement, 3))
                 temp.lang = String.init(cString: sqlite3_column_text(statement, 4)!)
+                temp.bookId = String.init(cString: sqlite3_column_text(statement, 5)!)
                 
                 res.append(temp)
             }
@@ -136,7 +120,7 @@ class DBManager
         openDB()
         
         //reads all data
-        let query = "SELECT volumeNo, cantoNo, chapterNo, contentID, uvacha, content, translation lang FROM \(Const.bookContTable)"
+        let query = "SELECT volumeNo, cantoNo, chapterNo, contentId, uvacha, content, translation FROM \(Const.bookContTable)"
         var statement : OpaquePointer? = nil
         
         var res : [BookCont] = []
@@ -150,7 +134,7 @@ class DBManager
                 temp.volumeNo = Int(sqlite3_column_int(statement, 0))
                 temp.cantoNo = Int(sqlite3_column_int(statement, 1))
                 temp.chapterNo = Int(sqlite3_column_int(statement, 2))
-                temp.contentID = Int(sqlite3_column_int(statement, 3))
+                temp.contentId = Int(sqlite3_column_int(statement, 3))
                 temp.uvacha = String.init(cString: sqlite3_column_text(statement, 4)!)
                 temp.content = String.init(cString: sqlite3_column_text(statement, 5)!)
                 
@@ -176,8 +160,113 @@ class DBManager
         
         return res
     }
-
     
+    func insertBookmark(data: CellData) {
+        
+        openDB()
+        
+        let updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId) VALUES (0, '" + "\(data.bookId)" + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), '', \(data.isCont), \(data.contentId));"
+        
+        print(updateStatementString)
+        
+        var updateStatement: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+                print("Successfully inserted row.")
+            } else {
+                print("Could not insert row.")
+            }
+        } else {
+            print("INSERT statement could not be prepared")
+        }
+        
+        sqlite3_finalize(updateStatement)
+        
+        sqlite3_close(database)
+        
+    }
+    
+    func deleteBookmark(data: CellData) {
+        openDB()
+        
+        let updateStatementString = "DELETE FROM \(Const.userHighlightsTable) WHERE bookId = '" + "\(data.bookId)" + "' AND volumeNo = \(data.volumeNo) AND cantoNo = \(data.cantoNo) AND chapterNo = \(data.chapterNo) AND isCont = \(data.isCont) AND contentId = \(data.contentId);"
+        
+        print(updateStatementString)
+        var updateStatement: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+                print("Successfully deleted row.")
+            } else {
+                print("Could not delete row.")
+            }
+        } else {
+            print("DELETE statement could not be prepared")
+        }
+        
+        sqlite3_finalize(updateStatement)
+        
+        sqlite3_close(database)
+    }
+    
+    func loadBookmark() -> [CellData] {
+        //open db
+        openDB()
+        
+        //reads all data
+        let query = "SELECT bookId, volumeNo, cantoNo, chapterNo, isCont, contentId FROM \(Const.userHighlightsTable)"
+        var statement : OpaquePointer? = nil
+        
+        var res : [CellData] = []
+        
+        if sqlite3_prepare_v2(database, query, -1, &statement, nil) == SQLITE_OK
+        {
+            while sqlite3_step(statement) == SQLITE_ROW
+            {
+                let temp = CellData()
+                
+                temp.bookId = String.init(cString: sqlite3_column_text(statement, 0)!)
+                temp.volumeNo = Int(sqlite3_column_int(statement, 1))
+                temp.cantoNo = Int(sqlite3_column_int(statement, 2))
+                temp.chapterNo = Int(sqlite3_column_int(statement, 3))
+                temp.isCont = Int(sqlite3_column_int(statement, 4))
+                temp.contentId = Int(sqlite3_column_int(statement, 5))
+                
+                res.append(temp)
+            }
+            
+            sqlite3_finalize(statement)
+        }
+        
+        //close db
+        sqlite3_close(database)
+        
+        return res
+    }
+    /*
+    func updateBookContData(t: BookCont) {
+        openDB()
+        
+        let updateStatementString = "UPDATE \(Const.bookContTable) SET isContBookmarked = \(t.isContBookmarked), isTransBookmarked = \(t.isTransBookmarked) WHERE volumeNo = \(t.volumeNo) AND cantoNo = \(t.cantoNo) AND chapterNo = \(t.chapterNo) AND contentID = \(t.contentID);"
+        
+        var updateStatement: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+                print("Successfully updated row.")
+            } else {
+                print("Could not update row.")
+            }
+        } else {
+            print("UPDATE statement could not be prepared")
+        }
+        
+        sqlite3_finalize(updateStatement)
+        
+        sqlite3_close(database)
+    }
+ */
     /*
     func addReceipt(receipt : Receipt)
     {

@@ -9,6 +9,7 @@
 import Foundation
 
 class Book {
+    var bookId: String?
     var name: String?
     var image: String?
     var seriesName: String?

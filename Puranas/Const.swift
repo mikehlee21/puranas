@@ -9,9 +9,10 @@
 import Foundation
 
 struct Const {
-    static let dbPath = "Veda-Vyasa.sqlite"
+    static let dbName = "Veda-Vyasa"
     static let seriesTable = "series"
     static let booksTable = "books"
     static let bookContTable = "bookCont"
+    static let userHighlightsTable = "userHighlights"
     static let COLUMN_NULL : Int32 = 5
 }

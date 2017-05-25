@@ -8,13 +8,6 @@
 
 import UIKit
 
-class CellData {
-    var text: String = ""
-    var isTrans: Bool = false
-    var isBookmark: Bool = false
-    var uvacha: String = ""
-}
-
 class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var btnSearch: UIButton!
@@ -22,8 +15,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var lblBookName: String?
-    var bookContArray: [BookCont] = []
-    var cellDataArray: [CellData] = []
+    //var cellDataArray: [CellData] = []
+    var bookId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,26 +26,51 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
+        initCellDataArray()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func initCellDataArray() {
+        
         let db = DBManager()
-        bookContArray = db.loadBookContData()
+        let bookContArray = db.loadBookContData()
+        let bookmarkArray = db.loadBookmark()
         
         for i in 0..<bookContArray.count {
             let t = CellData()
             t.text = bookContArray[i].content!
-            t.isTrans = true
+            t.isCont = 1
             t.uvacha = bookContArray[i].uvacha!
-            cellDataArray.append(t)
+            t.volumeNo = bookContArray[i].volumeNo
+            t.chapterNo = bookContArray[i].chapterNo
+            t.cantoNo = bookContArray[i].cantoNo
+            t.contentId = bookContArray[i].contentId
+            t.bookId = bookId!
+            
+            dataArray.append(t)
             if (bookContArray[i].translation != nil) {
                 let t1 = CellData()
                 t1.text = bookContArray[i].translation!
-                t1.isTrans = false
+                t1.isCont = 0
                 t1.uvacha = bookContArray[i].uvacha!
-                cellDataArray.append(t1)
+                t1.volumeNo = bookContArray[i].volumeNo
+                t1.chapterNo = bookContArray[i].chapterNo
+                t1.cantoNo = bookContArray[i].cantoNo
+                t1.contentId = bookContArray[i].contentId
+                t1.bookId = bookId!
+                
+                dataArray.append(t1)
             }
         }
         
-        
-        // Do any additional setup after loading the view.
+        for i in 0..<bookmarkArray.count {
+            for j in 0..<dataArray.count {
+                if ((bookmarkArray[i].bookId == dataArray[j].bookId) && (bookmarkArray[i].volumeNo == dataArray[j].volumeNo) && (bookmarkArray[i].cantoNo == dataArray[j].cantoNo) && (bookmarkArray[i].chapterNo == dataArray[j].chapterNo) && (bookmarkArray[i].contentId == dataArray[j].contentId) && (bookmarkArray[i].isCont == dataArray[j].isCont)) {
+                    dataArray[j].isBookmarked = 1
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,22 +90,24 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var cnt = 1
-        for i in 0..<bookContArray.count {
-            if (bookContArray[i].chapterNo! > cnt) {
-                cnt = bookContArray[i].chapterNo!
+        for i in 0..<dataArray.count {
+            if (dataArray[i].chapterNo > cnt) {
+                cnt = dataArray[i].chapterNo
             }
         }
         return cnt
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellDataArray.count
+        return dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let temp = cellDataArray[indexPath.row]
-        if (temp.isTrans == true) {
+        let temp = dataArray[indexPath.row]
+        
+        if (temp.isCont == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
+            cell.index = indexPath.row
             
             if (temp.uvacha != "") {
                 let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp.uvacha.description):")
@@ -104,10 +124,29 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 cell.lblText?.text = temp.text
             }
             
+            if (temp.isBookmarked == 1) {
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
+                cell.imgStar.isHidden = false
+            }
+            else {
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.imgStar.isHidden = true
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTransCell") as! MainTransTableViewCell
             cell.lblText?.text = temp.text
+            cell.index = indexPath.row
+            
+            if (temp.isBookmarked == 1) {
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
+                cell.imgStar.isHidden = false
+            }
+            else {
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.imgStar.isHidden = true
+            }
+            
             return cell
         }
     }

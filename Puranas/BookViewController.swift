@@ -14,8 +14,8 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     @IBOutlet weak var searchBar: UISearchBar!
     
     var lblSeriesName: String?
-    var strTitle: String?
     var bookArray: [Book] = []
+    var selectedBook: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,14 +62,15 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BookTableViewCell
-        strTitle = cell.lblBookName.text
+        //let cell = tableView.cellForRow(at: indexPath) as! BookTableViewCell
+        selectedBook = bookArray[indexPath.row]
         performSegue(withIdentifier: "Book2Reading", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! MainViewController
-        vc.lblBookName = strTitle
+        vc.lblBookName = selectedBook?.name
+        vc.bookId = selectedBook?.bookId
     }
 
     /*

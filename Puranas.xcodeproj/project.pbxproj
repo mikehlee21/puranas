@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		625B1BE21ED5FE5B009C16B2 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625B1BE11ED5FE5B009C16B2 /* DBManager.swift */; };
+		62E5D38B1ED6AE7B00BFB9C5 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E5D38A1ED6AE7B00BFB9C5 /* Global.swift */; };
+		62E5D38D1ED6B02C00BFB9C5 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E5D38C1ED6B02C00BFB9C5 /* CellData.swift */; };
 		62EA36C71ED60F88002DC06C /* Veda-Vyasa.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 62EA36C61ED60F88002DC06C /* Veda-Vyasa.sqlite */; };
 		62EA36C91ED636B1002DC06C /* MainTransTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA36C81ED636B1002DC06C /* MainTransTableViewCell.swift */; };
 		A5601483925B771C929004A8 /* Pods_Puranas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */; };
@@ -55,6 +57,8 @@
 		4A9FD23A206E783834E36A58 /* Pods-Puranas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.debug.xcconfig"; sourceTree = "<group>"; };
 		625B1BE11ED5FE5B009C16B2 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		62DAD5701ED6A27600849129 /* Mallanna.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mallanna.ttf; sourceTree = "<group>"; };
+		62E5D38A1ED6AE7B00BFB9C5 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		62E5D38C1ED6B02C00BFB9C5 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		62EA36C61ED60F88002DC06C /* Veda-Vyasa.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Veda-Vyasa.sqlite"; sourceTree = "<group>"; };
 		62EA36C81ED636B1002DC06C /* MainTransTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTransTableViewCell.swift; sourceTree = "<group>"; };
 		A348DAEFB46F44B744F65E9A /* Pods-Puranas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 				B382F75F1ED5AC5C003DF09F /* Book.swift */,
 				B382F7611ED5AC6C003DF09F /* BookCont.swift */,
 				B382F7631ED5AD79003DF09F /* Const.swift */,
+				62E5D38A1ED6AE7B00BFB9C5 /* Global.swift */,
+				62E5D38C1ED6B02C00BFB9C5 /* CellData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -429,6 +435,8 @@
 				B33AF8E81ED4083300408F38 /* ViewController.swift in Sources */,
 				B33AF9231ED4C7E000408F38 /* PopupViewController.swift in Sources */,
 				B33AF91D1ED461B800408F38 /* BookViewController.swift in Sources */,
+				62E5D38D1ED6B02C00BFB9C5 /* CellData.swift in Sources */,
+				62E5D38B1ED6AE7B00BFB9C5 /* Global.swift in Sources */,
 				B382F7621ED5AC6C003DF09F /* BookCont.swift in Sources */,
 				B382F7601ED5AC5C003DF09F /* Book.swift in Sources */,
 				B382F75E1ED5719F003DF09F /* Series.swift in Sources */,

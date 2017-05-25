@@ -9,10 +9,10 @@
 import Foundation
 
 class BookCont {
-    var volumeNo: Int?
-    var cantoNo: Int?
-    var chapterNo: Int?
-    var contentID: Int?
+    var volumeNo: Int = 0
+    var cantoNo: Int = 0
+    var chapterNo: Int = 0
+    var contentId: Int = 0
     var uvacha: String?
     var content: String?
     var translation: String?

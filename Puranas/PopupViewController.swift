@@ -52,8 +52,6 @@ class PopupViewController: UIViewController {
 
 extension PopupViewController: MIBlurPopupDelegate {
     
-    
-    
     var popupView: UIView {
         return contentView ?? UIView()
     }
