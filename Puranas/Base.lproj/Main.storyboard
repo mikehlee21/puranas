@@ -504,6 +504,7 @@
                     <navigationItem key="navigationItem" title="Book 1" id="mAm-xg-5h7"/>
                     <connections>
                         <outlet property="btnBack" destination="7h3-G7-NkI" id="cBX-jl-Icj"/>
+                        <outlet property="btnPencil" destination="Fi0-yJ-EM1" id="Gv7-t1-MMZ"/>
                         <outlet property="btnSearch" destination="rth-eI-gxd" id="AJp-Cy-GDJ"/>
                         <outlet property="tableView" destination="AXT-VQ-rGg" id="puc-xU-Gw2"/>
                         <segue destination="7Bl-F5-hNI" kind="custom" identifier="PopupSegue" customClass="MIBlurPopupSegue" customModule="MIBlurPopup" id="WMb-5u-Tq9"/>
@@ -576,10 +577,10 @@
             </objects>
             <point key="canvasLocation" x="4165.6000000000004" y="89.505247376311857"/>
         </scene>
-        <!--View Controller-->
+        <!--Popup Menu View Controller-->
         <scene sceneID="7FD-YT-VJu">
             <objects>
-                <viewController id="DBw-RW-vms" sceneMemberID="viewController">
+                <viewController id="DBw-RW-vms" customClass="PopupMenuViewController" customModule="Puranas" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dsV-Jf-81L"/>
                         <viewControllerLayoutGuide type="bottom" id="zQD-Wz-rUh"/>
@@ -615,6 +616,9 @@
                                             <constraint firstAttribute="width" secondItem="TFX-OY-McR" secondAttribute="height" multiplier="1:1" id="Aal-bJ-Ey0"/>
                                         </constraints>
                                         <state key="normal" image="cont&amp;trans"/>
+                                        <connections>
+                                            <action selector="onContAndTrans:" destination="DBw-RW-vms" eventType="touchUpInside" id="GBx-DV-Ms0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9p-W0-D2s">
                                         <rect key="frame" x="151.5" y="15" width="51.5" height="51"/>
@@ -622,6 +626,9 @@
                                             <constraint firstAttribute="width" secondItem="g9p-W0-D2s" secondAttribute="height" multiplier="1:1" id="ZgJ-Es-8ld"/>
                                         </constraints>
                                         <state key="normal" image="content"/>
+                                        <connections>
+                                            <action selector="onCont:" destination="DBw-RW-vms" eventType="touchUpInside" id="VTf-bc-vza"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-Hm-dv8">
                                         <rect key="frame" x="211" y="15" width="51.5" height="51.5"/>
@@ -629,6 +636,9 @@
                                             <constraint firstAttribute="width" secondItem="tu0-Hm-dv8" secondAttribute="height" multiplier="1:1" id="WYS-DW-eQE"/>
                                         </constraints>
                                         <state key="normal" image="translation"/>
+                                        <connections>
+                                            <action selector="onTrans:" destination="DBw-RW-vms" eventType="touchUpInside" id="XCV-an-4Em"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gah-BQ-OcH">
                                         <rect key="frame" x="270.5" y="15" width="51.5" height="51"/>
@@ -636,17 +646,26 @@
                                             <constraint firstAttribute="width" secondItem="gah-BQ-OcH" secondAttribute="height" multiplier="1:1" id="aBc-cV-d56"/>
                                         </constraints>
                                         <state key="normal" image="bookmark"/>
+                                        <connections>
+                                            <action selector="onBookmark:" destination="DBw-RW-vms" eventType="touchUpInside" id="mdh-N5-hOd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMq-Tx-q7g">
                                         <rect key="frame" x="92" y="75.5" width="51.5" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jMq-Tx-q7g" secondAttribute="height" multiplier="1:1" id="y2C-Fq-I4o"/>
                                         </constraints>
-                                        <state key="normal" image="leftArrow"/>
+                                        <state key="normal" backgroundImage="leftArrow"/>
+                                        <connections>
+                                            <action selector="onPrevChapter:" destination="DBw-RW-vms" eventType="touchUpInside" id="Sih-uo-qHR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St8-Qe-H0M">
                                         <rect key="frame" x="151" y="75.5" width="51.5" height="51"/>
-                                        <state key="normal" image="rightArrow"/>
+                                        <state key="normal" backgroundImage="rightArrow"/>
+                                        <connections>
+                                            <action selector="onNextChapter:" destination="DBw-RW-vms" eventType="touchUpInside" id="9UT-GB-Ymr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM6-aY-uz4">
                                         <rect key="frame" x="210" y="75.5" width="51.5" height="51.5"/>
@@ -654,10 +673,16 @@
                                             <constraint firstAttribute="width" secondItem="TM6-aY-uz4" secondAttribute="height" multiplier="1:1" id="Dup-JQ-zOb"/>
                                         </constraints>
                                         <state key="normal" image="begining"/>
+                                        <connections>
+                                            <action selector="onBegining:" destination="DBw-RW-vms" eventType="touchUpInside" id="IvJ-nn-cqR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-ii-Xfl">
                                         <rect key="frame" x="270" y="75.5" width="51.5" height="51"/>
                                         <state key="normal" image="previous"/>
+                                        <connections>
+                                            <action selector="onPrevPos:" destination="DBw-RW-vms" eventType="touchUpInside" id="tA1-4H-2za"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h45-KD-UJQ">
                                         <rect key="frame" x="92" y="134.5" width="51.5" height="51.5"/>

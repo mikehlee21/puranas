@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		625B1BE21ED5FE5B009C16B2 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625B1BE11ED5FE5B009C16B2 /* DBManager.swift */; };
+		62DAC4231ED75A99004A2290 /* PopupMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DAC4221ED75A99004A2290 /* PopupMenuViewController.swift */; };
 		62E5D38B1ED6AE7B00BFB9C5 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E5D38A1ED6AE7B00BFB9C5 /* Global.swift */; };
 		62E5D38D1ED6B02C00BFB9C5 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E5D38C1ED6B02C00BFB9C5 /* CellData.swift */; };
 		62EA36C71ED60F88002DC06C /* Veda-Vyasa.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 62EA36C61ED60F88002DC06C /* Veda-Vyasa.sqlite */; };
@@ -56,6 +57,7 @@
 		24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puranas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9FD23A206E783834E36A58 /* Pods-Puranas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.debug.xcconfig"; sourceTree = "<group>"; };
 		625B1BE11ED5FE5B009C16B2 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		62DAC4221ED75A99004A2290 /* PopupMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuViewController.swift; sourceTree = "<group>"; };
 		62DAD5701ED6A27600849129 /* Mallanna.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mallanna.ttf; sourceTree = "<group>"; };
 		62E5D38A1ED6AE7B00BFB9C5 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		62E5D38C1ED6B02C00BFB9C5 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				B33AF91C1ED461B800408F38 /* BookViewController.swift */,
 				B33AF91E1ED4BB4400408F38 /* MainViewController.swift */,
 				B33AF9221ED4C7E000408F38 /* PopupViewController.swift */,
+				62DAC4221ED75A99004A2290 /* PopupMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				62E5D38B1ED6AE7B00BFB9C5 /* Global.swift in Sources */,
 				B382F7621ED5AC6C003DF09F /* BookCont.swift in Sources */,
 				B382F7601ED5AC5C003DF09F /* Book.swift in Sources */,
+				62DAC4231ED75A99004A2290 /* PopupMenuViewController.swift in Sources */,
 				B382F75E1ED5719F003DF09F /* Series.swift in Sources */,
 				B33AF91B1ED4619D00408F38 /* BookTableViewCell.swift in Sources */,
 				B33AF8E61ED4083300408F38 /* AppDelegate.swift in Sources */,

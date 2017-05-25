@@ -8,15 +8,17 @@
 
 import UIKit
 
-class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
+class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
 
+    @IBOutlet weak var btnPencil: UIButton!
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var lblBookName: String?
-    //var cellDataArray: [CellData] = []
     var bookId: String?
+    var lastContentOffset: CGFloat = 0
+    var isButtonsHidden: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,41 +28,48 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
-        initCellDataArray()
+        initCellDataArray(0)
         
         // Do any additional setup after loading the view.
     }
     
-    func initCellDataArray() {
+    func initCellDataArray(_ readingMode: Int) {
         
         let db = DBManager()
         let bookContArray = db.loadBookContData()
         let bookmarkArray = db.loadBookmark()
         
+        dataArray.removeAll()
+        
         for i in 0..<bookContArray.count {
-            let t = CellData()
-            t.text = bookContArray[i].content!
-            t.isCont = 1
-            t.uvacha = bookContArray[i].uvacha!
-            t.volumeNo = bookContArray[i].volumeNo
-            t.chapterNo = bookContArray[i].chapterNo
-            t.cantoNo = bookContArray[i].cantoNo
-            t.contentId = bookContArray[i].contentId
-            t.bookId = bookId!
+            if (readingMode != 2) {
+                let t = CellData()
+                t.text = bookContArray[i].content!
+                t.isCont = 1
+                t.uvacha = bookContArray[i].uvacha!
+                t.volumeNo = bookContArray[i].volumeNo
+                t.chapterNo = bookContArray[i].chapterNo
+                t.cantoNo = bookContArray[i].cantoNo
+                t.contentId = bookContArray[i].contentId
+                t.bookId = bookId!
             
-            dataArray.append(t)
-            if (bookContArray[i].translation != nil) {
-                let t1 = CellData()
-                t1.text = bookContArray[i].translation!
-                t1.isCont = 0
-                t1.uvacha = bookContArray[i].uvacha!
-                t1.volumeNo = bookContArray[i].volumeNo
-                t1.chapterNo = bookContArray[i].chapterNo
-                t1.cantoNo = bookContArray[i].cantoNo
-                t1.contentId = bookContArray[i].contentId
-                t1.bookId = bookId!
+                dataArray.append(t)
+            }
+            
+            if (readingMode != 1) {
+                if (bookContArray[i].translation != nil) {
+                    let t1 = CellData()
+                    t1.text = bookContArray[i].translation!
+                    t1.isCont = 0
+                    t1.uvacha = bookContArray[i].uvacha!
+                    t1.volumeNo = bookContArray[i].volumeNo
+                    t1.chapterNo = bookContArray[i].chapterNo
+                    t1.cantoNo = bookContArray[i].cantoNo
+                    t1.contentId = bookContArray[i].contentId
+                    t1.bookId = bookId!
                 
-                dataArray.append(t1)
+                    dataArray.append(t1)
+                }
             }
         }
         
@@ -70,6 +79,16 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                     dataArray[j].isBookmarked = 1
                 }
             }
+        }
+        
+        if (readingMode == 3) {
+            var tempArray:[CellData] = []
+            for i in 0..<dataArray.count {
+                if (dataArray[i].isBookmarked == 1) {
+                    tempArray.append(dataArray[i])
+                }
+            }
+            dataArray = tempArray
         }
     }
 
@@ -132,6 +151,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.imgStar.isHidden = true
             }
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTransCell") as! MainTransTableViewCell
@@ -175,10 +195,67 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         {
             btnBack.isEnabled = false
             btnSearch.isEnabled = false
-            let popupVC = segue.destination as! PopupViewController
-            popupVC.delegate = self
+            mainVC = self
         }
     }
     
+    func hidebuttons() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.navigationController?.isNavigationBarHidden = true
+            self.btnPencil.alpha = 0.0
+            self.btnBack.alpha = 0.0
+            self.btnSearch.alpha = 0.0
+        }, completion: nil)
+    }
+    
+    func showbuttons() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.navigationController?.isNavigationBarHidden = false
+            self.btnPencil.alpha = 1.0
+            self.btnBack.alpha = 1.0
+            self.btnSearch.alpha = 1.0
+        }, completion: nil)
+    }
+    // ScrollView Delegate
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffset = scrollView.contentOffset.y
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // moved to top
+            if (isButtonsHidden == false) {
+                hidebuttons()
+                isButtonsHidden = true
+            }
+        } else if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // moved to bottom
+            if (isButtonsHidden == true) {
+                showbuttons()
+                isButtonsHidden = false
+            }
+        } else {
+            // didn't move
+        }
+    }
+    
+    func manageReadingMode(_ readingMode: Int) {
+        initCellDataArray(readingMode)
+        tableView.reloadData()
+        print(dataArray.count)
+    }
+    
+    func manageNavMode(_ navMode: Int) {
+        switch navMode {
+        case 1:
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            break
+        default:
+            break
+        }
+    }
 
 }

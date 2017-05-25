@@ -13,8 +13,6 @@ class PopupViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var popupMainView: UIView!
-
-    var delegate : MainViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +32,8 @@ class PopupViewController: UIViewController {
 
     @IBAction func onDismiss(_ sender: Any) {
         
-        delegate?.btnBack.isEnabled = true
-        delegate?.btnSearch.isEnabled = true
+        mainVC?.btnBack.isEnabled = true
+        mainVC?.btnSearch.isEnabled = true
         
         dismiss(animated: true, completion: nil)
     }

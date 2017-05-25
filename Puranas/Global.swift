@@ -9,3 +9,4 @@
 import Foundation
 
 var dataArray: [CellData] = []
+var mainVC: MainViewController?

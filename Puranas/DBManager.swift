@@ -167,18 +167,10 @@ class DBManager
         
         let updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId) VALUES (0, '" + "\(data.bookId)" + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), '', \(data.isCont), \(data.contentId));"
         
-        print(updateStatementString)
-        
         var updateStatement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            if sqlite3_step(updateStatement) == SQLITE_DONE {
-                print("Successfully inserted row.")
-            } else {
-                print("Could not insert row.")
-            }
-        } else {
-            print("INSERT statement could not be prepared")
+            sqlite3_step(updateStatement)
         }
         
         sqlite3_finalize(updateStatement)
@@ -192,17 +184,10 @@ class DBManager
         
         let updateStatementString = "DELETE FROM \(Const.userHighlightsTable) WHERE bookId = '" + "\(data.bookId)" + "' AND volumeNo = \(data.volumeNo) AND cantoNo = \(data.cantoNo) AND chapterNo = \(data.chapterNo) AND isCont = \(data.isCont) AND contentId = \(data.contentId);"
         
-        print(updateStatementString)
         var updateStatement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            if sqlite3_step(updateStatement) == SQLITE_DONE {
-                print("Successfully deleted row.")
-            } else {
-                print("Could not delete row.")
-            }
-        } else {
-            print("DELETE statement could not be prepared")
+            sqlite3_step(updateStatement)
         }
         
         sqlite3_finalize(updateStatement)
