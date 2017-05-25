@@ -14,13 +14,18 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     var str: String?
+    var seriesArray: [Series] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1.0, green: 0.75, blue: 0, alpha: 1.0)
+        let db = DBManager()
+        seriesArray = db.loadSeriesData()
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1.0, green: 192.0 / 255.0, blue: 0.0, alpha: 1.0)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -45,12 +50,16 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return seriesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookSeriesCell", for: indexPath) as! BookSeriesTableViewCell
-        cell.lblSeriesName.text = "Series Name \(indexPath.row)"
+        
+        cell.lblSeriesName.text = seriesArray[indexPath.row].name
+        cell.lblLanguage.text = seriesArray[indexPath.row].lang
+        cell.lblSeriesType.text = seriesArray[indexPath.row].type
+        cell.lblVolumes.text = "\(seriesArray[indexPath.row].volumes!) Volumes"
         return cell
     }
     

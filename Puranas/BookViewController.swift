@@ -15,6 +15,7 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     
     var lblSeriesName: String?
     var strTitle: String?
+    var bookArray: [Book] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,9 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
         
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.title = lblSeriesName
+        
+        let db = DBManager()
+        bookArray = db.loadBooksData()
         
         // Do any additional setup after loading the view.
     }
@@ -44,12 +48,16 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return bookArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
         
+        cell.lblBookName.text = bookArray[indexPath.row].name
+        cell.lblLanguage.text = bookArray[indexPath.row].lang
+        cell.lblVolumes.text = "Volume \(bookArray[indexPath.row].volumeNo!)"
+
         return cell
     }
     
