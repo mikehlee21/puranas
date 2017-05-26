@@ -10,8 +10,11 @@ import UIKit
 
 class PopupMenuViewController: UIViewController {
     
+    @IBOutlet weak var backView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        backView.layer.borderColor = UIColor(red: 200.0 / 255.0, green: 150.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0).cgColor
+        backView.layer.borderWidth = 3.0
         // Do any additional setup after loading the view.
     }
 
@@ -34,10 +37,6 @@ class PopupMenuViewController: UIViewController {
         mainVC?.manageNavMode(mode)
     }
     
-    @IBAction func onContAndTrans(_ sender: Any) {
-        dismissReadingModePopup(0)
-    }
-    
     @IBAction func onCont(_ sender: Any) {
         dismissReadingModePopup(1)
     }
@@ -46,23 +45,31 @@ class PopupMenuViewController: UIViewController {
         dismissReadingModePopup(2)
     }
     
+    @IBAction func onContAndTrans(_ sender: Any) {
+        dismissReadingModePopup(0)
+    }
+    
     @IBAction func onBookmark(_ sender: Any) {
         dismissReadingModePopup(3)
     }
-
+    
+    @IBAction func onFirstChapter(_ sender: Any) {
+        dismissNavModePopup(3)
+    }
+    
     @IBAction func onPrevChapter(_ sender: Any) {
         dismissNavModePopup(1)
+    }
+    
+    @IBAction func onCurrent(_ sender: Any) {
+        dismissNavModePopup(5)
     }
     
     @IBAction func onNextChapter(_ sender: Any) {
         dismissNavModePopup(2)
     }
     
-    @IBAction func onBegining(_ sender: Any) {
-        dismissNavModePopup(3)
-    }
-    
-    @IBAction func onPrevPos(_ sender: Any) {
+    @IBAction func onLastChapter(_ sender: Any) {
         dismissNavModePopup(4)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Const {
     static let dbName = "Veda-Vyasa"
@@ -15,4 +16,6 @@ struct Const {
     static let bookContTable = "bookCont"
     static let userHighlightsTable = "userHighlights"
     static let COLUMN_NULL : Int32 = 5
+    static let highlightColor = UIColor(red: 255.0 / 255.0, green: 245.0 / 255.0, blue: 157.0 / 255.0, alpha: 1.0)
+    static let cellBackColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 }

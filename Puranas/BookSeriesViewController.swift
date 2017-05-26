@@ -8,18 +8,22 @@
 
 import UIKit
 
-class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
+class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var str: String?
     var seriesArray: [Series] = []
+    var filterdArray: [Series] = []
+    var isSearching: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchBar.delegate = self
         
         let db = DBManager()
         seriesArray = db.loadSeriesData()
@@ -50,16 +54,28 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return seriesArray.count
+        if (isSearching == true) {
+            return filterdArray.count
+        }
+        else {
+            return seriesArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookSeriesCell", for: indexPath) as! BookSeriesTableViewCell
-        
-        cell.lblSeriesName.text = seriesArray[indexPath.row].name
-        cell.lblLanguage.text = seriesArray[indexPath.row].lang
-        cell.lblSeriesType.text = seriesArray[indexPath.row].type
-        cell.lblVolumes.text = "\(seriesArray[indexPath.row].volumes!) Volumes"
+        if (isSearching == true) {
+            cell.lblSeriesName.text = filterdArray[indexPath.row].name
+            cell.lblLanguage.text = filterdArray[indexPath.row].lang
+            cell.lblSeriesType.text = filterdArray[indexPath.row].type
+            cell.lblVolumes.text = "\(filterdArray[indexPath.row].volumes!) Volumes"
+        }
+        else {
+            cell.lblSeriesName.text = seriesArray[indexPath.row].name
+            cell.lblLanguage.text = seriesArray[indexPath.row].lang
+            cell.lblSeriesType.text = seriesArray[indexPath.row].type
+            cell.lblVolumes.text = "\(seriesArray[indexPath.row].volumes!) Volumes"
+        }
         return cell
     }
     
@@ -72,6 +88,48 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! BookViewController
         vc.lblSeriesName = str
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isSearching = false
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearching = true
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterdArray.removeAll()
+        
+        for i in 0..<seriesArray.count {
+            let temp = seriesArray[i].name
+            if temp?.range(of: searchBar.text!) != nil{
+                filterdArray.append(seriesArray[i])
+            }
+        }
+        
+        if searchBar.text! == "" {
+            isSearching = false
+        }
+        else {
+            isSearching = true
+        }
+        
+        tableView.reloadData()
     }
     /*
     // MARK: - Navigation

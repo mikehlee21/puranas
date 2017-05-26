@@ -41,8 +41,43 @@ class DBManager
     
     func dataFilePath() -> String
     {
-        let path = Bundle.main.path(forResource: Const.dbName, ofType: "sqlite")!
-        return path
+//        NSString* docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString* dbPath = [docPath stringByAppendingPathComponent:@"test.sqlite"];
+//        NSFileManager *fm = [NSFileManager defaultManager];
+//        
+//        // Check if the database is existed.
+//        if(![fm fileExistsAtPath:dbPath])
+//        {
+//            // If database is not existed, copy from the database template in the bundle
+//            NSString* dbTemplatePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"sqlite"];
+//            NSError* error = nil;
+//            [fm copyItemAtPath:dbTemplatePath toPath:dbPath error:&error];
+//            if(error){
+//                NSLog(@"can't copy db.");
+//            }
+//        }
+        
+        var docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        docPath.append("/" + Const.dbName + ".sqlite")
+        
+        let fm = FileManager.default
+        
+        if fm.fileExists(atPath: docPath) == false
+        {
+            let templatePath = Bundle.main.path(forResource: Const.dbName, ofType: "sqlite")
+            
+            let content = NSData(contentsOfFile: templatePath!)
+            
+            let result = fm.createFile(atPath: docPath, contents: content as Data?, attributes: nil)
+            
+            if result == false
+            {
+                print("Failed to Copy sqlite content")
+            }
+
+        }
+        
+        return docPath
     }
     
     func loadSeriesData() -> [Series]

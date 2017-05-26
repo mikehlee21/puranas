@@ -14,6 +14,7 @@ class MainTransTableViewCell: UITableViewCell {
     @IBOutlet weak var lblText: UILabel!
     
     var index: Int = 0
+    var sectionNo: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,21 +27,21 @@ class MainTransTableViewCell: UITableViewCell {
     }
     
     func tapped() {
-        if (dataArray[index].isBookmarked == 0) {
-            self.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
+        if (bookDataArray[sectionNo]?[index].isBookmarked == 0) {
+            self.backgroundColor = Const.highlightColor
             imgStar.isHidden = false
-            dataArray[index].isBookmarked = 1
+            bookDataArray[sectionNo]?[index].isBookmarked = 1
             
             let db = DBManager()
-            db.insertBookmark(data: dataArray[index])
+            db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
         else {
-            self.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            self.backgroundColor = Const.cellBackColor
             imgStar.isHidden = true
-            dataArray[index].isBookmarked = 0
+            bookDataArray[sectionNo]?[index].isBookmarked = 0
             
             let db = DBManager()
-            db.deleteBookmark(data: dataArray[index])
+            db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

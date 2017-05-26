@@ -16,8 +16,8 @@ class PopupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        popupMainView.layer.cornerRadius = 10
-        contentView.layer.cornerRadius = 10
+        //popupMainView.layer.cornerRadius = 10
+        //contentView.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
 

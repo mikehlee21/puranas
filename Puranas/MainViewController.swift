@@ -19,6 +19,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var bookId: String?
     var lastContentOffset: CGFloat = 0
     var isButtonsHidden: Bool = false
+    var allowHidden: Bool = true
+    var prevFlag: Bool = false
+    var navModeContentOffset: CGFloat = 0
+    var isNav: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +32,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
-        initCellDataArray(0)
+        initSectionData(0)
         
         // Do any additional setup after loading the view.
     }
@@ -91,6 +95,32 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             dataArray = tempArray
         }
     }
+    
+    func initSectionData(_ readingMode: Int) {
+        initCellDataArray(readingMode)
+        
+        bookDataArray.removeAll()
+        
+        for i in 0..<getSectionCount() {
+            var temp: [CellData] = []
+            for j in 0..<dataArray.count {
+                if (dataArray[j].chapterNo - 1 == i) {
+                    temp.append(dataArray[j])
+                }
+            }
+            bookDataArray[i] = temp
+        }
+    }
+    
+    func getSectionCount() -> Int {
+        var cnt = 1
+        for i in 0..<dataArray.count {
+            if (dataArray[i].chapterNo > cnt) {
+                cnt = dataArray[i].chapterNo
+            }
+        }
+        return cnt
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,31 +138,26 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     // Table View Delegate & DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        var cnt = 1
-        for i in 0..<dataArray.count {
-            if (dataArray[i].chapterNo > cnt) {
-                cnt = dataArray[i].chapterNo
-            }
-        }
-        return cnt
+        return getSectionCount()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        return (bookDataArray[section]?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let temp = dataArray[indexPath.row]
+        let temp = bookDataArray[indexPath.section]?[indexPath.row]
         
-        if (temp.isCont == 1) {
+        if (temp?.isCont == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
             cell.index = indexPath.row
+            cell.sectionNo = indexPath.section
             
-            if (temp.uvacha != "") {
-                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp.uvacha.description):")
+            if (temp?.uvacha != "") {
+                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp!.uvacha.description):")
                 attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0, green: 0.8, blue: 0.0, alpha: 1.0), range: NSMakeRange(0, attrString.length))
             
-                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", temp.text.description))
+                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", temp!.text.description))
                 descString.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: NSMakeRange(0, descString.length))
             
                 attrString.append(descString);
@@ -140,30 +165,31 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 cell.lblText.attributedText = attrString
             }
             else {
-                cell.lblText?.text = temp.text
+                cell.lblText?.text = temp?.text
             }
             
-            if (temp.isBookmarked == 1) {
-                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
+            if (temp?.isBookmarked == 1) {
+                cell.backgroundColor = Const.highlightColor
                 cell.imgStar.isHidden = false
             }
             else {
-                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.backgroundColor = Const.cellBackColor
                 cell.imgStar.isHidden = true
             }
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTransCell") as! MainTransTableViewCell
-            cell.lblText?.text = temp.text
+            cell.lblText?.text = temp?.text
             cell.index = indexPath.row
+            cell.sectionNo = indexPath.section
             
-            if (temp.isBookmarked == 1) {
-                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
+            if (temp?.isBookmarked == 1) {
+                cell.backgroundColor = Const.highlightColor
                 cell.imgStar.isHidden = false
             }
             else {
-                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.backgroundColor = Const.cellBackColor
                 cell.imgStar.isHidden = true
             }
             
@@ -220,38 +246,119 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastContentOffset = scrollView.contentOffset.y
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (self.lastContentOffset < scrollView.contentOffset.y) {
-            // moved to top
-            if (isButtonsHidden == false) {
-                hidebuttons()
-                isButtonsHidden = true
-            }
-        } else if (self.lastContentOffset > scrollView.contentOffset.y) {
-            // moved to bottom
-            if (isButtonsHidden == true) {
-                showbuttons()
-                isButtonsHidden = false
-            }
-        } else {
-            // didn't move
+        allowHidden = true
+        prevFlag = false
+        lastReadingPos = scrollView.contentOffset.y
+        if (isNav == false) {
+            navModeContentOffset = scrollView.contentOffset.y
+            //print(navModeContentOffset)
         }
     }
     
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (allowHidden == true) {
+            if (self.lastContentOffset < scrollView.contentOffset.y) {
+                // moved to top
+                if (isButtonsHidden == false) {
+                    hidebuttons()
+                    isButtonsHidden = true
+                }
+            } else if (self.lastContentOffset > scrollView.contentOffset.y) {
+                // moved to bottom
+                if (isButtonsHidden == true) {
+                    showbuttons()
+                    isButtonsHidden = false
+                }
+            } else {
+                // didn't move
+            }
+        }
+    }
+    
+    /*
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if (isNav) {
+            navModeContentOffset = scrollView.contentOffset.y
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        allowHidden = true
+        prevFlag = false
+        lastReadingPos = scrollView.contentOffset.y
+        if (isNav) {
+            navModeContentOffset = scrollView.contentOffset.y
+        }
+    }*/
+    
     func manageReadingMode(_ readingMode: Int) {
-        initCellDataArray(readingMode)
+        initSectionData(readingMode)
         tableView.reloadData()
-        print(dataArray.count)
     }
     
     func manageNavMode(_ navMode: Int) {
+        allowHidden = false
+        
+        let rows = tableView.indexPathsForVisibleRows
+        let section = (rows?[0].section)!
+        
         switch navMode {
         case 1:
             
+            if (rows?.count != 0) {
+                if (prevFlag == false) {
+                    let indexPath = IndexPath(row: 0, section: section)
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    prevFlag = true
+                }
+                else {
+                    if (section > 0) {
+                        let indexPath = IndexPath(row: 0, section: section - 1)
+                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                }
+            }
+            
+            isNav = true
+            
+            break
+        case 2:
+            if (rows?.count != 0) {
+                if (section != (tableView.numberOfSections - 1)) {
+                    let indexPath = IndexPath(row: 0, section: (section + 1))
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    prevFlag = true
+                }
+            }
+            
+            isNav = true
+            
+            break
+        case 3:
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+            isNav = true
+            
+            break
+        case 4:
+            let indexPath = IndexPath(row: 0, section: tableView.numberOfSections - 1)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+            isNav = true
+            prevFlag = true
+            
+            break
+        case 5:
+            if (isNav) {
+                let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset))
+                tableView.scrollToRow(at: indexPath!, at: .middle, animated: true)
+                isNav = false
+                prevFlag = false
+            }
             break
         default:
             break

@@ -17,6 +17,7 @@ class BookSeriesTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSeriesName: UILabel!
     @IBOutlet weak var btnStatus: UIButton!
     @IBOutlet weak var imgBook: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

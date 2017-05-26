@@ -8,19 +8,22 @@
 
 import UIKit
 
-class BookViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class BookViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var lblSeriesName: String?
     var bookArray: [Book] = []
+    var filterdArray: [Book] = []
     var selectedBook: Book?
+    var isSearching: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.title = lblSeriesName
@@ -40,7 +43,6 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
         self.navigationController?.popViewController(animated: true)
     }
     
-    
     // Table View Delegate and DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,15 +50,27 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookArray.count
+        if (isSearching == true) {
+            return filterdArray.count
+        }
+        else {
+            return bookArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
         
-        cell.lblBookName.text = bookArray[indexPath.row].name
-        cell.lblLanguage.text = bookArray[indexPath.row].lang
-        cell.lblVolumes.text = "Volume \(bookArray[indexPath.row].volumeNo!)"
+        if (isSearching) {
+            cell.lblBookName.text = filterdArray[indexPath.row].name
+            cell.lblLanguage.text = filterdArray[indexPath.row].lang
+            cell.lblVolumes.text = "Volume \(filterdArray[indexPath.row].volumeNo!)"
+        }
+        else {
+            cell.lblBookName.text = bookArray[indexPath.row].name
+            cell.lblLanguage.text = bookArray[indexPath.row].lang
+            cell.lblVolumes.text = "Volume \(bookArray[indexPath.row].volumeNo!)"
+        }
 
         return cell
     }
@@ -71,6 +85,48 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
         let vc = segue.destination as! MainViewController
         vc.lblBookName = selectedBook?.name
         vc.bookId = selectedBook?.bookId
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isSearching = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearching = true
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterdArray.removeAll()
+        
+        for i in 0..<bookArray.count {
+            let temp = bookArray[i].name
+            if temp?.range(of: searchBar.text!) != nil{
+                filterdArray.append(bookArray[i])
+            }
+        }
+        
+        if searchBar.text! == "" {
+            isSearching = false
+        }
+        else {
+            isSearching = true
+        }
+        
+        tableView.reloadData()
     }
 
     /*

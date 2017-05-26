@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 var dataArray: [CellData] = []
+var bookDataArray: [Int: [CellData]] = [:]
 var mainVC: MainViewController?
+var lastReadingPos: CGFloat = 0
