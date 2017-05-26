@@ -209,9 +209,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Book Series" id="sBM-jw-lM1">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Eb9-Jj-poN">
-                            <string key="image" base64-UTF8="YES">
-CQ
-</string>
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1by-97-Bl2">
                                 <rect key="frame" x="329" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -387,7 +384,7 @@ CQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="113" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="AXT-VQ-rGg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainCell" rowHeight="113" id="EgM-4V-yOQ" customClass="MainTableViewCell" customModule="Puranas" customModuleProvider="target">
@@ -404,28 +401,27 @@ CQ
                                                         <constraint firstAttribute="width" constant="25" id="RpB-My-2c8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyI-Wu-7M1">
-                                                    <rect key="frame" x="48" y="5" width="319" height="95"/>
-                                                    <gestureRecognizers/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-DI-6QW">
+                                                    <rect key="frame" x="38" y="5" width="337" height="103"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="OyI-Wu-7M1" secondAttribute="trailing" id="Dgu-3Y-GHh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="OyI-Wu-7M1" secondAttribute="bottom" constant="5" id="YkC-4B-nAQ"/>
-                                                <constraint firstItem="OyI-Wu-7M1" firstAttribute="top" secondItem="hfF-hl-bV9" secondAttribute="top" id="c2M-aO-xEr"/>
+                                                <constraint firstAttribute="bottom" secondItem="zk0-DI-6QW" secondAttribute="bottom" constant="5" id="0yP-rr-O3O"/>
+                                                <constraint firstAttribute="trailing" secondItem="zk0-DI-6QW" secondAttribute="trailing" id="Rbh-6U-UAK"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="hfF-hl-bV9" secondAttribute="leading" id="cqW-Af-ihY"/>
+                                                <constraint firstItem="zk0-DI-6QW" firstAttribute="top" secondItem="b8A-vl-EcD" secondAttribute="top" constant="5" id="e5B-zg-Y7i"/>
+                                                <constraint firstItem="zk0-DI-6QW" firstAttribute="leading" secondItem="hfF-hl-bV9" secondAttribute="trailing" constant="5" id="lOL-vT-Msq"/>
                                                 <constraint firstAttribute="top" secondItem="hfF-hl-bV9" secondAttribute="top" constant="-5" id="v1A-eC-edc"/>
-                                                <constraint firstItem="OyI-Wu-7M1" firstAttribute="leading" secondItem="hfF-hl-bV9" secondAttribute="trailing" constant="15" id="z38-lR-kFG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="imgStar" destination="hfF-hl-bV9" id="llw-cP-eGf"/>
-                                            <outlet property="lblText" destination="OyI-Wu-7M1" id="Yy4-xs-L6H"/>
+                                            <outlet property="lblText" destination="zk0-DI-6QW" id="1KG-Ut-N3h"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainTransCell" rowHeight="113" id="CAv-7Q-UBP" customClass="MainTransTableViewCell" customModule="Puranas" customModuleProvider="target">
@@ -442,26 +438,27 @@ CQ
                                                         <constraint firstAttribute="width" secondItem="9RL-5z-dAX" secondAttribute="height" multiplier="1:1" id="mpN-9J-HPI"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-K9-Pap">
-                                                    <rect key="frame" x="48" y="5" width="319" height="95"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-AX-Nxd">
+                                                    <rect key="frame" x="38" y="5" width="337" height="103"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ywm-K9-Pap" firstAttribute="leading" secondItem="9RL-5z-dAX" secondAttribute="trailing" constant="15" id="8zi-dZ-buj"/>
                                                 <constraint firstAttribute="top" secondItem="9RL-5z-dAX" secondAttribute="top" constant="-5" id="CC0-Y2-idL"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="9RL-5z-dAX" secondAttribute="leading" id="ZJu-wB-RpX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Ywm-K9-Pap" secondAttribute="trailing" id="fBS-MR-Tof"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ywm-K9-Pap" secondAttribute="bottom" constant="5" id="sNZ-98-kzy"/>
-                                                <constraint firstItem="Ywm-K9-Pap" firstAttribute="top" secondItem="9RL-5z-dAX" secondAttribute="top" id="tWJ-uI-Uj4"/>
+                                                <constraint firstAttribute="bottom" secondItem="HAD-AX-Nxd" secondAttribute="bottom" constant="5" id="dWX-Zi-Umb"/>
+                                                <constraint firstItem="HAD-AX-Nxd" firstAttribute="leading" secondItem="9RL-5z-dAX" secondAttribute="trailing" constant="5" id="rup-ky-cu8"/>
+                                                <constraint firstAttribute="trailing" secondItem="HAD-AX-Nxd" secondAttribute="trailing" id="ucZ-Xb-fVc"/>
+                                                <constraint firstItem="HAD-AX-Nxd" firstAttribute="top" secondItem="SdN-Zf-cwa" secondAttribute="top" constant="5" id="vSi-gO-gAf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgStar" destination="9RL-5z-dAX" id="JMa-Wc-1B0"/>
-                                            <outlet property="lblText" destination="Ywm-K9-Pap" id="1u5-sm-36p"/>
+                                            <outlet property="lblText" destination="HAD-AX-Nxd" id="Dxf-Oi-XHd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -494,21 +491,28 @@ CQ
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rth-eI-gxd" secondAttribute="height" multiplier="1:1" id="tDn-xt-4I8"/>
                                 </constraints>
-                                <state key="normal" image="search"/>
+                                <state key="normal" image="currentBook"/>
                             </button>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="222-EA-UNe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AXT-VQ-rGg" firstAttribute="top" secondItem="nen-Bn-hcd" secondAttribute="bottom" id="5Ox-IO-7tn"/>
+                            <constraint firstItem="AXT-VQ-rGg" firstAttribute="top" secondItem="222-EA-UNe" secondAttribute="bottom" id="0M4-wi-hVY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rth-eI-gxd" secondAttribute="trailing" constant="10" id="8BE-rs-yAd"/>
                             <constraint firstItem="7h3-G7-NkI" firstAttribute="centerY" secondItem="Fi0-yJ-EM1" secondAttribute="centerY" id="8Mb-N7-bhq"/>
                             <constraint firstItem="rth-eI-gxd" firstAttribute="height" secondItem="7h3-G7-NkI" secondAttribute="height" id="A7m-tw-CZz"/>
+                            <constraint firstItem="222-EA-UNe" firstAttribute="centerX" secondItem="Ihc-Ex-KYu" secondAttribute="centerX" id="FhB-an-bry"/>
                             <constraint firstItem="AXT-VQ-rGg" firstAttribute="leading" secondItem="Ihc-Ex-KYu" secondAttribute="leading" id="Pda-YZ-DfE"/>
                             <constraint firstItem="7h3-G7-NkI" firstAttribute="leading" secondItem="Ihc-Ex-KYu" secondAttribute="leadingMargin" constant="10" id="RhR-hr-bOq"/>
                             <constraint firstItem="nLr-Up-NZx" firstAttribute="top" secondItem="Fi0-yJ-EM1" secondAttribute="bottom" constant="10" id="RyX-Qm-p3c"/>
                             <constraint firstItem="rth-eI-gxd" firstAttribute="centerY" secondItem="Fi0-yJ-EM1" secondAttribute="centerY" id="TPd-Dk-xrA"/>
+                            <constraint firstItem="222-EA-UNe" firstAttribute="top" secondItem="nen-Bn-hcd" secondAttribute="bottom" id="Vvz-5v-UpA"/>
                             <constraint firstItem="Fi0-yJ-EM1" firstAttribute="centerX" secondItem="Ihc-Ex-KYu" secondAttribute="centerX" id="W0T-Ww-vDi"/>
                             <constraint firstItem="nLr-Up-NZx" firstAttribute="top" secondItem="AXT-VQ-rGg" secondAttribute="bottom" id="ku2-3f-IsX"/>
+                            <constraint firstItem="222-EA-UNe" firstAttribute="width" secondItem="Ihc-Ex-KYu" secondAttribute="width" id="qRG-oO-wTr"/>
                             <constraint firstAttribute="trailing" secondItem="AXT-VQ-rGg" secondAttribute="trailing" id="rVh-RB-nzg"/>
                         </constraints>
                     </view>
@@ -516,8 +520,9 @@ CQ
                     <navigationItem key="navigationItem" title="Book 1" id="mAm-xg-5h7"/>
                     <connections>
                         <outlet property="btnBack" destination="7h3-G7-NkI" id="cBX-jl-Icj"/>
+                        <outlet property="btnBookmark" destination="rth-eI-gxd" id="3Nx-2o-9xh"/>
                         <outlet property="btnPencil" destination="Fi0-yJ-EM1" id="Gv7-t1-MMZ"/>
-                        <outlet property="btnSearch" destination="rth-eI-gxd" id="AJp-Cy-GDJ"/>
+                        <outlet property="searchBar" destination="222-EA-UNe" id="FxC-Wr-eHk"/>
                         <outlet property="tableView" destination="AXT-VQ-rGg" id="puc-xU-Gw2"/>
                         <segue destination="7Bl-F5-hNI" kind="custom" identifier="PopupSegue" customClass="MIBlurPopupSegue" customModule="MIBlurPopup" id="WMb-5u-Tq9"/>
                     </connections>
@@ -776,11 +781,6 @@ CQ
         </scene>
     </scenes>
     <resources>
-        <image width="16" height="16">
-            <string key="name" base64-UTF8="YES">
-CQ
-</string>
-        </image>
         <image name="bookmarked" width="100" height="100"/>
         <image name="bookmarksOnly" width="100" height="100"/>
         <image name="contentNTransl" width="100" height="100"/>
@@ -795,7 +795,6 @@ CQ
         <image name="nextChapter" width="100" height="100"/>
         <image name="prevChapter" width="100" height="100"/>
         <image name="prevScreen" width="100" height="100"/>
-        <image name="search" width="100" height="100"/>
         <image name="settings" width="100" height="100"/>
         <image name="translOnly" width="128" height="128"/>
         <image name="writeNote" width="100" height="100"/>

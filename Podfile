@@ -7,7 +7,7 @@ target 'Puranas' do
 
   # Pods for Puranas
 
-  pod 'ICTextView'
+  pod 'CircularSpinner'
   pod 'MIBlurPopup'
 
 end

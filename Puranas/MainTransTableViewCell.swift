@@ -11,7 +11,8 @@ import UIKit
 class MainTransTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgStar: UIImageView!
-    @IBOutlet weak var lblText: UILabel!
+    @IBOutlet weak var lblText: UITextView!
+    
     
     var index: Int = 0
     var sectionNo: Int = 0

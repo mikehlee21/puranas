@@ -10,7 +10,8 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblText: UILabel!
+
+    @IBOutlet weak var lblText: UITextView!
     @IBOutlet weak var imgStar: UIImageView!
     
     var index: Int = 0

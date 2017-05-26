@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
+class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnPencil: UIButton!
-    @IBOutlet weak var btnSearch: UIButton!
+    @IBOutlet weak var btnBookmark: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,6 +24,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var prevFlag: Bool = false
     var navModeContentOffset: CGFloat = 0
     var isNav: Bool = false
+    var isSearching: Bool = false
+    var filterdArray: [Int:[CellData]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchBar.delegate = self
         
         initSectionData(0)
         
@@ -142,22 +147,34 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (bookDataArray[section]?.count)!
+        if (isSearching == true) {
+            return (filterdArray[section]?.count)!
+        }
+        else {
+            return (bookDataArray[section]?.count)!
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let temp = bookDataArray[indexPath.section]?[indexPath.row]
         
-        if (temp?.isCont == 1) {
+        var temp = CellData()
+        if (isSearching == true) {
+            temp = (filterdArray[indexPath.section]?[indexPath.row])!
+        }
+        else {
+            temp = (bookDataArray[indexPath.section]?[indexPath.row])!
+        }
+        
+        if (temp.isCont == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
             cell.index = indexPath.row
             cell.sectionNo = indexPath.section
             
-            if (temp?.uvacha != "") {
-                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp!.uvacha.description):")
+            if (temp.uvacha != "") {
+                let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp.uvacha.description):")
                 attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0, green: 0.8, blue: 0.0, alpha: 1.0), range: NSMakeRange(0, attrString.length))
             
-                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", temp!.text.description))
+                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", temp.text.description))
                 descString.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: NSMakeRange(0, descString.length))
             
                 attrString.append(descString);
@@ -165,10 +182,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 cell.lblText.attributedText = attrString
             }
             else {
-                cell.lblText?.text = temp?.text
+                cell.lblText.text = temp.text
             }
             
-            if (temp?.isBookmarked == 1) {
+            if (temp.isBookmarked == 1) {
                 cell.backgroundColor = Const.highlightColor
                 cell.imgStar.isHidden = false
             }
@@ -180,11 +197,12 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTransCell") as! MainTransTableViewCell
-            cell.lblText?.text = temp?.text
+            //cell.lblText?.text = temp?.text
+            cell.lblText.text = temp.text
             cell.index = indexPath.row
             cell.sectionNo = indexPath.section
             
-            if (temp?.isBookmarked == 1) {
+            if (temp.isBookmarked == 1) {
                 cell.backgroundColor = Const.highlightColor
                 cell.imgStar.isHidden = false
             }
@@ -220,7 +238,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         if segue.identifier == "PopupSegue"
         {
             btnBack.isEnabled = false
-            btnSearch.isEnabled = false
+            btnBookmark.isEnabled = false
             mainVC = self
         }
     }
@@ -230,7 +248,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = true
             self.btnPencil.alpha = 0.0
             self.btnBack.alpha = 0.0
-            self.btnSearch.alpha = 0.0
+            self.btnBookmark.alpha = 0.0
+            self.searchBar.isHidden = true
         }, completion: nil)
     }
     
@@ -239,7 +258,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = false
             self.btnPencil.alpha = 1.0
             self.btnBack.alpha = 1.0
-            self.btnSearch.alpha = 1.0
+            self.btnBookmark.alpha = 1.0
+            self.searchBar.isHidden = false
         }, completion: nil)
     }
     // ScrollView Delegate
@@ -363,6 +383,54 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         default:
             break
         }
+    }
+    
+    // SearchBar Delegate
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isSearching = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearching = true
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterdArray.removeAll()
+        
+        for i in 0..<getSectionCount() {
+            var temp : [CellData] = []
+            for j in 0..<(bookDataArray[i]?.count)! {
+                let temp1 = bookDataArray[i]?[j].text
+                if temp1?.range(of: searchBar.text!) != nil {
+                    temp.append((bookDataArray[i]?[j])!)
+                }
+            }
+            filterdArray[i] = temp
+        }
+        
+        if searchBar.text! == "" {
+            isSearching = false
+        }
+        else {
+            isSearching = true
+        }
+        
+        tableView.reloadData()
     }
 
 }
