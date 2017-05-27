@@ -31,6 +31,7 @@ class MainTableViewCell: UITableViewCell {
             imgStar.isHidden = false
             bookDataArray[sectionNo]?[index].isBookmarked = 1
             
+            
             let db = DBManager()
             db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
