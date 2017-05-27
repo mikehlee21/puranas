@@ -18,4 +18,6 @@ class CellData {
     var chapterNo: Int = 0
     var contentId: Int = 0
     var bookId: String = ""
+    var bmType: String = ""
+    var bmData: String = ""
 }

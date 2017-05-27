@@ -14,6 +14,8 @@
 		62EA36C71ED60F88002DC06C /* Veda-Vyasa.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 62EA36C61ED60F88002DC06C /* Veda-Vyasa.sqlite */; };
 		62EA36C91ED636B1002DC06C /* MainTransTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA36C81ED636B1002DC06C /* MainTransTableViewCell.swift */; };
 		A5601483925B771C929004A8 /* Pods_Puranas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D4BABA29D57ACC89D92BDD /* Pods_Puranas.framework */; };
+		B303D4481EDA44A600A6EB68 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B303D4471EDA44A600A6EB68 /* SettingTableViewCell.swift */; };
+		B303D44A1EDA44C100A6EB68 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B303D4491EDA44C100A6EB68 /* SettingViewController.swift */; };
 		B33AF8E61ED4083300408F38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF8E51ED4083300408F38 /* AppDelegate.swift */; };
 		B33AF8E81ED4083300408F38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33AF8E71ED4083300408F38 /* ViewController.swift */; };
 		B33AF8EB1ED4083300408F38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33AF8E91ED4083300408F38 /* Main.storyboard */; };
@@ -64,6 +66,8 @@
 		62EA36C61ED60F88002DC06C /* Veda-Vyasa.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Veda-Vyasa.sqlite"; sourceTree = "<group>"; };
 		62EA36C81ED636B1002DC06C /* MainTransTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTransTableViewCell.swift; sourceTree = "<group>"; };
 		A348DAEFB46F44B744F65E9A /* Pods-Puranas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puranas.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puranas/Pods-Puranas.release.xcconfig"; sourceTree = "<group>"; };
+		B303D4471EDA44A600A6EB68 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		B303D4491EDA44C100A6EB68 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B33AF8E21ED4083300408F38 /* Puranas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puranas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33AF8E51ED4083300408F38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B33AF8E71ED4083300408F38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				B33AF91E1ED4BB4400408F38 /* MainViewController.swift */,
 				B33AF9221ED4C7E000408F38 /* PopupViewController.swift */,
 				62DAC4221ED75A99004A2290 /* PopupMenuViewController.swift */,
+				B303D4491EDA44C100A6EB68 /* SettingViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				B33AF9151ED4523100408F38 /* BookSeriesTableViewCell.swift */,
 				B33AF9201ED4BD0100408F38 /* MainTableViewCell.swift */,
 				62EA36C81ED636B1002DC06C /* MainTransTableViewCell.swift */,
+				B303D4471EDA44A600A6EB68 /* SettingTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -442,8 +448,10 @@
 				62E5D38B1ED6AE7B00BFB9C5 /* Global.swift in Sources */,
 				B382F7621ED5AC6C003DF09F /* BookCont.swift in Sources */,
 				B382F7601ED5AC5C003DF09F /* Book.swift in Sources */,
+				B303D4481EDA44A600A6EB68 /* SettingTableViewCell.swift in Sources */,
 				62DAC4231ED75A99004A2290 /* PopupMenuViewController.swift in Sources */,
 				B382F75E1ED5719F003DF09F /* Series.swift in Sources */,
+				B303D44A1EDA44C100A6EB68 /* SettingViewController.swift in Sources */,
 				B33AF91B1ED4619D00408F38 /* BookTableViewCell.swift in Sources */,
 				B33AF8E61ED4083300408F38 /* AppDelegate.swift in Sources */,
 				B382F7641ED5AD79003DF09F /* Const.swift in Sources */,

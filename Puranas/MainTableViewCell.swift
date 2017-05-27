@@ -11,6 +11,7 @@ import UIKit
 class MainTableViewCell: UITableViewCell {
 
 
+    @IBOutlet weak var lblChapter: UILabel!
     @IBOutlet weak var lblText: UITextView!
     @IBOutlet weak var imgStar: UIImageView!
     
@@ -28,20 +29,20 @@ class MainTableViewCell: UITableViewCell {
     func tapped() {
         if (bookDataArray[sectionNo]?[index].isBookmarked == 0) {
             self.backgroundColor = Const.highlightColor
-            imgStar.isHidden = false
+            imgStar.image = #imageLiteral(resourceName: "bookmarked")
             bookDataArray[sectionNo]?[index].isBookmarked = 1
             
             
             let db = DBManager()
-            db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!)
+            //db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
         else {
             self.backgroundColor = Const.cellBackColor
-            imgStar.isHidden = true
+            imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
             bookDataArray[sectionNo]?[index].isBookmarked = 0
             
             let db = DBManager()
-            db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
+            //db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
 
     }

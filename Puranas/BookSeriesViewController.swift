@@ -86,8 +86,10 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! BookViewController
-        vc.lblSeriesName = str
+        if segue.identifier == "Series2Book" {
+            let vc = segue.destination as! BookViewController
+            vc.lblSeriesName = str
+        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

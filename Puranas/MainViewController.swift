@@ -85,13 +85,13 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         for i in 0..<bookContArray.count {
             if (readingMode != 2) {
                 let t = CellData()
-                t.text = bookContArray[i].content!
                 t.isCont = 1
                 t.uvacha = bookContArray[i].uvacha!
                 t.volumeNo = bookContArray[i].volumeNo
                 t.chapterNo = bookContArray[i].chapterNo
                 t.cantoNo = bookContArray[i].cantoNo
                 t.contentId = bookContArray[i].contentId
+                t.text = bookContArray[i].content! + " \(t.contentId)"
                 t.bookId = bookId!
             
                 dataArray.append(t)
@@ -100,13 +100,13 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             if (readingMode != 1) {
                 if (bookContArray[i].translation != nil) {
                     let t1 = CellData()
-                    t1.text = bookContArray[i].translation!
                     t1.isCont = 0
                     t1.uvacha = bookContArray[i].uvacha!
                     t1.volumeNo = bookContArray[i].volumeNo
                     t1.chapterNo = bookContArray[i].chapterNo
                     t1.cantoNo = bookContArray[i].cantoNo
                     t1.contentId = bookContArray[i].contentId
+                    t1.text = bookContArray[i].translation! + " \(t1.contentId)"
                     t1.bookId = bookId!
                 
                     dataArray.append(t1)
@@ -206,20 +206,28 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
             cell.index = indexPath.row
             cell.sectionNo = indexPath.section
+            cell.lblChapter.text = "\(temp.chapterNo).\(temp.contentId)"
             
             if (temp.uvacha != "") {
                 let attrString: NSMutableAttributedString = NSMutableAttributedString(string: "\(temp.uvacha.description):")
                 attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0, green: 0.8, blue: 0.0, alpha: 1.0), range: NSMakeRange(0, attrString.length))
-            
-                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", temp.text.description))
+                
+                let str = temp.text
+                
+                let descString: NSMutableAttributedString = NSMutableAttributedString(string:  String(format: "  %@", str.description))
                 descString.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: NSMakeRange(0, descString.length))
-            
+                
                 attrString.append(descString);
                 
                 let style = NSMutableParagraphStyle()
                 style.lineSpacing = 10
                 attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, attrString.length))
-            
+                
+                let ft = UIFont(name: "Mallanna", size: 17)
+                
+                attrString.addAttribute(NSFontAttributeName, value: ft, range: NSMakeRange(0, attrString.length))
+                
+                
                 cell.lblText.attributedText = attrString
             }
             else {
@@ -228,11 +236,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             
             if (temp.isBookmarked == 1) {
                 cell.backgroundColor = Const.highlightColor
-                cell.imgStar.isHidden = false
+                cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
             }
             else {
                 cell.backgroundColor = Const.cellBackColor
-                cell.imgStar.isHidden = true
+                cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
             }
             
             return cell
@@ -242,14 +250,15 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             cell.lblText.text = temp.text
             cell.index = indexPath.row
             cell.sectionNo = indexPath.section
+            cell.lblChapter.text = "\(temp.chapterNo).\(temp.contentId)"
             
             if (temp.isBookmarked == 1) {
                 cell.backgroundColor = Const.highlightColor
-                cell.imgStar.isHidden = false
+                cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
             }
             else {
                 cell.backgroundColor = Const.cellBackColor
-                cell.imgStar.isHidden = true
+                cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
             }
             
             return cell
@@ -344,10 +353,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func saveLastReadingPos() {
-        let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1, y: lastContentOffset))
-        let temp = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
-        let db = DBManager()
-        db.saveLastReadingPos(bookId: (temp?.bookId)!, chapterNo: (temp?.chapterNo)!, contentId: (temp?.contentId)!, isCont: (temp?.isCont)!)
+        if let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1, y: lastContentOffset)) {
+            let temp = bookDataArray[indexPath.section]?[indexPath.row]
+            let db = DBManager()
+            db.saveLastReadingPos(bookId: (temp?.bookId)!, chapterNo: (temp?.chapterNo)!, contentId: (temp?.contentId)!, isCont: (temp?.isCont)!)
+        }
     }
     
     /*
