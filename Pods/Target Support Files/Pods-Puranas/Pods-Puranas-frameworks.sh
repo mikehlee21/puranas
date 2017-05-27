@@ -89,11 +89,11 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ICTextView/ICTextView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CircularSpinner/CircularSpinner.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MIBlurPopup/MIBlurPopup.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ICTextView/ICTextView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CircularSpinner/CircularSpinner.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MIBlurPopup/MIBlurPopup.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

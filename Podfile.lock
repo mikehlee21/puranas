@@ -1,15 +1,15 @@
 PODS:
-  - ICTextView (2.0.1)
+  - CircularSpinner (1.2.0)
   - MIBlurPopup (0.1.1)
 
 DEPENDENCIES:
-  - ICTextView
+  - CircularSpinner
   - MIBlurPopup
 
 SPEC CHECKSUMS:
-  ICTextView: 937aca5dd49e39e9cca41ababe8c55bf99c634fc
+  CircularSpinner: 80b8ee3eda59b66d20631d4ca7c7c83720931739
   MIBlurPopup: debbc8f4f631809797140d37b5476745a61e90be
 
-PODFILE CHECKSUM: 5efd5a60de93ce7717c8cab508ee47859b2e5001
+PODFILE CHECKSUM: c05a28068e19370678fc73740f9e1948e48fc0d6
 
 COCOAPODS: 1.2.1

@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ICTextView.xcscheme</key>
+		<key>CircularSpinner-CircularSpinner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CircularSpinner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>175FC7CE9AAF9C4CDB3BADA154FF385D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>240CB7C7222FFE1DE15404A8BEA90FAA</key>
+		<key>259DA8715230F278BB164111DC87A1FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>69F59636E016BD704D9FAFDDACAFE4EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C63CB4AE559E609E163642ED2A914D4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D780F80A5793F3EFDAC1606AAA75B388</key>
 		<dict>
 			<key>primary</key>
 			<true/>

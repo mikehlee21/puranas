@@ -149,13 +149,13 @@ class DBManager
         return res
     }
     
-    func loadBookContData() -> [BookCont]
+    func loadBookContData(_ bookId: String) -> [BookCont]
     {
         //open db
         openDB()
         
         //reads all data
-        let query = "SELECT volumeNo, cantoNo, chapterNo, contentId, uvacha, content, translation FROM \(Const.bookContTable)"
+        let query = "SELECT volumeNo, cantoNo, chapterNo, contentId, uvacha, content, translation FROM \(Const.bookContTable) WHERE bookId = '" + bookId + "'"
         var statement : OpaquePointer? = nil
         
         var res : [BookCont] = []
@@ -263,6 +263,63 @@ class DBManager
         sqlite3_close(database)
         
         return res
+    }
+    
+    func saveLastReadingPos(bookId: String, chapterNo: Int, contentId: Int, isCont: Int) {
+        
+        openDB()
+        
+        let prefName = "lastReadingPos.\(bookId)"
+        let prefValue = "\(chapterNo)-\(contentId)-\(isCont)"
+        
+        let updateStatementString = "INSERT INTO \(Const.userPrefTable) (email,prefName,prefValue,lastUpdateOn,lastUpdateDesc) VALUES ('" + "ckdhrgid@outlook.com" + "', '" + prefName + "', '" + prefValue + "', NULL, NULL);"
+        
+        var updateStatement: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            sqlite3_step(updateStatement)
+        }
+        
+        sqlite3_finalize(updateStatement)
+        
+        sqlite3_close(database)
+    }
+    
+    func loadLastReadingPos(_ bookId: String) -> CellData {
+        let ret = CellData()
+        
+        openDB()
+        
+        //reads all data
+        let query = "SELECT prefName, prefValue FROM \(Const.userPrefTable)"
+        var statement : OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(database, query, -1, &statement, nil) == SQLITE_OK
+        {
+            while sqlite3_step(statement) == SQLITE_ROW
+            {
+                let t = String.init(cString: sqlite3_column_text(statement, 0)!)
+                let p = String.init(cString: sqlite3_column_text(statement, 1)!)
+                
+                ret.bookId = t.replacingOccurrences(of: "lastReadingPos.", with: "")
+                
+                if (ret.bookId == bookId) {
+                    let delimiter = "-"
+                    let temp = p.components(separatedBy: delimiter)
+                    ret.chapterNo = Int(temp[0])!
+                    ret.contentId = Int(temp[1])!
+                    ret.isCont = Int(temp[2])!
+                }
+                
+            }
+            
+            sqlite3_finalize(statement)
+        }
+        
+        //close db
+        sqlite3_close(database)
+        
+        return ret
     }
     /*
     func updateBookContData(t: BookCont) {

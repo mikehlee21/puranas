@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MainViewController.tableView(UITableView, willDisplay : UITableViewCell, forRowAt : IndexPath) -&gt; ():MainViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.viewDidAppear(Bool) -&gt; ():MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navModeContentOffset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:MainViewController.swift">
          <PersistentStrings>
             <PersistentString

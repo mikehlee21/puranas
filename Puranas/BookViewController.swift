@@ -77,7 +77,12 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let cell = tableView.cellForRow(at: indexPath) as! BookTableViewCell
-        selectedBook = bookArray[indexPath.row]
+        if (isSearching) {
+            selectedBook = filterdArray[indexPath.row]
+        }
+        else {
+            selectedBook = bookArray[indexPath.row]
+        }
         performSegue(withIdentifier: "Book2Reading", sender: nil)
     }
     

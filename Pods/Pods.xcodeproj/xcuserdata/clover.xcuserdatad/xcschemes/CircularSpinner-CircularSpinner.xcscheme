@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '240CB7C7222FFE1DE15404A8BEA90FAA'
-               BlueprintName = 'ICTextView'
+               BlueprintIdentifier = 'C63CB4AE559E609E163642ED2A914D4D'
+               BlueprintName = 'CircularSpinner-CircularSpinner'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'ICTextView.framework'>
+               BuildableName = 'CircularSpinner.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

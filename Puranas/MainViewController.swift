@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CircularSpinner
 
 class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
 
@@ -22,10 +23,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var isButtonsHidden: Bool = false
     var allowHidden: Bool = true
     var prevFlag: Bool = false
-    var navModeContentOffset: CGFloat = 0
     var isNav: Bool = false
     var isSearching: Bool = false
-    var filterdArray: [Int:[CellData]] = [:]
+    var filteredArray: [Int:[CellData]] = [:]
+    var navModeContentOffset: CGFloat = 0
+    var dataArray: [CellData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,15 +39,45 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         searchBar.delegate = self
         
+        //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         initSectionData(0)
+        //CircularSpinner.hide()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // 
+        //let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset))
+        
+        let db = DBManager()
+        let temp = db.loadLastReadingPos(bookId!)
+        
+        if (temp.chapterNo != 0) {
+            var row = 0
+            let cnt = bookDataArray[temp.chapterNo - 1]?.count
+            for i in 1..<cnt! {
+                let t = bookDataArray[temp.chapterNo - 1]?[i]
+                if (t?.contentId == temp.contentId) {
+                    if (temp.isCont == 1) {
+                        row = i
+                    }
+                    else {
+                        row += i
+                    }
+                    break
+                }
+            }
+        
+            let indexPath = IndexPath(row: row, section: temp.chapterNo - 1)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        }
     }
     
     func initCellDataArray(_ readingMode: Int) {
         
         let db = DBManager()
-        let bookContArray = db.loadBookContData()
+        let bookContArray = db.loadBookContData(bookId!)
         let bookmarkArray = db.loadBookmark()
         
         dataArray.removeAll()
@@ -102,6 +134,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func initSectionData(_ readingMode: Int) {
+        
         initCellDataArray(readingMode)
         
         bookDataArray.removeAll()
@@ -114,6 +147,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 }
             }
             bookDataArray[i] = temp
+        }
+        
+        if (isSearching == true) {
+            initFilteredArray()
         }
     }
     
@@ -148,7 +185,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (isSearching == true) {
-            return (filterdArray[section]?.count)!
+            return (filteredArray[section]?.count)!
         }
         else {
             return (bookDataArray[section]?.count)!
@@ -159,7 +196,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         var temp = CellData()
         if (isSearching == true) {
-            temp = (filterdArray[indexPath.section]?[indexPath.row])!
+            temp = (filteredArray[indexPath.section]?[indexPath.row])!
         }
         else {
             temp = (bookDataArray[indexPath.section]?[indexPath.row])!
@@ -178,6 +215,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                 descString.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: NSMakeRange(0, descString.length))
             
                 attrString.append(descString);
+                
+                let style = NSMutableParagraphStyle()
+                style.lineSpacing = 10
+                attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, attrString.length))
             
                 cell.lblText.attributedText = attrString
             }
@@ -265,14 +306,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     // ScrollView Delegate
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastContentOffset = scrollView.contentOffset.y
-        allowHidden = true
-        prevFlag = false
-        lastReadingPos = scrollView.contentOffset.y
-        if (isNav == false) {
-            navModeContentOffset = scrollView.contentOffset.y
-            //print(navModeContentOffset)
-        }
+        
     }
     
     
@@ -297,14 +331,26 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
     }
     
-    /*
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        if (isNav) {
+        lastContentOffset = scrollView.contentOffset.y
+        allowHidden = true
+        prevFlag = false
+        if (isNav == false) {
             navModeContentOffset = scrollView.contentOffset.y
         }
+        
+        saveLastReadingPos()
     }
     
+    func saveLastReadingPos() {
+        let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1, y: lastContentOffset))
+        let temp = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
+        let db = DBManager()
+        db.saveLastReadingPos(bookId: (temp?.bookId)!, chapterNo: (temp?.chapterNo)!, contentId: (temp?.contentId)!, isCont: (temp?.isCont)!)
+    }
+    
+    /*
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         allowHidden = true
         prevFlag = false
@@ -315,7 +361,9 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }*/
     
     func manageReadingMode(_ readingMode: Int) {
+        //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         initSectionData(readingMode)
+        //CircularSpinner.hide()
         tableView.reloadData()
     }
     
@@ -324,6 +372,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         let rows = tableView.indexPathsForVisibleRows
         let section = (rows?[0].section)!
+        
         
         switch navMode {
         case 1:
@@ -375,7 +424,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         case 5:
             if (isNav) {
                 let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset))
-                tableView.scrollToRow(at: indexPath!, at: .middle, animated: true)
+                tableView.scrollToRow(at: indexPath!, at: .top, animated: true)
                 isNav = false
                 prevFlag = false
             }
@@ -410,7 +459,12 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterdArray.removeAll()
+        initFilteredArray()
+        tableView.reloadData()
+    }
+    
+    func initFilteredArray() {
+        filteredArray.removeAll()
         
         for i in 0..<getSectionCount() {
             var temp : [CellData] = []
@@ -420,7 +474,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                     temp.append((bookDataArray[i]?[j])!)
                 }
             }
-            filterdArray[i] = temp
+            filteredArray[i] = temp
         }
         
         if searchBar.text! == "" {
@@ -429,8 +483,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         else {
             isSearching = true
         }
-        
-        tableView.reloadData()
+
     }
 
 }
