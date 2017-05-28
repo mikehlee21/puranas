@@ -30,6 +30,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var filteredArray: [Int:[CellData]] = [:]
     var navModeContentOffset: CGFloat = 0
     var dataArray: [CellData] = []
+    var isBookmarkMode : Bool = false
+    var readingMode : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         progressBar.progress = 0
         
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
-        initSectionData(0)
+        initSectionData()
         //CircularSpinner.hide()
         
         // Do any additional setup after loading the view.
@@ -78,7 +80,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
     }
     
-    func initCellDataArray(_ readingMode: Int) {
+    func initCellDataArray() {
         
         let db = DBManager()
         let bookContArray = db.loadBookContData(bookId!)
@@ -122,6 +124,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             for j in 0..<dataArray.count {
                 if ((bookmarkArray[i].bookId == dataArray[j].bookId) && (bookmarkArray[i].volumeNo == dataArray[j].volumeNo) && (bookmarkArray[i].cantoNo == dataArray[j].cantoNo) && (bookmarkArray[i].chapterNo == dataArray[j].chapterNo) && (bookmarkArray[i].contentId == dataArray[j].contentId) && (bookmarkArray[i].isCont == dataArray[j].isCont)) {
                     dataArray[j].isBookmarked = 1
+                    dataArray[j].bmType = bookmarkArray[i].bmType
+                    dataArray[j].bmData = bookmarkArray[i].bmData
                 }
             }
         }
@@ -137,9 +141,9 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
     }
     
-    func initSectionData(_ readingMode: Int) {
+    func initSectionData() {
         
-        initCellDataArray(readingMode)
+        initCellDataArray()
         
         bookDataArray.removeAll()
         
@@ -181,6 +185,64 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: "PopupSegue", sender: nil)
     }
 
+    @IBAction func onBookmarkTapped(_ sender: Any) {
+        if (isBookmarkMode == false) {
+            isBookmarkMode = true
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.btnPencil.alpha = 0.0
+                self.btnBack.alpha = 0.0
+                self.searchBar.isHidden = true
+                self.tableView.isScrollEnabled = false
+            }, completion: nil)
+        }
+        else {
+            isBookmarkMode = false
+            setBookmark()
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.btnPencil.alpha = 1.0
+                self.btnBack.alpha = 1.0
+                self.searchBar.isHidden = false
+                self.tableView.isScrollEnabled = true
+            }, completion: nil)
+        }
+    }
+    
+    func setBookmark() {
+        let temp = tableView.indexPathsForVisibleRows
+        for i in 0..<(temp?.count)! {
+            let indexPath = temp?[i]
+            let t = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
+            if t?.isCont == 1 {
+                let cell = tableView.cellForRow(at: (temp?[i])!) as! MainTableViewCell
+                if (cell.lblText.selectedRange.length != 0) {
+                    let range = cell.lblText.selectedRange
+                    let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                    let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                    string.addAttributes(attributes, range: cell.lblText.selectedRange)
+                    cell.lblText.attributedText = string
+                    
+                    let db = DBManager()
+                    db.insertBookmark(data: t!, startPos: range.location, bmlength: range.length, totalLength: cell.lblText.attributedText.length, type: "p")
+                }
+            }
+            else {
+                let cell = tableView.cellForRow(at: (temp?[i])!) as! MainTransTableViewCell
+                if (cell.lblText.selectedRange.length != 0) {
+                    let range = cell.lblText.selectedRange
+                    
+                    let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                    let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                    string.addAttributes(attributes, range: cell.lblText.selectedRange)
+                    cell.lblText.attributedText = string
+                    
+                    let db = DBManager()
+                    db.insertBookmark(data: t!, startPos: range.location, bmlength: range.length, totalLength: cell.lblText.attributedText.length, type: "p")
+                }
+            }
+        }
+        initSectionData()
+    }
+    
     // Table View Delegate & DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -247,6 +309,18 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                     string.addAttributes(attributes, range: range)
                     cell.lblText.attributedText = string
                 }
+                else if (temp.bmType == "p"){
+                    cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                    for i in 0..<temp.bmData.characters.count {
+                        if (temp.bmData[i] == "1") {
+                            let range = NSRange(location: i, length: 1)
+                            let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                            let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                            string.addAttributes(attributes, range: range)
+                            cell.lblText.attributedText = string
+                        }
+                    }
+                }
             }
             else {
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
@@ -274,6 +348,18 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                     let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
                     string.addAttributes(attributes, range: range)
                     cell.lblText.attributedText = string
+                }
+                else if (temp.bmType == "p"){
+                    cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                    for i in 0..<temp.bmData.characters.count {
+                        if (temp.bmData[i] == "1") {
+                            let range = NSRange(location: i, length: 1)
+                            let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                            let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                            string.addAttributes(attributes, range: range)
+                            cell.lblText.attributedText = string
+                        }
+                    }
                 }
             }
             else {
@@ -401,7 +487,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     
     func manageReadingMode(_ readingMode: Int) {
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
-        initSectionData(readingMode)
+        self.readingMode = readingMode
+        initSectionData()
         //CircularSpinner.hide()
         tableView.reloadData()
     }

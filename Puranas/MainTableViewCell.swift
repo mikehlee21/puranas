@@ -22,7 +22,7 @@ class MainTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tap.numberOfTapsRequired = 1
-        self.contentView.addGestureRecognizer(tap)
+        imgStar.addGestureRecognizer(tap)
         // Initialization code
     }
 

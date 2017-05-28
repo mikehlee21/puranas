@@ -23,14 +23,13 @@ class MainTransTableViewCell: UITableViewCell {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tap.numberOfTapsRequired = 1
-        self.contentView.addGestureRecognizer(tap)
+        imgStar.addGestureRecognizer(tap)
         
         // Initialization code
     }
     
     func tapped() {
         if (bookDataArray[sectionNo]?[index].isBookmarked == 0) {
-            self.backgroundColor = Const.highlightColor
             imgStar.image = #imageLiteral(resourceName: "bookmarked")
             bookDataArray[sectionNo]?[index].isBookmarked = 1
             

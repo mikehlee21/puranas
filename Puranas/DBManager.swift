@@ -236,7 +236,7 @@ class DBManager
             }
         }
         
-        var updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(type)', '\(bmData)');"
+        let updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(type)', '\(bmData)');"
         
         //var updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '" + data.bookId + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '" + type + "', '" + bmData + "');"
         
