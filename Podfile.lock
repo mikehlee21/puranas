@@ -1,15 +1,18 @@
 PODS:
   - CircularSpinner (1.2.0)
+  - GTProgressBar (0.1.2)
   - MIBlurPopup (0.1.1)
 
 DEPENDENCIES:
   - CircularSpinner
+  - GTProgressBar
   - MIBlurPopup
 
 SPEC CHECKSUMS:
   CircularSpinner: 80b8ee3eda59b66d20631d4ca7c7c83720931739
+  GTProgressBar: 782c61ac00535b01536ddc5246f5abecfc44dede
   MIBlurPopup: debbc8f4f631809797140d37b5476745a61e90be
 
-PODFILE CHECKSUM: c05a28068e19370678fc73740f9e1948e48fc0d6
+PODFILE CHECKSUM: a946c1613c3165d7dcdf89cc43a4e667cd9f6b5f
 
 COCOAPODS: 1.2.1

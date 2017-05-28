@@ -8,6 +8,7 @@
 
 import UIKit
 import CircularSpinner
+import GTProgressBar
 
 class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
 
@@ -16,6 +17,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     @IBOutlet weak var btnBookmark: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressBar: GTProgressBar!
     
     var lblBookName: String?
     var bookId: String?
@@ -38,6 +40,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         
         searchBar.delegate = self
+        
+        progressBar.progress = 0
         
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         initSectionData(0)
@@ -340,6 +344,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
     }
     
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        lastContentOffset = scrollView.contentOffset.y
+        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
+    }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         lastContentOffset = scrollView.contentOffset.y
@@ -349,6 +357,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             navModeContentOffset = scrollView.contentOffset.y
         }
         
+        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
         saveLastReadingPos()
     }
     

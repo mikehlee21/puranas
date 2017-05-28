@@ -9,5 +9,6 @@ target 'Puranas' do
 
   pod 'CircularSpinner'
   pod 'MIBlurPopup'
+  pod 'GTProgressBar'
 
 end

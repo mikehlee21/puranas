@@ -7,33 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01C71AFEDCF18DFAF546217AB8EDA1A0 /* CircularSpinner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE607CCE9BC42076028F7F4D192C6EF /* CircularSpinner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19634A70810ECCF2DAA3E15FBC61A2F4 /* x_darkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8E3859350B27A39ED902A406249D32 /* x_darkGray@2x.png */; };
-		23D7D136C4A7FD5F577D9136E9766AD4 /* CircularSpinner.xib in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D8CF76E3DA47C8DC139042ABFA72B /* CircularSpinner.xib */; };
-		2C71D0F1ABC3D66F3C5CE74B3C158C2D /* CircularSpinner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AE86CF1A4005FB4F463703945B93885 /* CircularSpinner.bundle */; };
-		43FB6FFA68DBCFB71CBF6612DDBFD20A /* MIBlurPopup-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D54A428311017DEFE2C674EA0A7AC36 /* MIBlurPopup-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		01C71AFEDCF18DFAF546217AB8EDA1A0 /* CircularSpinner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADAAED224AA00B8940C424F09C6A6EF4 /* CircularSpinner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19634A70810ECCF2DAA3E15FBC61A2F4 /* x_darkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8325B48D399035BC91660619B5C8DCD7 /* x_darkGray@2x.png */; };
+		1C156E1C36BEB6C771E6450CA7DB975E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		23D7D136C4A7FD5F577D9136E9766AD4 /* CircularSpinner.xib in Sources */ = {isa = PBXBuildFile; fileRef = 0D4622F486DCF62A696C0E99DDDB4F9B /* CircularSpinner.xib */; };
+		2C71D0F1ABC3D66F3C5CE74B3C158C2D /* CircularSpinner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A774BA2D71E785A18438473C6C9AC944 /* CircularSpinner.bundle */; };
+		43FB6FFA68DBCFB71CBF6612DDBFD20A /* MIBlurPopup-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B37AEB61509F033885C9DEA9AF602CE3 /* MIBlurPopup-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D67C28851E6AED9E40F35A5DFD21DB3 /* Pods-Puranas-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DFEC389066EE567EA9EA3F5DC248D /* Pods-Puranas-dummy.m */; };
 		5C4006186737C53D28D591345F96A0BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
-		68E128CEB957FB781DEFE5F100296D3E /* CircularSpinner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A7C2167DA588B509F03FDDA9EF64E2 /* CircularSpinner-dummy.m */; };
-		754C8514EF548AAE3EC1473710F2C2CF /* x_darkGray@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC53FA67519B15B8C933018D41F397 /* x_darkGray@3x.png */; };
-		7EAAC03ACCEC3687E9D544FC81381229 /* Pods-Puranas-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AF09F48FEB64C188A954BE41803E0813 /* Pods-Puranas-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81CEA992B7B1EA800542BA633B98088E /* MIBlurPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458B522B3E9E138A84BC6BD02249932 /* MIBlurPopup.swift */; };
+		6411C2FC9B9059359F93214D0CFF64B6 /* GTProgressBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB48E8E9C5108DECA1A91B2533F17B1 /* GTProgressBar-dummy.m */; };
+		68E128CEB957FB781DEFE5F100296D3E /* CircularSpinner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C41B346496C490B2282209F67B3B07 /* CircularSpinner-dummy.m */; };
+		754C8514EF548AAE3EC1473710F2C2CF /* x_darkGray@3x.png in Sources */ = {isa = PBXBuildFile; fileRef = E41B6F07B99B4FE2CCA1FBA3CACA17FF /* x_darkGray@3x.png */; };
+		7E8628D6869AA1E468509721B2B16A84 /* GTProgressBarLabelPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4633E2238D730B14B5A66428C790D0A7 /* GTProgressBarLabelPosition.swift */; };
+		81CEA992B7B1EA800542BA633B98088E /* MIBlurPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3620F8DFCBED3C2399BA2D90E24D52 /* MIBlurPopup.swift */; };
+		983FD4D270189A9A8F6410166D0097F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
 		9FF782524673818AD914B3B464736683 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		AF4DED0E2AC5C98BA856E752FB6D653E /* CircularSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425C71CA7632FEEBE5DA57A40E6095EF /* CircularSpinner.swift */; };
-		B9CA717C44476274DEA770B24A811DCB /* x_darkGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFC53FA67519B15B8C933018D41F397 /* x_darkGray@3x.png */; };
-		BB093CA734D43BEFA89AE589F7220B6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		BC5F7D10B0F30E4A68662776B47683D4 /* Pods-Puranas-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DFEC389066EE567EA9EA3F5DC248D /* Pods-Puranas-dummy.m */; };
-		DD8837B78A8A7637683FE9908DDF09B2 /* x_darkGray@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 6B8E3859350B27A39ED902A406249D32 /* x_darkGray@2x.png */; };
+		AF4DED0E2AC5C98BA856E752FB6D653E /* CircularSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3072EA15ECB904673D93C918BBF57E1 /* CircularSpinner.swift */; };
+		B9CA717C44476274DEA770B24A811DCB /* x_darkGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B6F07B99B4FE2CCA1FBA3CACA17FF /* x_darkGray@3x.png */; };
+		BE6916654B8CC6D3EE1A50C3666F52A2 /* GTProgressBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E44035BFD6C11F192BC11FC02AAD1A0D /* GTProgressBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C83E67F5AA449306AA5F1575F30B5500 /* Pods-Puranas-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AF09F48FEB64C188A954BE41803E0813 /* Pods-Puranas-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC985B3ADDD0F9E7317D1A9FFB611B3A /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1527A647B84FBCF72699CDA61ACE1F /* UILabelExtensions.swift */; };
+		D465331C6C038E039F024800BDC8856C /* GTProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C3117C3AC93518F7FCDD744205991 /* GTProgressBar.swift */; };
+		DD8837B78A8A7637683FE9908DDF09B2 /* x_darkGray@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = 8325B48D399035BC91660619B5C8DCD7 /* x_darkGray@2x.png */; };
 		E53E4C9D556D12FA286152C52F3520A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		F6DD03EC5BDCE903DA5F7BD605E18087 /* MIBlurPopup-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 644A2C9F0F7D5901B4F18CB2B1FAEDC4 /* MIBlurPopup-dummy.m */; };
+		F4E0556A70C906EFC4ACC9391628794C /* FrameCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FB93F1F81DC30659441A8133410BD /* FrameCalculator.swift */; };
+		F6DD03EC5BDCE903DA5F7BD605E18087 /* MIBlurPopup-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E314871BD9C9974E0B7D5BBE5C06910E /* MIBlurPopup-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5CA148D476C047A95619C0D4C3EA11FA /* PBXContainerItemProxy */ = {
+		5A712783DAFFA10DFB263E51EB33CDBB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D780F80A5793F3EFDAC1606AAA75B388;
 			remoteInfo = CircularSpinner;
+		};
+		731343F9532EA098FBD51EFDCB7B9B5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22B6FF288F7DDD39BCDFFF814822C804;
+			remoteInfo = GTProgressBar;
 		};
 		8829F8979CB71E0870826A8FB7EB26E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -42,7 +56,7 @@
 			remoteGlobalIDString = C63CB4AE559E609E163642ED2A914D4D;
 			remoteInfo = "CircularSpinner-CircularSpinner";
 		};
-		A18B98974EAC80E919B003AE83EA1D34 /* PBXContainerItemProxy */ = {
+		D6CD57C3E0467569CA0D721A5A850D1B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -52,56 +66,67 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0177F1032B32EB001175519C2742202B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048DFEC389066EE567EA9EA3F5DC248D /* Pods-Puranas-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Puranas-dummy.m"; sourceTree = "<group>"; };
 		04F0501311A46C95E6412F2D45794ABC /* Pods-Puranas-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Puranas-resources.sh"; sourceTree = "<group>"; };
-		0AE86CF1A4005FB4F463703945B93885 /* CircularSpinner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CircularSpinner.bundle; path = CircularSpinner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EE607CCE9BC42076028F7F4D192C6EF /* CircularSpinner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSpinner-umbrella.h"; sourceTree = "<group>"; };
-		11ED7A0B6BA09A020D163A10DA39D74D /* CircularSpinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CircularSpinner.framework; path = CircularSpinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		153B91DA163DAD6583F06FF64D2AC8EB /* MIBlurPopup-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIBlurPopup-prefix.pch"; sourceTree = "<group>"; };
-		1E6325B774F47E22C869000BE5EB5556 /* MIBlurPopup.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MIBlurPopup.modulemap; sourceTree = "<group>"; };
-		23C73D1C48E6CF43A633E458A43F40AA /* CircularSpinner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSpinner-prefix.pch"; sourceTree = "<group>"; };
-		264AC6A6D76F920EA0A5C1CE5BED52C4 /* ResourceBundle-CircularSpinner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CircularSpinner-Info.plist"; sourceTree = "<group>"; };
-		39E857A4B0A611E68E3A09C181616CB5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06454AB19A22A2E1A2573CAF3E39440D /* Pods_Puranas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Puranas.framework; path = "Pods-Puranas.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B27F30AFEB4C3026AE54040F6A05820 /* MIBlurPopup.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MIBlurPopup.xcconfig; sourceTree = "<group>"; };
+		0D4622F486DCF62A696C0E99DDDB4F9B /* CircularSpinner.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CircularSpinner.xib; path = CircularSpinner/Classes/CircularSpinner.xib; sourceTree = "<group>"; };
+		1980F4606FD307D668AE6452C6D374C1 /* GTProgressBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GTProgressBar.framework; path = GTProgressBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7EC3483BA5B609D73D4FE7743C4FE6 /* GTProgressBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = GTProgressBar.modulemap; sourceTree = "<group>"; };
+		1E59ECCEE76CC6E3653C50916D37F2A1 /* CircularSpinner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CircularSpinner.modulemap; sourceTree = "<group>"; };
+		1F1527A647B84FBCF72699CDA61ACE1F /* UILabelExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILabelExtensions.swift; path = GTProgressBar/Classes/UILabelExtensions.swift; sourceTree = "<group>"; };
+		2CB48E8E9C5108DECA1A91B2533F17B1 /* GTProgressBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTProgressBar-dummy.m"; sourceTree = "<group>"; };
+		2D3620F8DFCBED3C2399BA2D90E24D52 /* MIBlurPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MIBlurPopup.swift; path = MIBlurPopup/MIBlurPopup.swift; sourceTree = "<group>"; };
+		2E967FAFD2DBE694464E9B645946D0E7 /* ResourceBundle-CircularSpinner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-CircularSpinner-Info.plist"; sourceTree = "<group>"; };
 		3E3804B714E5C42B66DD82B646B75BAA /* Pods-Puranas.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Puranas.modulemap"; sourceTree = "<group>"; };
-		425C71CA7632FEEBE5DA57A40E6095EF /* CircularSpinner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSpinner.swift; path = CircularSpinner/Classes/CircularSpinner.swift; sourceTree = "<group>"; };
 		458F00C15980BCB96B634F78E6B600B5 /* Pods-Puranas-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Puranas-acknowledgements.markdown"; sourceTree = "<group>"; };
-		644A2C9F0F7D5901B4F18CB2B1FAEDC4 /* MIBlurPopup-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MIBlurPopup-dummy.m"; sourceTree = "<group>"; };
-		65A6C4F226D9E0AFB449B5E2CF8FB298 /* MIBlurPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MIBlurPopup.framework; path = MIBlurPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AFC53FA67519B15B8C933018D41F397 /* x_darkGray@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "x_darkGray@3x.png"; path = "CircularSpinner/Assets/x_darkGray@3x.png"; sourceTree = "<group>"; };
-		6B8E3859350B27A39ED902A406249D32 /* x_darkGray@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "x_darkGray@2x.png"; path = "CircularSpinner/Assets/x_darkGray@2x.png"; sourceTree = "<group>"; };
-		78DEE39D8D26798C034EAC2B4DBB4F98 /* MIBlurPopup.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MIBlurPopup.xcconfig; sourceTree = "<group>"; };
-		7D54A428311017DEFE2C674EA0A7AC36 /* MIBlurPopup-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIBlurPopup-umbrella.h"; sourceTree = "<group>"; };
+		4633E2238D730B14B5A66428C790D0A7 /* GTProgressBarLabelPosition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GTProgressBarLabelPosition.swift; path = GTProgressBar/Classes/GTProgressBarLabelPosition.swift; sourceTree = "<group>"; };
+		468279E1911A2330853A767F5AC77E52 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CircularSpinner.xcconfig; sourceTree = "<group>"; };
+		8325B48D399035BC91660619B5C8DCD7 /* x_darkGray@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "x_darkGray@2x.png"; path = "CircularSpinner/Assets/x_darkGray@2x.png"; sourceTree = "<group>"; };
+		83FE891B26513BD1B37C54C1777C6B67 /* MIBlurPopup-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIBlurPopup-prefix.pch"; sourceTree = "<group>"; };
+		8575F02921F79F494AA835CBB14559DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86C41B346496C490B2282209F67B3B07 /* CircularSpinner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CircularSpinner-dummy.m"; sourceTree = "<group>"; };
+		8EB2805D9A13B0263CBE9622AA7F736B /* CircularSpinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CircularSpinner.framework; path = CircularSpinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9458B522B3E9E138A84BC6BD02249932 /* MIBlurPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MIBlurPopup.swift; path = MIBlurPopup/MIBlurPopup.swift; sourceTree = "<group>"; };
-		99A7C2167DA588B509F03FDDA9EF64E2 /* CircularSpinner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CircularSpinner-dummy.m"; sourceTree = "<group>"; };
-		9F5D8CF76E3DA47C8DC139042ABFA72B /* CircularSpinner.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CircularSpinner.xib; path = CircularSpinner/Classes/CircularSpinner.xib; sourceTree = "<group>"; };
+		94A9E3EB7E4B02A77C1444149B2507FB /* GTProgressBar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GTProgressBar.xcconfig; sourceTree = "<group>"; };
+		A09C3117C3AC93518F7FCDD744205991 /* GTProgressBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GTProgressBar.swift; path = GTProgressBar/Classes/GTProgressBar.swift; sourceTree = "<group>"; };
+		A2D35C7437EC5D38A81E40D642C10218 /* CircularSpinner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSpinner-prefix.pch"; sourceTree = "<group>"; };
 		A596DF62D5C5517364CCDFC720160814 /* Pods-Puranas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Puranas.debug.xcconfig"; sourceTree = "<group>"; };
-		A93336C6EF6526F657D35981F41C4049 /* Pods_Puranas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Puranas.framework; path = "Pods-Puranas.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A774BA2D71E785A18438473C6C9AC944 /* CircularSpinner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CircularSpinner.bundle; path = CircularSpinner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A89FB93F1F81DC30659441A8133410BD /* FrameCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameCalculator.swift; path = GTProgressBar/Classes/FrameCalculator.swift; sourceTree = "<group>"; };
 		A9D32D4ACA2E96D9DD3E4A3CF4898EEC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADAAED224AA00B8940C424F09C6A6EF4 /* CircularSpinner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CircularSpinner-umbrella.h"; sourceTree = "<group>"; };
 		AF09F48FEB64C188A954BE41803E0813 /* Pods-Puranas-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Puranas-umbrella.h"; sourceTree = "<group>"; };
+		B37AEB61509F033885C9DEA9AF602CE3 /* MIBlurPopup-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIBlurPopup-umbrella.h"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		C22B25E79AFDDEDE34267E7BEC178DAA /* MIBlurPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MIBlurPopup.framework; path = MIBlurPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F0A54F1B400836E0144C5ECA759407 /* GTProgressBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTProgressBar-prefix.pch"; sourceTree = "<group>"; };
 		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		DCBFF705A875DEE17DB18B38E118F5BF /* Pods-Puranas-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Puranas-frameworks.sh"; sourceTree = "<group>"; };
-		E4B86F74118FC134A68EAFE068AA3C41 /* CircularSpinner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CircularSpinner.modulemap; sourceTree = "<group>"; };
+		E314871BD9C9974E0B7D5BBE5C06910E /* MIBlurPopup-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MIBlurPopup-dummy.m"; sourceTree = "<group>"; };
+		E41B6F07B99B4FE2CCA1FBA3CACA17FF /* x_darkGray@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "x_darkGray@3x.png"; path = "CircularSpinner/Assets/x_darkGray@3x.png"; sourceTree = "<group>"; };
+		E44035BFD6C11F192BC11FC02AAD1A0D /* GTProgressBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTProgressBar-umbrella.h"; sourceTree = "<group>"; };
 		E839F9874B5521D70A1DB11FD5C421DC /* Pods-Puranas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Puranas.release.xcconfig"; sourceTree = "<group>"; };
-		E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CircularSpinner.xcconfig; sourceTree = "<group>"; };
+		EBC5897736453F0A515E5D31217D649A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC98ACA8C8D033E0DD8729F3F7CA9581 /* MIBlurPopup.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MIBlurPopup.modulemap; sourceTree = "<group>"; };
+		F3072EA15ECB904673D93C918BBF57E1 /* CircularSpinner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSpinner.swift; path = CircularSpinner/Classes/CircularSpinner.swift; sourceTree = "<group>"; };
 		F38EF74DEC73DFCB9B7655D750D33D18 /* Pods-Puranas-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Puranas-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2D1EFEA483DE90A9EB4033E97D9DAD79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C156E1C36BEB6C771E6450CA7DB975E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CF133044F16DEDFBD7533F1443E7BD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6A7BFDA38E593F09C56E1A8589768949 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BB093CA734D43BEFA89AE589F7220B6B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +136,14 @@
 			files = (
 				9FF782524673818AD914B3B464736683 /* Foundation.framework in Frameworks */,
 				5C4006186737C53D28D591345F96A0BB /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEA3FDD6DF45E0B039AFBA9D2AD2D17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983FD4D270189A9A8F6410166D0097F7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,18 +158,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		21A5C34BBB1DE13CBC96E69579F0F59C /* Support Files */ = {
+		13E3BE1C929535446C130404F2F1D2B0 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				39E857A4B0A611E68E3A09C181616CB5 /* Info.plist */,
-				1E6325B774F47E22C869000BE5EB5556 /* MIBlurPopup.modulemap */,
-				78DEE39D8D26798C034EAC2B4DBB4F98 /* MIBlurPopup.xcconfig */,
-				644A2C9F0F7D5901B4F18CB2B1FAEDC4 /* MIBlurPopup-dummy.m */,
-				153B91DA163DAD6583F06FF64D2AC8EB /* MIBlurPopup-prefix.pch */,
-				7D54A428311017DEFE2C674EA0A7AC36 /* MIBlurPopup-umbrella.h */,
+				EBC5897736453F0A515E5D31217D649A /* Info.plist */,
+				EC98ACA8C8D033E0DD8729F3F7CA9581 /* MIBlurPopup.modulemap */,
+				0B27F30AFEB4C3026AE54040F6A05820 /* MIBlurPopup.xcconfig */,
+				E314871BD9C9974E0B7D5BBE5C06910E /* MIBlurPopup-dummy.m */,
+				83FE891B26513BD1B37C54C1777C6B67 /* MIBlurPopup-prefix.pch */,
+				B37AEB61509F033885C9DEA9AF602CE3 /* MIBlurPopup-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MIBlurPopup";
+			sourceTree = "<group>";
+		};
+		25DAA66E80B13E3518A8916C09DF6B64 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2DB00BAB74807AE0516978BE9747E97 /* CircularSpinner */,
+				D6BAF370C0DB2F403D65A803B09B8E51 /* GTProgressBar */,
+				2F0C47BF0C04D71D6620DD2DAA0B6018 /* MIBlurPopup */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2F0C47BF0C04D71D6620DD2DAA0B6018 /* MIBlurPopup */ = {
+			isa = PBXGroup;
+			children = (
+				2D3620F8DFCBED3C2399BA2D90E24D52 /* MIBlurPopup.swift */,
+				13E3BE1C929535446C130404F2F1D2B0 /* Support Files */,
+			);
+			name = MIBlurPopup;
+			path = MIBlurPopup;
 			sourceTree = "<group>";
 		};
 		414CB0EACDF5FDCB80D3F76900D2A25D /* Pods-Puranas */ = {
@@ -174,29 +227,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		4DA5B582B00375BFBE0D6510378C5873 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				526A6B78B1D7D8CF89E68EC8ECD5C327 /* CircularSpinner */,
-				8B6CEE9CBAC0794335EB481009133BA6 /* MIBlurPopup */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		526A6B78B1D7D8CF89E68EC8ECD5C327 /* CircularSpinner */ = {
-			isa = PBXGroup;
-			children = (
-				425C71CA7632FEEBE5DA57A40E6095EF /* CircularSpinner.swift */,
-				9F5D8CF76E3DA47C8DC139042ABFA72B /* CircularSpinner.xib */,
-				6B8E3859350B27A39ED902A406249D32 /* x_darkGray@2x.png */,
-				6AFC53FA67519B15B8C933018D41F397 /* x_darkGray@3x.png */,
-				65C78B6561DD61AF300FD721D77D39FC /* Resources */,
-				93D4E38BF3798A3EB08103306CA6264A /* Support Files */,
-			);
-			name = CircularSpinner;
-			path = CircularSpinner;
-			sourceTree = "<group>";
-		};
 		5B21D30AA6604E54F7BE378814337737 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,11 +235,19 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		65C78B6561DD61AF300FD721D77D39FC /* Resources */ = {
+		7AC20E4D0B9380A37D8169168F0BBFA2 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E59ECCEE76CC6E3653C50916D37F2A1 /* CircularSpinner.modulemap */,
+				810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */,
+				86C41B346496C490B2282209F67B3B07 /* CircularSpinner-dummy.m */,
+				A2D35C7437EC5D38A81E40D642C10218 /* CircularSpinner-prefix.pch */,
+				ADAAED224AA00B8940C424F09C6A6EF4 /* CircularSpinner-umbrella.h */,
+				468279E1911A2330853A767F5AC77E52 /* Info.plist */,
+				2E967FAFD2DBE694464E9B645946D0E7 /* ResourceBundle-CircularSpinner-Info.plist */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/CircularSpinner";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -217,46 +255,70 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				4DA5B582B00375BFBE0D6510378C5873 /* Pods */,
-				A3729070DE6CD81BF131E6588FE7A82D /* Products */,
+				25DAA66E80B13E3518A8916C09DF6B64 /* Pods */,
+				849F34AB3D481D382904716A225A8977 /* Products */,
 				5B21D30AA6604E54F7BE378814337737 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8B6CEE9CBAC0794335EB481009133BA6 /* MIBlurPopup */ = {
+		849F34AB3D481D382904716A225A8977 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9458B522B3E9E138A84BC6BD02249932 /* MIBlurPopup.swift */,
-				21A5C34BBB1DE13CBC96E69579F0F59C /* Support Files */,
-			);
-			name = MIBlurPopup;
-			path = MIBlurPopup;
-			sourceTree = "<group>";
-		};
-		93D4E38BF3798A3EB08103306CA6264A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E4B86F74118FC134A68EAFE068AA3C41 /* CircularSpinner.modulemap */,
-				E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */,
-				99A7C2167DA588B509F03FDDA9EF64E2 /* CircularSpinner-dummy.m */,
-				23C73D1C48E6CF43A633E458A43F40AA /* CircularSpinner-prefix.pch */,
-				0EE607CCE9BC42076028F7F4D192C6EF /* CircularSpinner-umbrella.h */,
-				0177F1032B32EB001175519C2742202B /* Info.plist */,
-				264AC6A6D76F920EA0A5C1CE5BED52C4 /* ResourceBundle-CircularSpinner-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/CircularSpinner";
-			sourceTree = "<group>";
-		};
-		A3729070DE6CD81BF131E6588FE7A82D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0AE86CF1A4005FB4F463703945B93885 /* CircularSpinner.bundle */,
-				11ED7A0B6BA09A020D163A10DA39D74D /* CircularSpinner.framework */,
-				65A6C4F226D9E0AFB449B5E2CF8FB298 /* MIBlurPopup.framework */,
-				A93336C6EF6526F657D35981F41C4049 /* Pods_Puranas.framework */,
+				A774BA2D71E785A18438473C6C9AC944 /* CircularSpinner.bundle */,
+				8EB2805D9A13B0263CBE9622AA7F736B /* CircularSpinner.framework */,
+				1980F4606FD307D668AE6452C6D374C1 /* GTProgressBar.framework */,
+				C22B25E79AFDDEDE34267E7BEC178DAA /* MIBlurPopup.framework */,
+				06454AB19A22A2E1A2573CAF3E39440D /* Pods_Puranas.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A2DB00BAB74807AE0516978BE9747E97 /* CircularSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				F3072EA15ECB904673D93C918BBF57E1 /* CircularSpinner.swift */,
+				0D4622F486DCF62A696C0E99DDDB4F9B /* CircularSpinner.xib */,
+				8325B48D399035BC91660619B5C8DCD7 /* x_darkGray@2x.png */,
+				E41B6F07B99B4FE2CCA1FBA3CACA17FF /* x_darkGray@3x.png */,
+				F59F6266856D6480C0F22950BBE25E93 /* Resources */,
+				7AC20E4D0B9380A37D8169168F0BBFA2 /* Support Files */,
+			);
+			name = CircularSpinner;
+			path = CircularSpinner;
+			sourceTree = "<group>";
+		};
+		D6BAF370C0DB2F403D65A803B09B8E51 /* GTProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				A89FB93F1F81DC30659441A8133410BD /* FrameCalculator.swift */,
+				A09C3117C3AC93518F7FCDD744205991 /* GTProgressBar.swift */,
+				4633E2238D730B14B5A66428C790D0A7 /* GTProgressBarLabelPosition.swift */,
+				1F1527A647B84FBCF72699CDA61ACE1F /* UILabelExtensions.swift */,
+				FA44FBACDC72060105DA090A86429403 /* Support Files */,
+			);
+			name = GTProgressBar;
+			path = GTProgressBar;
+			sourceTree = "<group>";
+		};
+		F59F6266856D6480C0F22950BBE25E93 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FA44FBACDC72060105DA090A86429403 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D7EC3483BA5B609D73D4FE7743C4FE6 /* GTProgressBar.modulemap */,
+				94A9E3EB7E4B02A77C1444149B2507FB /* GTProgressBar.xcconfig */,
+				2CB48E8E9C5108DECA1A91B2533F17B1 /* GTProgressBar-dummy.m */,
+				C9F0A54F1B400836E0144C5ECA759407 /* GTProgressBar-prefix.pch */,
+				E44035BFD6C11F192BC11FC02AAD1A0D /* GTProgressBar-umbrella.h */,
+				8575F02921F79F494AA835CBB14559DA /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GTProgressBar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +332,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92A239240BC36DC0EDCAED306C2570E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE6916654B8CC6D3EE1A50C3666F52A2 /* GTProgressBar-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4AABC9239CAF4C9DDA38296ADE94FBF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,34 +348,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDADE68892636328445F15BAF7C4B262 /* Headers */ = {
+		D42D47897F595D0A24184EA744947724 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EAAC03ACCEC3687E9D544FC81381229 /* Pods-Puranas-umbrella.h in Headers */,
+				C83E67F5AA449306AA5F1575F30B5500 /* Pods-Puranas-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		259DA8715230F278BB164111DC87A1FC /* Pods-Puranas */ = {
+		22B6FF288F7DDD39BCDFFF814822C804 /* GTProgressBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D62037D6D08A912988327FE05AB799B4 /* Build configuration list for PBXNativeTarget "Pods-Puranas" */;
+			buildConfigurationList = BF641EC5CA5C51DCF4EFA51F96054599 /* Build configuration list for PBXNativeTarget "GTProgressBar" */;
 			buildPhases = (
-				6AA0B014371F1B405523886D66C81EA1 /* Sources */,
-				6A7BFDA38E593F09C56E1A8589768949 /* Frameworks */,
-				CDADE68892636328445F15BAF7C4B262 /* Headers */,
+				A60A66C3ED301F5B08AD836648834F73 /* Sources */,
+				BEEA3FDD6DF45E0B039AFBA9D2AD2D17 /* Frameworks */,
+				92A239240BC36DC0EDCAED306C2570E4 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1FBFF3BD20A13FA89938394C6FCED0CD /* PBXTargetDependency */,
-				7399A3329684B8761732206F4F69411E /* PBXTargetDependency */,
 			);
-			name = "Pods-Puranas";
-			productName = "Pods-Puranas";
-			productReference = A93336C6EF6526F657D35981F41C4049 /* Pods_Puranas.framework */;
+			name = GTProgressBar;
+			productName = GTProgressBar;
+			productReference = 1980F4606FD307D668AE6452C6D374C1 /* GTProgressBar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		69F59636E016BD704D9FAFDDACAFE4EA /* MIBlurPopup */ = {
@@ -322,7 +390,7 @@
 			);
 			name = MIBlurPopup;
 			productName = MIBlurPopup;
-			productReference = 65A6C4F226D9E0AFB449B5E2CF8FB298 /* MIBlurPopup.framework */;
+			productReference = C22B25E79AFDDEDE34267E7BEC178DAA /* MIBlurPopup.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C63CB4AE559E609E163642ED2A914D4D /* CircularSpinner-CircularSpinner */ = {
@@ -339,7 +407,7 @@
 			);
 			name = "CircularSpinner-CircularSpinner";
 			productName = "CircularSpinner-CircularSpinner";
-			productReference = 0AE86CF1A4005FB4F463703945B93885 /* CircularSpinner.bundle */;
+			productReference = A774BA2D71E785A18438473C6C9AC944 /* CircularSpinner.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		D780F80A5793F3EFDAC1606AAA75B388 /* CircularSpinner */ = {
@@ -358,7 +426,27 @@
 			);
 			name = CircularSpinner;
 			productName = CircularSpinner;
-			productReference = 11ED7A0B6BA09A020D163A10DA39D74D /* CircularSpinner.framework */;
+			productReference = 8EB2805D9A13B0263CBE9622AA7F736B /* CircularSpinner.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EB3A53B533F3D0DD297C848990312F73 /* Pods-Puranas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B4DF91EEA6853E7064D98492948ED79 /* Build configuration list for PBXNativeTarget "Pods-Puranas" */;
+			buildPhases = (
+				7F93AD3E5BDA21F30D02B6791DA51B43 /* Sources */,
+				2D1EFEA483DE90A9EB4033E97D9DAD79 /* Frameworks */,
+				D42D47897F595D0A24184EA744947724 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E8B5886F07992CB3695F266B7AB2B1E /* PBXTargetDependency */,
+				9DB1A642EBCE1A7D4F7EFF87A8886FF4 /* PBXTargetDependency */,
+				BD2F7626EE71EE001D1CB80A544BCDE8 /* PBXTargetDependency */,
+			);
+			name = "Pods-Puranas";
+			productName = "Pods-Puranas";
+			productReference = 06454AB19A22A2E1A2573CAF3E39440D /* Pods_Puranas.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -378,14 +466,15 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A3729070DE6CD81BF131E6588FE7A82D /* Products */;
+			productRefGroup = 849F34AB3D481D382904716A225A8977 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D780F80A5793F3EFDAC1606AAA75B388 /* CircularSpinner */,
 				C63CB4AE559E609E163642ED2A914D4D /* CircularSpinner-CircularSpinner */,
+				22B6FF288F7DDD39BCDFFF814822C804 /* GTProgressBar */,
 				69F59636E016BD704D9FAFDDACAFE4EA /* MIBlurPopup */,
-				259DA8715230F278BB164111DC87A1FC /* Pods-Puranas */,
+				EB3A53B533F3D0DD297C848990312F73 /* Pods-Puranas */,
 			);
 		};
 /* End PBXProject section */
@@ -423,18 +512,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6AA0B014371F1B405523886D66C81EA1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BC5F7D10B0F30E4A68662776B47683D4 /* Pods-Puranas-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D98B7267CA9D90CDCA727C8572A551E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F93AD3E5BDA21F30D02B6791DA51B43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D67C28851E6AED9E40F35A5DFD21DB3 /* Pods-Puranas-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A60A66C3ED301F5B08AD836648834F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4E0556A70C906EFC4ACC9391628794C /* FrameCalculator.swift in Sources */,
+				6411C2FC9B9059359F93214D0CFF64B6 /* GTProgressBar-dummy.m in Sources */,
+				D465331C6C038E039F024800BDC8856C /* GTProgressBar.swift in Sources */,
+				7E8628D6869AA1E468509721B2B16A84 /* GTProgressBarLabelPosition.swift in Sources */,
+				CC985B3ADDD0F9E7317D1A9FFB611B3A /* UILabelExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,23 +551,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1FBFF3BD20A13FA89938394C6FCED0CD /* PBXTargetDependency */ = {
+		8E8B5886F07992CB3695F266B7AB2B1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CircularSpinner;
 			target = D780F80A5793F3EFDAC1606AAA75B388 /* CircularSpinner */;
-			targetProxy = 5CA148D476C047A95619C0D4C3EA11FA /* PBXContainerItemProxy */;
-		};
-		7399A3329684B8761732206F4F69411E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MIBlurPopup;
-			target = 69F59636E016BD704D9FAFDDACAFE4EA /* MIBlurPopup */;
-			targetProxy = A18B98974EAC80E919B003AE83EA1D34 /* PBXContainerItemProxy */;
+			targetProxy = 5A712783DAFFA10DFB263E51EB33CDBB /* PBXContainerItemProxy */;
 		};
 		8F2227A818FD7FE0AD4623B6A69DB33D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "CircularSpinner-CircularSpinner";
 			target = C63CB4AE559E609E163642ED2A914D4D /* CircularSpinner-CircularSpinner */;
 			targetProxy = 8829F8979CB71E0870826A8FB7EB26E4 /* PBXContainerItemProxy */;
+		};
+		9DB1A642EBCE1A7D4F7EFF87A8886FF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GTProgressBar;
+			target = 22B6FF288F7DDD39BCDFFF814822C804 /* GTProgressBar */;
+			targetProxy = 731343F9532EA098FBD51EFDCB7B9B5F /* PBXContainerItemProxy */;
+		};
+		BD2F7626EE71EE001D1CB80A544BCDE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MIBlurPopup;
+			target = 69F59636E016BD704D9FAFDDACAFE4EA /* MIBlurPopup */;
+			targetProxy = D6CD57C3E0467569CA0D721A5A850D1B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -521,7 +628,7 @@
 		};
 		35BC0967DC45C3327D6BD90FEAE67B2E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */;
+			baseConfigurationReference = 810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -556,7 +663,7 @@
 		};
 		42BC0D70B1D1F7390F88FBE565200A71 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78DEE39D8D26798C034EAC2B4DBB4F98 /* MIBlurPopup.xcconfig */;
+			baseConfigurationReference = 0B27F30AFEB4C3026AE54040F6A05820 /* MIBlurPopup.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -588,7 +695,80 @@
 			};
 			name = Release;
 		};
-		5CA4A50F5E43B989688CC4A2593D50D5 /* Debug */ = {
+		48775C3397880DA09DD6656282C29B14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94A9E3EB7E4B02A77C1444149B2507FB /* GTProgressBar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GTProgressBar/GTProgressBar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GTProgressBar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GTProgressBar/GTProgressBar.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = GTProgressBar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		561EC415D36D67AD83D8AF33920CB69C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E839F9874B5521D70A1DB11FD5C421DC /* Pods-Puranas.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Puranas/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Puranas/Pods-Puranas.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Puranas;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7859AA711F2E7384DD39CF316FD2589F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A596DF62D5C5517364CCDFC720160814 /* Pods-Puranas.debug.xcconfig */;
 			buildSettings = {
@@ -629,7 +809,7 @@
 		};
 		92A93FBB8EB31293B9618BA404908BEF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */;
+			baseConfigurationReference = 810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -707,7 +887,7 @@
 		};
 		ACEE052DD91F14D7F7ECC87BA466866E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78DEE39D8D26798C034EAC2B4DBB4F98 /* MIBlurPopup.xcconfig */;
+			baseConfigurationReference = 0B27F30AFEB4C3026AE54040F6A05820 /* MIBlurPopup.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -742,7 +922,7 @@
 		};
 		BE34A3AD43205457EBFAB6FC47DF8549 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */;
+			baseConfigurationReference = 810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CircularSpinner";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -757,47 +937,9 @@
 			};
 			name = Debug;
 		};
-		C7510B20ABA9C330320F973FEFDB95DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E839F9874B5521D70A1DB11FD5C421DC /* Pods-Puranas.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Puranas/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Puranas/Pods-Puranas.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Puranas;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		D7819BA69AFFBE11371D75D310BB645E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E90D11B4A5DE5EAF264A7B52FF826B94 /* CircularSpinner.xcconfig */;
+			baseConfigurationReference = 810000353F567C6B43AB92426773ACBD /* CircularSpinner.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/CircularSpinner";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -812,9 +954,52 @@
 			};
 			name = Release;
 		};
+		DF5D7573E12F64B7679B5754804DD385 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94A9E3EB7E4B02A77C1444149B2507FB /* GTProgressBar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/GTProgressBar/GTProgressBar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GTProgressBar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GTProgressBar/GTProgressBar.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = GTProgressBar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B4DF91EEA6853E7064D98492948ED79 /* Build configuration list for PBXNativeTarget "Pods-Puranas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7859AA711F2E7384DD39CF316FD2589F /* Debug */,
+				561EC415D36D67AD83D8AF33920CB69C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -842,11 +1027,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D62037D6D08A912988327FE05AB799B4 /* Build configuration list for PBXNativeTarget "Pods-Puranas" */ = {
+		BF641EC5CA5C51DCF4EFA51F96054599 /* Build configuration list for PBXNativeTarget "GTProgressBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5CA4A50F5E43B989688CC4A2593D50D5 /* Debug */,
-				C7510B20ABA9C330320F973FEFDB95DE /* Release */,
+				48775C3397880DA09DD6656282C29B14 /* Debug */,
+				DF5D7573E12F64B7679B5754804DD385 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
