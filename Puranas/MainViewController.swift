@@ -239,12 +239,22 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             }
             
             if (temp.isBookmarked == 1) {
-                cell.backgroundColor = Const.highlightColor
-                cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                if (temp.bmType == "f") {
+                    cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                    let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
+                    let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                    let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                    string.addAttributes(attributes, range: range)
+                    cell.lblText.attributedText = string
+                }
             }
             else {
-                cell.backgroundColor = Const.cellBackColor
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+                string.addAttributes(attributes, range: range)
+                cell.lblText.attributedText = string
             }
             
             return cell
@@ -257,12 +267,22 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             cell.lblChapter.text = "\(temp.chapterNo).\(temp.contentId)"
             
             if (temp.isBookmarked == 1) {
-                cell.backgroundColor = Const.highlightColor
-                cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                if (temp.bmType == "f") {
+                    cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                    let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
+                    let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                    let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                    string.addAttributes(attributes, range: range)
+                    cell.lblText.attributedText = string
+                }
             }
             else {
-                cell.backgroundColor = Const.cellBackColor
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+                string.addAttributes(attributes, range: range)
+                cell.lblText.attributedText = string
             }
             
             return cell

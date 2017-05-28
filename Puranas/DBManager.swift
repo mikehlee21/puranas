@@ -236,11 +236,17 @@ class DBManager
             }
         }
         
-        let updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '" + data.bookId + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '" + type + "', '" + bmData + "');"
+        var updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(type)', '\(bmData)');"
+        
+        //var updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '" + data.bookId + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '" + type + "', '" + bmData + "');"
+        
+        //updateStatementString = updateStatementString.replacingOccurrences(of: "'\'", with: "")
+        
         
         var updateStatement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            print("OK")
             sqlite3_step(updateStatement)
         }
         

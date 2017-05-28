@@ -42,6 +42,32 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     }
 
     @IBAction func onLastBookTapped(_ sender: Any) {
+        let db = DBManager()
+        let temp = db.getLastReadingPos()
+        if (temp.bookId == "") {
+            let alert = UIAlertController(title: "Puranas", message: "No recording", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            controller.bookId = temp.bookId
+            controller.lblBookName = getBookNameFromId(temp.bookId)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    func getBookNameFromId(_ bookId: String) -> String {
+        let db = DBManager()
+        let temp = db.loadBooksData()
+        var bookName = ""
+        for i in 0..<temp.count {
+            if (bookId == temp[i].bookId) {
+                bookName = temp[i].name!
+            }
+        }
+        return bookName
     }
     
     @IBAction func onFilterTapped(_ sender: Any) {
