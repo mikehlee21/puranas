@@ -395,7 +395,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-DI-6QW">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-DI-6QW">
                                                     <rect key="frame" x="38" y="0.0" width="337" height="108"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -403,13 +403,13 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="983-Ij-CAg">
-                                                    <rect key="frame" x="8" y="8" width="34" height="26"/>
+                                                    <rect key="frame" x="8" y="8" width="34" height="25.5"/>
                                                     <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmarked" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-hl-bV9">
-                                                    <rect key="frame" x="8" y="34" width="25" height="25"/>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmarked" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-hl-bV9">
+                                                    <rect key="frame" x="8" y="33.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="hfF-hl-bV9" secondAttribute="height" multiplier="1:1" id="53L-3A-li7"/>
                                                         <constraint firstAttribute="width" constant="25" id="RpB-My-2c8"/>
@@ -432,52 +432,6 @@
                                             <outlet property="imgStar" destination="hfF-hl-bV9" id="llw-cP-eGf"/>
                                             <outlet property="lblChapter" destination="983-Ij-CAg" id="YNB-yC-XnF"/>
                                             <outlet property="lblText" destination="zk0-DI-6QW" id="1KG-Ut-N3h"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainTransCell" rowHeight="113" id="CAv-7Q-UBP" customClass="MainTransTableViewCell" customModule="Puranas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="169" width="375" height="113"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CAv-7Q-UBP" id="SdN-Zf-cwa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-AX-Nxd">
-                                                    <rect key="frame" x="38" y="0.0" width="337" height="108"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gi6-Cf-3RV">
-                                                    <rect key="frame" x="8" y="8" width="34" height="26"/>
-                                                    <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmarked" translatesAutoresizingMaskIntoConstraints="NO" id="9RL-5z-dAX">
-                                                    <rect key="frame" x="8" y="34" width="25" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="X2g-ks-xJn"/>
-                                                        <constraint firstAttribute="width" secondItem="9RL-5z-dAX" secondAttribute="height" multiplier="1:1" id="mpN-9J-HPI"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9RL-5z-dAX" firstAttribute="top" secondItem="Gi6-Cf-3RV" secondAttribute="bottom" id="HT6-mR-9c3"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Gi6-Cf-3RV" secondAttribute="leading" id="Y1N-iO-Roj"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="9RL-5z-dAX" secondAttribute="leading" id="ZJu-wB-RpX"/>
-                                                <constraint firstAttribute="bottom" secondItem="HAD-AX-Nxd" secondAttribute="bottom" constant="5" id="dWX-Zi-Umb"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Gi6-Cf-3RV" secondAttribute="top" id="qJl-vp-DN3"/>
-                                                <constraint firstItem="HAD-AX-Nxd" firstAttribute="leading" secondItem="9RL-5z-dAX" secondAttribute="trailing" constant="5" id="rup-ky-cu8"/>
-                                                <constraint firstAttribute="trailing" secondItem="HAD-AX-Nxd" secondAttribute="trailing" id="ucZ-Xb-fVc"/>
-                                                <constraint firstItem="HAD-AX-Nxd" firstAttribute="top" secondItem="SdN-Zf-cwa" secondAttribute="top" id="vSi-gO-gAf"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="imgStar" destination="9RL-5z-dAX" id="JMa-Wc-1B0"/>
-                                            <outlet property="lblChapter" destination="Gi6-Cf-3RV" id="5ok-sF-grI"/>
-                                            <outlet property="lblText" destination="HAD-AX-Nxd" id="Dxf-Oi-XHd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -573,11 +527,30 @@
                         <outlet property="searchBar" destination="222-EA-UNe" id="FxC-Wr-eHk"/>
                         <outlet property="tableView" destination="AXT-VQ-rGg" id="puc-xU-Gw2"/>
                         <segue destination="7Bl-F5-hNI" kind="custom" identifier="PopupSegue" customClass="MIBlurPopupSegue" customModule="MIBlurPopup" id="WMb-5u-Tq9"/>
+                        <segue destination="Ziw-qT-Z40" kind="show" identifier="BookmarkSegue" id="gst-ri-Qqb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZX-0h-p34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3340" y="89.505247376311857"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5Pr-IK-6zl">
+            <objects>
+                <viewController id="Ziw-qT-Z40" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tys-Pc-SgW"/>
+                        <viewControllerLayoutGuide type="bottom" id="UoB-Wt-5xi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bxd-ee-WY0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Baz-cI-WCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3340" y="836"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="65K-D5-frc">

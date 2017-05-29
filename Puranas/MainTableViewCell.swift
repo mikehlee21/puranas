@@ -23,6 +23,9 @@ class MainTableViewCell: UITableViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tap.numberOfTapsRequired = 1
         imgStar.addGestureRecognizer(tap)
+        
+        //let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTapped))
+        //self.lblText.addGestureRecognizer(longTap)
         // Initialization code
     }
 
@@ -61,6 +64,10 @@ class MainTableViewCell: UITableViewCell {
             db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
         }
 
+    }
+    
+    func longTapped() {
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
