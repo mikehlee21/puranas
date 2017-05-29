@@ -33,7 +33,6 @@ class PopupViewController: UIViewController {
     @IBAction func onDismiss(_ sender: Any) {
         
         mainVC?.btnBack.isEnabled = true
-        mainVC?.btnBookmark.isEnabled = true
         
         dismiss(animated: true, completion: nil)
     }

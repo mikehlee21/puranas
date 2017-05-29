@@ -35,6 +35,7 @@
 		B382F7621ED5AC6C003DF09F /* BookCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382F7611ED5AC6C003DF09F /* BookCont.swift */; };
 		B382F7641ED5AD79003DF09F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = B382F7631ED5AD79003DF09F /* Const.swift */; };
 		B382F7661ED5D524003DF09F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B382F7651ED5D524003DF09F /* Assets.xcassets */; };
+		B3DE33511EDC33B30024C776 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE33501EDC33B30024C776 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		B382F7611ED5AC6C003DF09F /* BookCont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCont.swift; sourceTree = "<group>"; };
 		B382F7631ED5AD79003DF09F /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		B382F7651ED5D524003DF09F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3DE33501EDC33B30024C776 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				B33AF9221ED4C7E000408F38 /* PopupViewController.swift */,
 				62DAC4221ED75A99004A2290 /* PopupMenuViewController.swift */,
 				B303D4491EDA44C100A6EB68 /* SettingViewController.swift */,
+				B3DE33501EDC33B30024C776 /* EditViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DE33511EDC33B30024C776 /* EditViewController.swift in Sources */,
 				B33AF91F1ED4BB4400408F38 /* MainViewController.swift in Sources */,
 				B33AF9141ED4256600408F38 /* BookSeriesViewController.swift in Sources */,
 				B33AF9211ED4BD0100408F38 /* MainTableViewCell.swift in Sources */,

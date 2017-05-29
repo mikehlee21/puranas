@@ -24,8 +24,8 @@ class MainTableViewCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         imgStar.addGestureRecognizer(tap)
         
-        //let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTapped))
-        //self.lblText.addGestureRecognizer(longTap)
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(longTapped))
+        self.contentView.addGestureRecognizer(longTap)
         // Initialization code
     }
 
@@ -66,9 +66,13 @@ class MainTableViewCell: UITableViewCell {
 
     }
     
-    func longTapped() {
-        
+    func longTapped(sender: UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            mainVC?.goToEdit((bookDataArray[sectionNo]?[index])!)
+        }
     }
+    
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

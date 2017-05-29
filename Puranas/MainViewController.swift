@@ -14,7 +14,6 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnPencil: UIButton!
-    @IBOutlet weak var btnBookmark: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressBar: GTProgressBar!
@@ -22,7 +21,6 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var lblBookName: String?
     var bookId: String?
     var lastContentOffset: CGFloat = 0
-    var isButtonsHidden: Bool = false
     var allowHidden: Bool = true
     var prevFlag: Bool = false
     var isNav: Bool = false
@@ -32,6 +30,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var dataArray: [CellData] = []
     var isBookmarkMode : Bool = false
     var readingMode : Int = 0
+    var sendingCellData: CellData = CellData()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,16 +45,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         progressBar.progress = 0
         
+        mainVC = self
+        
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         initSectionData()
         //CircularSpinner.hide()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // 
-        //let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset))
         
         let db = DBManager()
         let temp = db.loadLastReadingPos(bookId!)
@@ -74,10 +69,14 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
                     break
                 }
             }
-        
+            
             let indexPath = IndexPath(row: row, section: temp.chapterNo - 1)
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
+        
+        showbuttons()
+        
+        // Do any additional setup after loading the view.
     }
     
     func initCellDataArray() {
@@ -171,6 +170,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
         return cnt
     }
+    
+    func goToEdit(_ cd: CellData) {
+        sendingCellData = cd
+        performSegue(withIdentifier: "EditSegue", sender: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -183,49 +187,6 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
 
     @IBAction func onPencelTapped(_ sender: Any) {
         performSegue(withIdentifier: "PopupSegue", sender: nil)
-    }
-
-    @IBAction func onBookmarkTapped(_ sender: Any) {
-        if (isBookmarkMode == false) {
-            isBookmarkMode = true
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.btnPencil.alpha = 0.0
-                self.btnBack.alpha = 0.0
-                self.searchBar.isHidden = true
-                self.tableView.isScrollEnabled = false
-            }, completion: nil)
-        }
-        else {
-            isBookmarkMode = false
-            setBookmark()
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.btnPencil.alpha = 1.0
-                self.btnBack.alpha = 1.0
-                self.searchBar.isHidden = false
-                self.tableView.isScrollEnabled = true
-            }, completion: nil)
-        }
-    }
-    
-    func setBookmark() {
-        let temp = tableView.indexPathsForVisibleRows
-        for i in 0..<(temp?.count)! {
-            let indexPath = temp?[i]
-            let t = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
-            
-            let cell = tableView.cellForRow(at: (temp?[i])!) as! MainTableViewCell
-            if (cell.lblText.selectedRange.length != 0) {
-                let range = cell.lblText.selectedRange
-                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
-                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-                string.addAttributes(attributes, range: cell.lblText.selectedRange)
-                cell.lblText.attributedText = string
-                
-                let db = DBManager()
-                db.insertBookmark(data: t!, startPos: range.location, bmlength: range.length, totalLength: cell.lblText.attributedText.length, type: "p")
-            }
-        }
-        initSectionData()
     }
     
     // Table View Delegate & DataSource
@@ -345,8 +306,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         if segue.identifier == "PopupSegue"
         {
             btnBack.isEnabled = false
-            btnBookmark.isEnabled = false
-            mainVC = self
+        }
+        else if segue.identifier == "EditSegue" {
+            let vc = segue.destination as! EditViewController
+            vc.curCellData = sendingCellData
         }
     }
     
@@ -355,7 +318,6 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = true
             self.btnPencil.alpha = 0.0
             self.btnBack.alpha = 0.0
-            self.btnBookmark.alpha = 0.0
             self.searchBar.isHidden = true
         }, completion: nil)
     }
@@ -365,72 +327,40 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = false
             self.btnPencil.alpha = 1.0
             self.btnBack.alpha = 1.0
-            self.btnBookmark.alpha = 1.0
             self.searchBar.isHidden = false
         }, completion: nil)
     }
     // ScrollView Delegate
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffset = scrollView.contentOffset.y
+        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
         
+        allowHidden = true
+        prevFlag = false
     }
-    
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (allowHidden == true) {
             if (self.lastContentOffset < scrollView.contentOffset.y) {
-                // moved to top
-                if (isButtonsHidden == false) {
-                    hidebuttons()
-                    isButtonsHidden = true
-                }
+                hidebuttons()
             } else if (self.lastContentOffset > scrollView.contentOffset.y) {
-                // moved to bottom
-                if (isButtonsHidden == true) {
-                    showbuttons()
-                    isButtonsHidden = false
-                }
-            } else {
-                // didn't move
+                showbuttons()
             }
         }
-    }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        lastContentOffset = scrollView.contentOffset.y
-        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        lastContentOffset = scrollView.contentOffset.y
-        allowHidden = true
-        prevFlag = false
         if (isNav == false) {
             navModeContentOffset = scrollView.contentOffset.y
         }
-        
-        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
         saveLastReadingPos()
     }
     
     func saveLastReadingPos() {
-        if let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1, y: lastContentOffset)) {
-            let temp = bookDataArray[indexPath.section]?[indexPath.row]
-            let db = DBManager()
-            db.saveLastReadingPos(bookId: (temp?.bookId)!, chapterNo: (temp?.chapterNo)!, contentId: (temp?.contentId)!, isCont: (temp?.isCont)!)
-        }
+        let t = tableView.indexPathsForVisibleRows
+        let indexPath = t?[0]
+        let temp = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
+        let db = DBManager()
+        db.saveLastReadingPos(bookId: (temp?.bookId)!, chapterNo: (temp?.chapterNo)!, contentId: (temp?.contentId)!, isCont: (temp?.isCont)!)
     }
-    
-    /*
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        allowHidden = true
-        prevFlag = false
-        lastReadingPos = scrollView.contentOffset.y
-        if (isNav) {
-            navModeContentOffset = scrollView.contentOffset.y
-        }
-    }*/
     
     func manageReadingMode(_ readingMode: Int) {
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
@@ -496,10 +426,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             break
         case 5:
             if (isNav) {
-                let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset))
-                tableView.scrollToRow(at: indexPath!, at: .top, animated: true)
-                isNav = false
-                prevFlag = false
+                if let indexPath = tableView.indexPathForRow(at: CGPoint(x: 1.0, y: navModeContentOffset)) {
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    isNav = false
+                    prevFlag = false
+                }
             }
             break
         default:

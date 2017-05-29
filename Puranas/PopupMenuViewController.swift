@@ -25,14 +25,12 @@ class PopupMenuViewController: UIViewController {
     
     func dismissReadingModePopup(_ mode: Int) {
         mainVC?.btnBack.isEnabled = true
-        mainVC?.btnBookmark.isEnabled = true
         dismiss(animated: true, completion: nil)
         mainVC?.manageReadingMode(mode)
     }
     
     func dismissNavModePopup(_ mode: Int) {
         mainVC?.btnBack.isEnabled = true
-        mainVC?.btnBookmark.isEnabled = true
         dismiss(animated: true, completion: nil)
         mainVC?.manageNavMode(mode)
     }

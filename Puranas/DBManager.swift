@@ -246,7 +246,6 @@ class DBManager
         var updateStatement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(database, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            print("OK")
             sqlite3_step(updateStatement)
         }
         
@@ -330,7 +329,16 @@ class DBManager
         let prefName = "lastReadingPos.\(bookId)"
         let prefValue = "\(chapterNo)-\(contentId)-\(isCont)"
         
-        let updateStatementString = "INSERT INTO \(Const.userPrefTable) (email,prefName,prefValue,lastUpdateOn,lastUpdateDesc) VALUES ('" + "ckdhrgid@outlook.com" + "', '" + prefName + "', '" + prefValue + "', NULL, NULL);"
+        let isExist = checkIfLastReadingPosExist(prefName)
+        
+        var updateStatementString = ""
+        
+        if isExist == true {
+            updateStatementString = "UPDATE \(Const.userPrefTable) SET prefValue='" + prefValue + "' WHERE prefName='" + prefName + "';"
+        }
+        else {
+            updateStatementString = "INSERT INTO \(Const.userPrefTable) (email,prefName,prefValue,lastUpdateOn,lastUpdateDesc) VALUES ('" + "ckdhrgid@outlook.com" + "', '" + prefName + "', '" + prefValue + "', NULL, NULL);"
+        }
         
         var updateStatement: OpaquePointer? = nil
         
@@ -341,6 +349,29 @@ class DBManager
         sqlite3_finalize(updateStatement)
         
         sqlite3_close(database)
+    }
+    
+    func checkIfLastReadingPosExist(_ prefName: String) -> Bool {
+        let query = "SELECT prefValue FROM \(Const.userPrefTable) WHERE prefName='" + prefName + "'"
+        var statement : OpaquePointer? = nil
+        var cnt = 0
+        
+        if sqlite3_prepare_v2(database, query, -1, &statement, nil) == SQLITE_OK
+        {
+            while sqlite3_step(statement) == SQLITE_ROW
+            {
+                cnt += 1
+            }
+            
+            sqlite3_finalize(statement)
+        }
+        
+        if cnt == 0 {
+            return false
+        }
+        else {
+            return true
+        }
     }
     
     func loadLastReadingPos(_ bookId: String) -> CellData {
