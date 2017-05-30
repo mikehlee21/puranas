@@ -10,6 +10,8 @@ import UIKit
 
 class EditViewController: UIViewController {
 
+    @IBOutlet weak var imgStar: UIImageView!
+    @IBOutlet weak var lblChapter: UILabel!
     @IBOutlet weak var btnNote: UIButton!
     @IBOutlet weak var btnBookmark: UIButton!
     @IBOutlet weak var btnBack: UIButton!
@@ -22,8 +24,51 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.isNavigationBarHidden = false
+        
+        txtView.text = curCellData.text
+        lblChapter.text = "\(curCellData.chapterNo).\(curCellData.contentId)"
 
+        initView()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        tap.numberOfTapsRequired = 1
+        imgStar.addGestureRecognizer(tap)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func initView() {
+        if (curCellData.isBookmarked == 1) {
+            if (curCellData.bmType == "f") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                let range = NSRange(location: 0, length: txtView.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                string.addAttributes(attributes, range: range)
+                txtView.attributedText = string
+            }
+            else if (curCellData.bmType == "p") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+                for i in 0..<txtView.attributedText.length {
+                    let range1 = NSRange(location: i, length: 1)
+                    var attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+                    if (curCellData.bmData[i] == "1") {
+                        attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                    }
+                    string.addAttributes(attributes, range: range1)
+                }
+                txtView.attributedText = string
+            }
+        }
+        else {
+            imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+            let range = NSRange(location: 0, length: txtView.attributedText.length)
+            let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+            let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+            string.addAttributes(attributes, range: range)
+            txtView.attributedText = string
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,54 +78,113 @@ class EditViewController: UIViewController {
     
     @IBAction func onBackTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        mainVC?.initSectionData()
     }
     
     func setBookmark() {
-        /*
-        let temp = tableView.indexPathsForVisibleRows
-        for i in 0..<(temp?.count)! {
-            let indexPath = temp?[i]
-            let t = bookDataArray[(indexPath?.section)!]?[(indexPath?.row)!]
+
+        if (txtView.selectedRange.length != 0) {
+            let range = txtView.selectedRange
+            let db = DBManager()
+            curCellData.bmData = db.insertBookmark(data: curCellData, startPos: range.location, bmlength: range.length, totalLength: txtView.attributedText.length, type: "p")
             
-            let cell = tableView.cellForRow(at: (temp?[i])!) as! MainTableViewCell
-            if (cell.lblText.selectedRange.length != 0) {
-                let range = cell.lblText.selectedRange
-                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
-                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-                string.addAttributes(attributes, range: cell.lblText.selectedRange)
-                cell.lblText.attributedText = string
+            if curCellData.bmData.range(of: "1") == nil {
+                curCellData.isBookmarked = 0
+            }
+            else {
+                curCellData.isBookmarked = 1
+                if curCellData.bmData.range(of: "0") == nil {
+                    curCellData.bmType = "f"
+                }
+                else {
+                    curCellData.bmType = "p"
+                }
+            }
+            
+            initView()
+        }
+    }
+    
+    func tapped() {
+        if (curCellData.isBookmarked == 0) {
+            imgStar.image = #imageLiteral(resourceName: "bookmarked")
+            curCellData.isBookmarked = 1
+            
+            curCellData.bmType = "f"
+            var str = ""
+            for _ in 0..<txtView.attributedText.length {
+                str += "1"
+            }
+            curCellData.bmData = str
+            
+            let range = NSRange(location: 0, length: txtView.attributedText.length)
+            let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+            let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+            string.addAttributes(attributes, range: range)
+            txtView.attributedText = string
+            
+            let db = DBManager()
+            db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")
+        }
+        else {
+            if (curCellData.bmType == "f") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                curCellData.isBookmarked = 0
+                
+                let range = NSRange(location: 0, length: txtView.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+                string.addAttributes(attributes, range: range)
+                txtView.attributedText = string
                 
                 let db = DBManager()
-                db.insertBookmark(data: t!, startPos: range.location, bmlength: range.length, totalLength: cell.lblText.attributedText.length, type: "p")
+                db.deleteBookmark(data: curCellData)
+            }
+            else if (curCellData.bmType == "p") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                curCellData.isBookmarked = 1
+                
+                curCellData.bmType = "f"
+                var str = ""
+                for _ in 0..<txtView.attributedText.length {
+                    str += "1"
+                }
+                curCellData.bmData = str
+                
+                let range = NSRange(location: 0, length: txtView.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                string.addAttributes(attributes, range: range)
+                txtView.attributedText = string
+                
+                let db = DBManager()
+                db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")
             }
         }
-        initSectionData()
- */
+        
     }
     
     @IBAction func onNoteTapped(_ sender: Any) {
     }
     
     @IBAction func onBookmarkTapped(_ sender: Any) {
-        /*if (isBookmarkMode == false) {
+        if (isBookmarkMode == false) {
             isBookmarkMode = true
+            self.txtView.isSelectable = true
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.btnPencil.alpha = 0.0
+                self.btnNote.alpha = 0.0
                 self.btnBack.alpha = 0.0
-                self.searchBar.isHidden = true
-                self.tableView.isScrollEnabled = false
             }, completion: nil)
         }
         else {
             isBookmarkMode = false
+            self.txtView.isSelectable = false
             setBookmark()
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.btnPencil.alpha = 1.0
+                self.btnNote.alpha = 1.0
                 self.btnBack.alpha = 1.0
-                self.searchBar.isHidden = false
-                self.tableView.isScrollEnabled = true
             }, completion: nil)
-        }*/
+        }
     }
     
     

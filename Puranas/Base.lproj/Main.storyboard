@@ -533,7 +533,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMM-F7-xO5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="46" y="0.0" width="324" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
@@ -587,14 +587,31 @@
                                     <constraint firstItem="f3I-jE-QIB" firstAttribute="centerY" secondItem="S3z-rr-fT5" secondAttribute="centerY" id="uZR-aX-vNC"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekd-ur-AYa">
+                                <rect key="frame" x="10" y="10" width="34" height="25.5"/>
+                                <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmarked" translatesAutoresizingMaskIntoConstraints="NO" id="kMJ-Os-C9Z">
+                                <rect key="frame" x="16" y="35.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="2ny-aa-0F8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="S3z-rr-fT5" firstAttribute="leading" secondItem="Bxd-ee-WY0" secondAttribute="leading" id="7Wh-AK-0ZG"/>
+                            <constraint firstItem="vMM-F7-xO5" firstAttribute="leading" secondItem="kMJ-Os-C9Z" secondAttribute="trailing" constant="5" id="9qE-qI-S5S"/>
+                            <constraint firstItem="kMJ-Os-C9Z" firstAttribute="leading" secondItem="Bxd-ee-WY0" secondAttribute="leadingMargin" id="HjD-K2-cRq"/>
                             <constraint firstItem="UoB-Wt-5xi" firstAttribute="top" secondItem="S3z-rr-fT5" secondAttribute="bottom" id="JU5-0U-KIa"/>
-                            <constraint firstItem="vMM-F7-xO5" firstAttribute="leading" secondItem="Bxd-ee-WY0" secondAttribute="leading" id="a1b-L7-ceL"/>
+                            <constraint firstItem="ekd-ur-AYa" firstAttribute="top" secondItem="Tys-Pc-SgW" secondAttribute="bottom" constant="10" id="OzC-mG-T9c"/>
+                            <constraint firstItem="ekd-ur-AYa" firstAttribute="leading" secondItem="Bxd-ee-WY0" secondAttribute="leading" constant="10" id="eRK-NG-GP5"/>
                             <constraint firstItem="UoB-Wt-5xi" firstAttribute="top" secondItem="vMM-F7-xO5" secondAttribute="bottom" id="fgX-pS-DbK"/>
-                            <constraint firstAttribute="trailing" secondItem="vMM-F7-xO5" secondAttribute="trailing" id="s9f-Wc-Ep7"/>
+                            <constraint firstItem="kMJ-Os-C9Z" firstAttribute="top" secondItem="ekd-ur-AYa" secondAttribute="bottom" id="pxE-yf-iy8"/>
+                            <constraint firstItem="kMJ-Os-C9Z" firstAttribute="width" secondItem="kMJ-Os-C9Z" secondAttribute="height" multiplier="1:1" id="qBx-Pw-Cmh"/>
+                            <constraint firstAttribute="trailing" secondItem="vMM-F7-xO5" secondAttribute="trailing" constant="5" id="s9f-Wc-Ep7"/>
                             <constraint firstItem="vMM-F7-xO5" firstAttribute="top" secondItem="Tys-Pc-SgW" secondAttribute="bottom" id="ves-oJ-UFA"/>
                             <constraint firstAttribute="trailing" secondItem="S3z-rr-fT5" secondAttribute="trailing" id="yBQ-lt-95F"/>
                         </constraints>
@@ -605,12 +622,14 @@
                         <outlet property="btnBack" destination="f3I-jE-QIB" id="wfT-mq-Zkp"/>
                         <outlet property="btnBookmark" destination="jGh-Jk-KEg" id="nP2-up-RYR"/>
                         <outlet property="btnNote" destination="t8r-Tz-WIy" id="yMa-ws-dZc"/>
+                        <outlet property="imgStar" destination="kMJ-Os-C9Z" id="Rxj-FB-jhN"/>
+                        <outlet property="lblChapter" destination="ekd-ur-AYa" id="ehx-Wa-RJk"/>
                         <outlet property="txtView" destination="vMM-F7-xO5" id="mYf-gh-GQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Baz-cI-WCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3340" y="835.23238380809596"/>
+            <point key="canvasLocation" x="3340" y="834.33283358320841"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="65K-D5-frc">

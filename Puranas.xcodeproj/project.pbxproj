@@ -318,7 +318,7 @@
 				TargetAttributes = {
 					B33AF8E11ED4083300408F38 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 63HAQ646AV;
+						DevelopmentTeam = 9FHH47PG79;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -609,10 +609,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 63HAQ646AV;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9FHH47PG79;
 				INFOPLIST_FILE = Puranas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.throva.vedavyas.Puranas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.throva.vedavyas.puranas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Puranas/Puranas-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -626,10 +627,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 63HAQ646AV;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9FHH47PG79;
 				INFOPLIST_FILE = Puranas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.throva.vedavyas.Puranas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.throva.vedavyas.puranas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Puranas/Puranas-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

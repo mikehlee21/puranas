@@ -159,6 +159,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         if (isSearching == true) {
             initFilteredArray()
         }
+        
+        tableView.reloadData()
     }
     
     func getSectionCount() -> Int {
@@ -259,15 +261,16 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             }
             else if (temp.bmType == "p"){
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
-                for i in 0..<temp.bmData.characters.count {
+                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
+                for i in 0..<cell.lblText.attributedText.length {
+                    let range1 = NSRange(location: i, length: 1)
+                    var attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
                     if (temp.bmData[i] == "1") {
-                        let range = NSRange(location: i, length: 1)
-                        let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
-                        let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-                        string.addAttributes(attributes, range: range)
-                        cell.lblText.attributedText = string
+                        attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
                     }
+                    string.addAttributes(attributes, range: range1)
                 }
+                cell.lblText.attributedText = string
             }
         }
         else {

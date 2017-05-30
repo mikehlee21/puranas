@@ -51,17 +51,39 @@ class MainTableViewCell: UITableViewCell {
             db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!, startPos: 0, bmlength: 0, totalLength: lblText.attributedText.length, type: "f")
         }
         else {
-            imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
-            bookDataArray[sectionNo]?[index].isBookmarked = 0
-            
-            let range = NSRange(location: 0, length: lblText.attributedText.length)
-            let string = NSMutableAttributedString(attributedString: lblText.attributedText)
-            let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
-            string.addAttributes(attributes, range: range)
-            lblText.attributedText = string
-            
-            let db = DBManager()
-            db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
+            if (bookDataArray[sectionNo]?[index].bmType == "f") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                bookDataArray[sectionNo]?[index].isBookmarked = 0
+                
+                let range = NSRange(location: 0, length: lblText.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: lblText.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
+                string.addAttributes(attributes, range: range)
+                lblText.attributedText = string
+                
+                let db = DBManager()
+                db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
+            }
+            else if (bookDataArray[sectionNo]?[index].bmType == "p") {
+                imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                bookDataArray[sectionNo]?[index].isBookmarked = 1
+                
+                bookDataArray[sectionNo]?[index].bmType = "f"
+                var str = ""
+                for _ in 0..<lblText.attributedText.length {
+                    str += "1"
+                }
+                bookDataArray[sectionNo]?[index].bmData = str
+                
+                let range = NSRange(location: 0, length: lblText.attributedText.length)
+                let string = NSMutableAttributedString(attributedString: lblText.attributedText)
+                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
+                string.addAttributes(attributes, range: range)
+                lblText.attributedText = string
+                
+                let db = DBManager()
+                db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!, startPos: 0, bmlength: 0, totalLength: lblText.attributedText.length, type: "f")
+            }
         }
 
     }

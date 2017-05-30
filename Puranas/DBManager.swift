@@ -196,52 +196,67 @@ class DBManager
         return res
     }
     
-    func insertBookmark(data: CellData, startPos: Int, bmlength: Int, totalLength: Int, type: String) {
+    func insertBookmark(data: CellData, startPos: Int, bmlength: Int, totalLength: Int, type: String) -> String {
         
         let storedDataArray = loadBookmark()
         var storedData = CellData()
+        var isExist = false
+        var bmType = type
+        
         for i in 0..<storedDataArray.count {
             let t = storedDataArray[i]
             if ((t.bookId == data.bookId) && (t.volumeNo == data.volumeNo) && (t.cantoNo == data.cantoNo) && (t.chapterNo == data.chapterNo) && (t.isCont == data.isCont) && (t.contentId == data.contentId)) {
-                storedData = storedDataArray[i]
+                storedData = t
+                isExist = true
                 break
             }
         }
+        
         var bmData = ""
-        if (storedData.bmData == "") {    // No bookmark yet
+        var updateStatementString = ""
+        
+        if (isExist == false) {    // No bookmark yet
             for _ in 0..<totalLength {
                 bmData += "0"
             }
         }
-        
-        for i in 0..<bmlength {
-            if (bmData[i+startPos] == "1") {
-                let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
-                let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
-                bmData.replaceSubrange(start..<end, with: "0")
+        else {
+            bmData = storedData.bmData
+        }
+        if (bmType == "p") {
+            for i in 0..<bmlength {
+                if (bmData[i+startPos] == "1") {
+                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
+                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
+                    bmData.replaceSubrange(start..<end, with: "0")
+                }
+                else {
+                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
+                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
+                    bmData.replaceSubrange(start..<end, with: "1")
+                }
             }
-            else {
-                let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
-                let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
-                bmData.replaceSubrange(start..<end, with: "1")
+        
+            if bmData.range(of: "0") == nil{
+                bmType = "f"
             }
         }
-        
-        openDB()
-        
-        if (type == "f") {
+    
+        if (bmType == "f") {
             bmData = ""
             for _ in 0..<totalLength {
                 bmData += "1"
             }
         }
         
-        let updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(type)', '\(bmData)');"
+        openDB()
         
-        //var updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '" + data.bookId + "', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '" + type + "', '" + bmData + "');"
-        
-        //updateStatementString = updateStatementString.replacingOccurrences(of: "'\'", with: "")
-        
+        if (isExist == true) {
+            updateStatementString = "UPDATE \(Const.userHighlightsTable) SET bmType='" + bmType + "', bmData='" + bmData + "' WHERE bookId='\(data.bookId)' AND volumeNo=\(data.volumeNo) AND cantoNo=\(data.cantoNo) AND chapterNo=\(data.chapterNo) AND isCont=\(data.isCont) AND contentID=\(data.contentId)"
+        }
+        else {
+            updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(bmType)', '\(bmData)');"
+        }
         
         var updateStatement: OpaquePointer? = nil
         
@@ -254,6 +269,8 @@ class DBManager
         sqlite3_close(database)
         
         checkEmptybookmark()
+        
+        return bmData
         
     }
     
