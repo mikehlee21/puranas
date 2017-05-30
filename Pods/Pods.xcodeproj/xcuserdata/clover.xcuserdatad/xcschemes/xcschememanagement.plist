@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EAIntroView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EARestrictedScrollView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTProgressBar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +42,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0D70D05CBBB9E9587A14181E3881FA4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>22B6FF288F7DDD39BCDFFF814822C804</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>58AAD2C9E898747F2F4ABF348E6325F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>69F59636E016BD704D9FAFDDACAFE4EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>822DA31A6A34C7EF41E1EC7A5EF8FC2F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -48,11 +73,6 @@
 			<true/>
 		</dict>
 		<key>D780F80A5793F3EFDAC1606AAA75B388</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EB3A53B533F3D0DD297C848990312F73</key>
 		<dict>
 			<key>primary</key>
 			<true/>

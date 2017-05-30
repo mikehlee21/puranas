@@ -1,18 +1,24 @@
 PODS:
   - CircularSpinner (1.2.0)
+  - EAIntroView (2.10.0):
+    - EARestrictedScrollView (~> 1.1.0)
+  - EARestrictedScrollView (1.1.0)
   - GTProgressBar (0.1.2)
   - MIBlurPopup (0.1.1)
 
 DEPENDENCIES:
   - CircularSpinner
+  - EAIntroView
   - GTProgressBar
   - MIBlurPopup
 
 SPEC CHECKSUMS:
   CircularSpinner: 80b8ee3eda59b66d20631d4ca7c7c83720931739
+  EAIntroView: 3494b7bbd1212e3a4f7e8d16194a1b00e7b9abb2
+  EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   GTProgressBar: 782c61ac00535b01536ddc5246f5abecfc44dede
   MIBlurPopup: debbc8f4f631809797140d37b5476745a61e90be
 
-PODFILE CHECKSUM: a946c1613c3165d7dcdf89cc43a4e667cd9f6b5f
+PODFILE CHECKSUM: 5e963f590bbdbd90f60539f0e5842b003d93bab9
 
 COCOAPODS: 1.2.1
