@@ -34,7 +34,7 @@ class MainTableViewCell: UITableViewCell {
             imgStar.image = #imageLiteral(resourceName: "bookmarked")
             self.contentView.backgroundColor = Const.highlightColor
             bookDataArray[sectionNo]?[index].isBookmarked = 1
-            bookDataArray[sectionNo]?[index].bmType = "f"
+            bookDataArray[sectionNo]?[index].highlightType = "f"
             
             let range = NSRange(location: 0, length: lblText.attributedText.length)
             let string = NSMutableAttributedString(attributedString: lblText.attributedText)
@@ -46,7 +46,7 @@ class MainTableViewCell: UITableViewCell {
             db.insertBookmark(data: (bookDataArray[sectionNo]?[index])!, startPos: 0, bmlength: 0, totalLength: lblText.attributedText.length, type: "f")
         }
         else {
-            if (bookDataArray[sectionNo]?[index].bmType == "f") {
+            if (bookDataArray[sectionNo]?[index].highlightType == "f") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
                 self.contentView.backgroundColor = Const.cellBackColor
                 bookDataArray[sectionNo]?[index].isBookmarked = 0
@@ -60,11 +60,11 @@ class MainTableViewCell: UITableViewCell {
                 let db = DBManager()
                 db.deleteBookmark(data: (bookDataArray[sectionNo]?[index])!)
             }
-            else if (bookDataArray[sectionNo]?[index].bmType == "p") {
+            else if (bookDataArray[sectionNo]?[index].highlightType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
                 self.contentView.backgroundColor = Const.highlightColor
                 bookDataArray[sectionNo]?[index].isBookmarked = 1
-                bookDataArray[sectionNo]?[index].bmType = "f"
+                bookDataArray[sectionNo]?[index].highlightType = "f"
                 
                 let range = NSRange(location: 0, length: lblText.attributedText.length)
                 let string = NSMutableAttributedString(attributedString: lblText.attributedText)
@@ -81,7 +81,7 @@ class MainTableViewCell: UITableViewCell {
     
     func longTapped(sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
-            mainVC?.goToEdit((bookDataArray[sectionNo]?[index])!)
+            mainVC?.goToEdit(data: (bookDataArray[sectionNo]?[index])!, section: sectionNo, row: index)
         }
     }
     

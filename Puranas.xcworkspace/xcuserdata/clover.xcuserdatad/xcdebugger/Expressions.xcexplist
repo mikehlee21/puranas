@@ -3,10 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "MainViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:MainViewController.swift">
+         contextName = "MainViewController.viewDidAppear(Bool) -&gt; ():MainViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cell.txtView.frame">
+               value = "navModeContentOffset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PopupMenuViewController.dismissReadingModePopup(Int) -&gt; ():PopupMenuViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -25,10 +33,10 @@
          contextName = "EditViewController.setBookmark() -&gt; ():EditViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "MainViewController.viewDidAppear(Bool) -&gt; ():MainViewController.swift">
+         contextName = "MainViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:MainViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "navModeContentOffset">
+               value = "cell.txtView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

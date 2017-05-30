@@ -201,7 +201,7 @@ class DBManager
         let storedDataArray = loadBookmark()
         var storedData = CellData()
         var isExist = false
-        var bmType = type
+        var highlightType = type
         
         for i in 0..<storedDataArray.count {
             let t = storedDataArray[i]
@@ -212,55 +212,55 @@ class DBManager
             }
         }
         
-        var bmData = ""
+        var highlightData = ""
         var updateStatementString = ""
         
         if (isExist == false) {    // No bookmark yet
             for _ in 0..<totalLength {
-                bmData += "0"
+                highlightData += "0"
             }
         }
         else {
-            bmData = storedData.bmData
+            highlightData = storedData.highlightData
         }
-        if (bmType == "p") {
+        if (highlightType == "p") {
             for i in 0..<bmlength {
-                if (bmData[i+startPos] == "0") {
-                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
-                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
-                    bmData.replaceSubrange(start..<end, with: "1")
+                if (highlightData[i+startPos] == "0") {
+                    let start = highlightData.index(highlightData.startIndex, offsetBy: i + startPos);
+                    let end = highlightData.index(highlightData.startIndex, offsetBy: i + startPos + 1);
+                    highlightData.replaceSubrange(start..<end, with: "1")
                 }
             }
         
-            if bmData.range(of: "0") == nil{
-                bmType = "f"
+            if highlightData.range(of: "0") == nil{
+                highlightType = "f"
             }
             
-            if (bmData == storedData.bmData) {
+            if (highlightData == storedData.highlightData) {
                 for i in 0..<bmlength {
-                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
-                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
-                    bmData.replaceSubrange(start..<end, with: "0")
+                    let start = highlightData.index(highlightData.startIndex, offsetBy: i + startPos);
+                    let end = highlightData.index(highlightData.startIndex, offsetBy: i + startPos + 1);
+                    highlightData.replaceSubrange(start..<end, with: "0")
                 }
-                bmType = "p"
+                highlightType = "p"
                 
             }
         }
     
-        if (bmType == "f") {
-            bmData = ""
+        if (highlightType == "f") {
+            highlightData = ""
             for _ in 0..<totalLength {
-                bmData += "1"
+                highlightData += "1"
             }
         }
         
         openDB()
         
         if (isExist == true) {
-            updateStatementString = "UPDATE \(Const.userHighlightsTable) SET bmType='" + bmType + "', bmData='" + bmData + "' WHERE bookId='\(data.bookId)' AND volumeNo=\(data.volumeNo) AND cantoNo=\(data.cantoNo) AND chapterNo=\(data.chapterNo) AND isCont=\(data.isCont) AND contentID=\(data.contentId)"
+            updateStatementString = "UPDATE \(Const.userHighlightsTable) SET highlightType='" + highlightType + "', highlightData='" + highlightData + "' WHERE bookId='\(data.bookId)' AND volumeNo=\(data.volumeNo) AND cantoNo=\(data.cantoNo) AND chapterNo=\(data.chapterNo) AND isCont=\(data.isCont) AND contentID=\(data.contentId)"
         }
         else {
-            updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,bmType,bmData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(bmType)', '\(bmData)');"
+            updateStatementString = "INSERT INTO \(Const.userHighlightsTable) (userId,bookId,volumeNo,cantoNo,chapterNo,lastUpdeDesc,isCont,contentId,highlightType,highlightData) VALUES (0, '\(data.bookId)', \(data.volumeNo), \(data.cantoNo), \(data.chapterNo), ' ', \(data.isCont), \(data.contentId), '\(highlightType)', '\(highlightData)');"
         }
         
         var updateStatement: OpaquePointer? = nil
@@ -275,7 +275,7 @@ class DBManager
         
         checkEmptybookmark()
         
-        return bmData
+        return highlightData
         
     }
     
@@ -301,7 +301,7 @@ class DBManager
         
         for i in 0..<bmArray.count {
             let temp = bmArray[i]
-            if temp.bmData.range(of: "1") == nil{
+            if temp.highlightData.range(of: "1") == nil{
                 deleteBookmark(data: temp)
             }
         }
@@ -312,7 +312,7 @@ class DBManager
         openDB()
         
         //reads all data
-        let query = "SELECT bookId, volumeNo, cantoNo, chapterNo, isCont, contentId, bmType, bmData FROM \(Const.userHighlightsTable)"
+        let query = "SELECT bookId, volumeNo, cantoNo, chapterNo, isCont, contentId, highlightType, highlightData FROM \(Const.userHighlightsTable)"
         var statement : OpaquePointer? = nil
         
         var res : [CellData] = []
@@ -329,8 +329,8 @@ class DBManager
                 temp.chapterNo = Int(sqlite3_column_int(statement, 3))
                 temp.isCont = Int(sqlite3_column_int(statement, 4))
                 temp.contentId = Int(sqlite3_column_int(statement, 5))
-                temp.bmType = String.init(cString: sqlite3_column_text(statement, 6)!)
-                temp.bmData = String.init(cString: sqlite3_column_text(statement, 7)!)
+                temp.highlightType = String.init(cString: sqlite3_column_text(statement, 6)!)
+                temp.highlightData = String.init(cString: sqlite3_column_text(statement, 7)!)
                 
                 res.append(temp)
             }

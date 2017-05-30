@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CircularSpinner
 
 class EditViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class EditViewController: UIViewController {
     var isBookmarkMode : Bool = false
     var curCellData : CellData = CellData()
     var isNavHidden: Bool = false
+    var section: Int = 0
+    var row: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,15 +56,21 @@ class EditViewController: UIViewController {
     }
     
     func swipeBack() {
+        goBack()
+    }
+    
+    func goBack() {
         if isNavHidden == true {
             self.navigationController?.isNavigationBarHidden = true
         }
         self.navigationController?.popViewController(animated: true)
+        bookDataArray[section]?[row] = curCellData
+        mainVC?.tableView.reloadData()
     }
     
     func initView() {
         if (curCellData.isBookmarked == 1) {
-            if (curCellData.bmType == "f") {
+            if (curCellData.highlightType == "f") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
                 containerView.backgroundColor = Const.highlightColor
                 let range = NSRange(location: 0, length: txtView.attributedText.length)
@@ -70,14 +79,14 @@ class EditViewController: UIViewController {
                 string.addAttributes(attributes, range: range)
                 txtView.attributedText = string
             }
-            else if (curCellData.bmType == "p") {
+            else if (curCellData.highlightType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
                 containerView.backgroundColor = Const.cellBackColor
                 let string = NSMutableAttributedString(attributedString: txtView.attributedText)
                 for i in 0..<txtView.attributedText.length {
                     let range1 = NSRange(location: i, length: 1)
                     var attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
-                    if (curCellData.bmData[i] == "1") {
+                    if (curCellData.highlightData[i] == "1") {
                         attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
                     }
                     string.addAttributes(attributes, range: range1)
@@ -102,8 +111,7 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func onBackTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        mainVC?.initSectionData()
+        goBack()
     }
     
     func setBookmark() {
@@ -111,18 +119,18 @@ class EditViewController: UIViewController {
         if (txtView.selectedRange.length != 0) {
             let range = txtView.selectedRange
             let db = DBManager()
-            curCellData.bmData = db.insertBookmark(data: curCellData, startPos: range.location, bmlength: range.length, totalLength: txtView.attributedText.length, type: "p")
+            curCellData.highlightData = db.insertBookmark(data: curCellData, startPos: range.location, bmlength: range.length, totalLength: txtView.attributedText.length, type: "p")
             
-            if curCellData.bmData.range(of: "1") == nil {
+            if curCellData.highlightData.range(of: "1") == nil {
                 curCellData.isBookmarked = 0
             }
             else {
                 curCellData.isBookmarked = 1
-                if curCellData.bmData.range(of: "0") == nil {
-                    curCellData.bmType = "f"
+                if curCellData.highlightData.range(of: "0") == nil {
+                    curCellData.highlightType = "f"
                 }
                 else {
-                    curCellData.bmType = "p"
+                    curCellData.highlightType = "p"
                 }
             }
             
@@ -134,23 +142,23 @@ class EditViewController: UIViewController {
         if (curCellData.isBookmarked == 0) {
             imgStar.image = #imageLiteral(resourceName: "bookmarked")
             curCellData.isBookmarked = 1
-            curCellData.bmType = "f"
+            curCellData.highlightType = "f"
             
             let db = DBManager()
             db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")
         }
         else {
-            if (curCellData.bmType == "f") {
+            if (curCellData.highlightType == "f") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
                 curCellData.isBookmarked = 0
                 
                 let db = DBManager()
                 db.deleteBookmark(data: curCellData)
             }
-            else if (curCellData.bmType == "p") {
+            else if (curCellData.highlightType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
                 curCellData.isBookmarked = 1
-                curCellData.bmType = "f"
+                curCellData.highlightType = "f"
                 
                 let db = DBManager()
                 db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")

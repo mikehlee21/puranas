@@ -10,7 +10,7 @@ import UIKit
 import CircularSpinner
 import GTProgressBar
 
-class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
+class MainViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate ,CircularSpinnerDelegate{
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnPencil: UIButton!
@@ -31,7 +31,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     var dataArray: [CellData] = []
     var isBookmarkMode : Bool = false
     var readingMode : Int = 0
-    var sendingCellData: CellData = CellData()
+    var sendingCellData: [Int: Any] = [:]
     
     
     override func viewDidLoad() {
@@ -52,39 +52,46 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         tap.direction = .right
         self.view.addGestureRecognizer(tap)
         
-        //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
-        initSectionData()
-        //CircularSpinner.hide()
+        CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: false, delegate: nil)
         
-        let db = DBManager()
-        let temp = db.loadLastReadingPos(bookId!)
+        DispatchQueue.main.async(execute: {
         
-        if (temp.chapterNo != 0) {
-            var row = 0
-            let cnt = bookDataArray[temp.chapterNo - 1]?.count
-            for i in 1..<cnt! {
-                let t = bookDataArray[temp.chapterNo - 1]?[i]
-                if (t?.contentId == temp.contentId) {
-                    if (temp.isCont == 1) {
-                        row = i
+            self.initSectionData()
+
+            let db = DBManager()
+            let temp = db.loadLastReadingPos(self.bookId!)
+            
+            if (temp.chapterNo != 0) {
+                var row = 0
+                let cnt = bookDataArray[temp.chapterNo - 1]?.count
+                for i in 1..<cnt! {
+                    let t = bookDataArray[temp.chapterNo - 1]?[i]
+                    if (t?.contentId == temp.contentId) {
+                        if (temp.isCont == 1) {
+                            row = i
+                        }
+                        else {
+                            row += i
+                        }
+                        break
                     }
-                    else {
-                        row += i
-                    }
-                    break
                 }
+                
+                let indexPath = IndexPath(row: row, section: temp.chapterNo - 1)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
             
-            let indexPath = IndexPath(row: row, section: temp.chapterNo - 1)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
-        
-        showbuttons()
+            CircularSpinner.hide()
+            
+        })
+
+        self.showbuttons()
         
         // Do any additional setup after loading the view.
     }
     
     func swipeBack() {
+        saveLastReadingPos()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
@@ -133,8 +140,8 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             for j in 0..<dataArray.count {
                 if ((bookmarkArray[i].bookId == dataArray[j].bookId) && (bookmarkArray[i].volumeNo == dataArray[j].volumeNo) && (bookmarkArray[i].cantoNo == dataArray[j].cantoNo) && (bookmarkArray[i].chapterNo == dataArray[j].chapterNo) && (bookmarkArray[i].contentId == dataArray[j].contentId) && (bookmarkArray[i].isCont == dataArray[j].isCont)) {
                     dataArray[j].isBookmarked = 1
-                    dataArray[j].bmType = bookmarkArray[i].bmType
-                    dataArray[j].bmData = bookmarkArray[i].bmData
+                    dataArray[j].highlightType = bookmarkArray[i].highlightType
+                    dataArray[j].highlightData = bookmarkArray[i].highlightData
                 }
             }
         }
@@ -183,8 +190,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         return cnt
     }
     
-    func goToEdit(_ cd: CellData) {
-        sendingCellData = cd
+    func goToEdit(data: CellData, section: Int, row: Int) {
+        sendingCellData[0] = data
+        sendingCellData[1] = section
+        sendingCellData[2] = row
         performSegue(withIdentifier: "EditSegue", sender: nil)
     }
 
@@ -194,6 +203,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     @IBAction func onBackTapped(_ sender: Any) {
+        saveLastReadingPos()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -208,6 +218,9 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (bookDataArray[section]?.count == nil) {
+            return 0
+        }
         if (isSearching == true) {
             return (filteredArray[section]?.count)!
         }
@@ -227,10 +240,12 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
+        
         cell.index = indexPath.row
         cell.sectionNo = indexPath.section
         cell.lblChapter.text = "\(temp.chapterNo).\(temp.contentId)"
         cell.lblText.text = temp.text
+        
         
         if (temp.isCont == 1) {
             cell.lblText.textColor = UIColor.black
@@ -261,18 +276,18 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
         
         if (temp.isBookmarked == 1) {
-            if (temp.bmType == "f") {
+            if (temp.highlightType == "f") {
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
                 cell.contentView.backgroundColor = Const.highlightColor
             }
-            else if (temp.bmType == "p"){
+            else if (temp.highlightType == "p"){
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
                 cell.backgroundColor = Const.cellBackColor
                 let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
                 for i in 0..<cell.lblText.attributedText.length {
                     let range1 = NSRange(location: i, length: 1)
                     var attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
-                    if (temp.bmData[i] == "1") {
+                    if (temp.highlightData[i] == "1") {
                         attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
                     }
                     string.addAttributes(attributes, range: range1)
@@ -284,6 +299,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
             cell.contentView.backgroundColor = Const.cellBackColor
         }
+ 
         
         return cell
         
@@ -315,32 +331,30 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
         else if segue.identifier == "EditSegue" {
             let vc = segue.destination as! EditViewController
-            vc.curCellData = sendingCellData
+            vc.curCellData = sendingCellData[0] as! CellData
+            vc.section = sendingCellData[1] as! Int
+            vc.row = sendingCellData[2] as! Int
         }
     }
     
     func hidebuttons() {
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-            self.navigationController?.isNavigationBarHidden = true
-            self.btnPencil.alpha = 0.0
-            self.btnBack.alpha = 0.0
-            self.heightOfSearchBar.constant = 0.0
-        }, completion: nil)
+        self.navigationController?.isNavigationBarHidden = true
+        self.btnPencil.alpha = 0.0
+        self.btnBack.alpha = 0.0
+        self.heightOfSearchBar.constant = 0.0
     }
     
     func showbuttons() {
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-            self.navigationController?.isNavigationBarHidden = false
-            self.btnPencil.alpha = 1.0
-            self.btnBack.alpha = 1.0
-            self.heightOfSearchBar.constant = 44.0
-        }, completion: nil)
+        self.navigationController?.isNavigationBarHidden = false
+        self.btnPencil.alpha = 1.0
+        self.btnBack.alpha = 1.0
+        self.heightOfSearchBar.constant = 44.0
     }
     // ScrollView Delegate
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastContentOffset = scrollView.contentOffset.y
-        progressBar.animateTo(progress: lastContentOffset / (scrollView.contentSize.height - self.view.frame.height))
+        progressBar.progress = lastContentOffset / (scrollView.contentSize.height - self.view.frame.height)
         
         allowHidden = true
         prevFlag = false
@@ -357,7 +371,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         if (isNav == false) {
             navModeContentOffset = scrollView.contentOffset.y
         }
-        saveLastReadingPos()
+        //saveLastReadingPos()
     }
     
     func saveLastReadingPos() {
@@ -369,11 +383,21 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func manageReadingMode(_ readingMode: Int) {
-        //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         self.readingMode = readingMode
-        initSectionData()
-        //CircularSpinner.hide()
-        tableView.reloadData()
+        
+        let alert = UIAlertController(title: "Puranas", message: "Do you want to change the reading mode?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (_ action: UIAlertAction) in
+            CircularSpinner.show("Loading", animated: true, type: .indeterminate, showDismissButton: false, delegate: nil)
+            
+            DispatchQueue.main.async(execute: {
+                self.initSectionData()
+                CircularSpinner.hide()
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: false, completion: nil)
+        
+        //self.initSectionData()
     }
     
     func manageNavMode(_ navMode: Int) {
@@ -381,7 +405,6 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         
         let rows = tableView.indexPathsForVisibleRows
         let section = (rows?[0].section)!
-        
         
         switch navMode {
         case 1:

@@ -34,23 +34,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xy-4M-WDR" customClass="EAIntroView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ejf-Rk-QNI" secondAttribute="bottom" id="9l9-U7-5Jw"/>
+                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="JQ9-nK-4Um"/>
                             <constraint firstItem="6xy-4M-WDR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Okf-KW-BFo"/>
+                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ptz-H5-eWj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6xy-4M-WDR" secondAttribute="bottom" id="RfQ-rT-aDX"/>
                             <constraint firstAttribute="trailing" secondItem="6xy-4M-WDR" secondAttribute="trailing" id="Z2o-pG-J5o"/>
-                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cmp-Lx-G7W"/>
-                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iD6-JA-fcn"/>
+                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZmX-AL-vmn"/>
+                            <constraint firstItem="Ejf-Rk-QNI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ai3-3a-0fV"/>
                             <constraint firstItem="6xy-4M-WDR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pXz-c4-mJ6"/>
-                            <constraint firstAttribute="trailing" secondItem="Ejf-Rk-QNI" secondAttribute="trailing" id="x3a-WV-4I6"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="introView" destination="6xy-4M-WDR" id="pWx-xr-qTN"/>
                     </connections>
@@ -63,7 +62,7 @@
         <scene sceneID="nYO-fl-vds">
             <objects>
                 <navigationController storyboardIdentifier="NavigationController" id="65d-yr-AWq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M7H-zC-6DD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="M7H-zC-6DD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -403,7 +402,7 @@
                         <viewControllerLayoutGuide type="top" id="nen-Bn-hcd"/>
                         <viewControllerLayoutGuide type="bottom" id="nLr-Up-NZx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ihc-Ex-KYu">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Ihc-Ex-KYu">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -419,7 +418,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zk0-DI-6QW">
-                                                    <rect key="frame" x="38" y="0.0" width="337" height="108"/>
+                                                    <rect key="frame" x="53" y="0.0" width="322" height="108"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="Mallanna" family="Mallanna" pointSize="17"/>
@@ -447,7 +446,7 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="hfF-hl-bV9" secondAttribute="leading" id="cqW-Af-ihY"/>
                                                 <constraint firstItem="zk0-DI-6QW" firstAttribute="top" secondItem="b8A-vl-EcD" secondAttribute="top" id="e5B-zg-Y7i"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="983-Ij-CAg" secondAttribute="leading" id="fIk-61-5N9"/>
-                                                <constraint firstItem="zk0-DI-6QW" firstAttribute="leading" secondItem="hfF-hl-bV9" secondAttribute="trailing" constant="5" id="lOL-vT-Msq"/>
+                                                <constraint firstItem="zk0-DI-6QW" firstAttribute="leading" secondItem="hfF-hl-bV9" secondAttribute="trailing" constant="20" id="lOL-vT-Msq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -695,7 +694,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1h-g6-mnf">
-                                <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <action selector="onDismiss:" destination="7Bl-F5-hNI" eventType="touchUpInside" id="BNv-Q0-Xzf"/>
                                 </connections>
@@ -854,7 +853,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNi-zv-2Qd">
-                                        <rect key="frame" x="-1" y="100" width="344" height="1"/>
+                                        <rect key="frame" x="-0.5" y="100" width="343" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Lkk-ex-Q70"/>

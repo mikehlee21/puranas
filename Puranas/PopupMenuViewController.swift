@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CircularSpinner
 
 class PopupMenuViewController: UIViewController {
     
     @IBOutlet weak var backView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backView.layer.borderColor = UIColor(red: 200.0 / 255.0, green: 150.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0).cgColor
@@ -24,9 +26,12 @@ class PopupMenuViewController: UIViewController {
     }
     
     func dismissReadingModePopup(_ mode: Int) {
-        mainVC?.btnBack.isEnabled = true
-        dismiss(animated: true, completion: nil)
-        mainVC?.manageReadingMode(mode)
+        self.parent?.dismiss(animated: true, completion: { 
+            mainVC?.btnBack.isEnabled = true
+            if mode != mainVC?.readingMode {
+                mainVC?.manageReadingMode(mode)
+            }
+        })
     }
     
     func dismissNavModePopup(_ mode: Int) {

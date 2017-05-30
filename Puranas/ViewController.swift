@@ -20,7 +20,7 @@ class ViewController: UIViewController , EAIntroDelegate{
         page1.descFont = UIFont(name: "Mallanna", size: 25)
         page1.descPositionY = 180
         page1.titleIconView = UIImageView(image: #imageLiteral(resourceName: "tutor1"))
-        page1.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 100, height: self.view.frame.height - 250)
+        page1.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 150, height: self.view.frame.height - 250)
         page1.titleIconPositionY = 50
         
         let page2 = EAIntroPage()
@@ -28,7 +28,7 @@ class ViewController: UIViewController , EAIntroDelegate{
         page2.descFont = UIFont(name: "Mallanna", size: 25)
         page2.descPositionY = 180
         page2.titleIconView = UIImageView(image: #imageLiteral(resourceName: "tutor2"))
-        page2.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 100, height: self.view.frame.height - 250)
+        page2.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 150, height: self.view.frame.height - 250)
         page2.titleIconPositionY = 50
         
         let page3 = EAIntroPage()
@@ -36,7 +36,7 @@ class ViewController: UIViewController , EAIntroDelegate{
         page3.descFont = UIFont(name: "Mallanna", size: 25)
         page3.descPositionY = 180
         page3.titleIconView = UIImageView(image: #imageLiteral(resourceName: "tutor3"))
-        page3.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 100, height: self.view.frame.height - 250)
+        page3.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 150, height: self.view.frame.height - 250)
         page3.titleIconPositionY = 50
         
         let page4 = EAIntroPage()
@@ -44,7 +44,7 @@ class ViewController: UIViewController , EAIntroDelegate{
         page4.descFont = UIFont(name: "Mallanna", size: 25)
         page4.descPositionY = 180
         page4.titleIconView = UIImageView(image: #imageLiteral(resourceName: "tutor4"))
-        page4.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 100, height: self.view.frame.height - 250)
+        page4.titleIconView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 150, height: self.view.frame.height - 250)
         page4.titleIconPositionY = 50
         
         introView.pageControlY = 110
