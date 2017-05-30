@@ -28,7 +28,7 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
         let db = DBManager()
         seriesArray = db.loadSeriesData()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1.0, green: 192.0 / 255.0, blue: 0.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = Const.navBarColor
         
         // Do any additional setup after loading the view.
     }
@@ -106,8 +106,12 @@ class BookSeriesViewController: UIViewController , UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BookSeriesTableViewCell
-        str = cell.lblSeriesName.text
+        if isSearching == true {
+            str = filterdArray[indexPath.row].name
+        }
+        else {
+            str = seriesArray[indexPath.row].name
+        }
         self.performSegue(withIdentifier: "Series2Book", sender: nil)
     }
     

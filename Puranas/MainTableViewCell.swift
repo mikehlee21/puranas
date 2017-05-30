@@ -32,14 +32,9 @@ class MainTableViewCell: UITableViewCell {
     func tapped() {
         if (bookDataArray[sectionNo]?[index].isBookmarked == 0) {
             imgStar.image = #imageLiteral(resourceName: "bookmarked")
+            self.contentView.backgroundColor = Const.highlightColor
             bookDataArray[sectionNo]?[index].isBookmarked = 1
-            
             bookDataArray[sectionNo]?[index].bmType = "f"
-            var str = ""
-            for _ in 0..<lblText.attributedText.length {
-                str += "1"
-            }
-            bookDataArray[sectionNo]?[index].bmData = str
             
             let range = NSRange(location: 0, length: lblText.attributedText.length)
             let string = NSMutableAttributedString(attributedString: lblText.attributedText)
@@ -53,6 +48,7 @@ class MainTableViewCell: UITableViewCell {
         else {
             if (bookDataArray[sectionNo]?[index].bmType == "f") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                self.contentView.backgroundColor = Const.cellBackColor
                 bookDataArray[sectionNo]?[index].isBookmarked = 0
                 
                 let range = NSRange(location: 0, length: lblText.attributedText.length)
@@ -66,14 +62,9 @@ class MainTableViewCell: UITableViewCell {
             }
             else if (bookDataArray[sectionNo]?[index].bmType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                self.contentView.backgroundColor = Const.highlightColor
                 bookDataArray[sectionNo]?[index].isBookmarked = 1
-                
                 bookDataArray[sectionNo]?[index].bmType = "f"
-                var str = ""
-                for _ in 0..<lblText.attributedText.length {
-                    str += "1"
-                }
-                bookDataArray[sectionNo]?[index].bmData = str
                 
                 let range = NSRange(location: 0, length: lblText.attributedText.length)
                 let string = NSMutableAttributedString(attributedString: lblText.attributedText)

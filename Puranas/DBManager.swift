@@ -225,12 +225,7 @@ class DBManager
         }
         if (bmType == "p") {
             for i in 0..<bmlength {
-                if (bmData[i+startPos] == "1") {
-                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
-                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
-                    bmData.replaceSubrange(start..<end, with: "0")
-                }
-                else {
+                if (bmData[i+startPos] == "0") {
                     let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
                     let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
                     bmData.replaceSubrange(start..<end, with: "1")
@@ -239,6 +234,16 @@ class DBManager
         
             if bmData.range(of: "0") == nil{
                 bmType = "f"
+            }
+            
+            if (bmData == storedData.bmData) {
+                for i in 0..<bmlength {
+                    let start = bmData.index(bmData.startIndex, offsetBy: i + startPos);
+                    let end = bmData.index(bmData.startIndex, offsetBy: i + startPos + 1);
+                    bmData.replaceSubrange(start..<end, with: "0")
+                }
+                bmType = "p"
+                
             }
         }
     

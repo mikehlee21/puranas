@@ -28,10 +28,18 @@ class BookViewController: UIViewController , UITableViewDataSource, UITableViewD
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.title = lblSeriesName
         
+        let tap = UISwipeGestureRecognizer(target: self, action: #selector(swipeBack))
+        tap.direction = .right
+        self.view.addGestureRecognizer(tap)
+        
         let db = DBManager()
         bookArray = db.loadBooksData()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func swipeBack() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

@@ -18,8 +18,16 @@ class SettingViewController: UIViewController ,UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        let tap = UISwipeGestureRecognizer(target: self, action: #selector(swipeBack))
+        tap.direction = .right
+        self.view.addGestureRecognizer(tap)
 
         // Do any additional setup after loading the view.
+    }
+    
+    func swipeBack() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {

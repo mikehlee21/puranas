@@ -17,6 +17,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressBar: GTProgressBar!
+    @IBOutlet weak var heightOfSearchBar: NSLayoutConstraint!
     
     var lblBookName: String?
     var bookId: String?
@@ -46,6 +47,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         progressBar.progress = 0
         
         mainVC = self
+        
+        let tap = UISwipeGestureRecognizer(target: self, action: #selector(swipeBack))
+        tap.direction = .right
+        self.view.addGestureRecognizer(tap)
         
         //CircularSpinner.show("Loading Book ...", animated: true, type: .indeterminate, showDismissButton: nil, delegate: nil)
         initSectionData()
@@ -77,6 +82,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         showbuttons()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func swipeBack() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.popViewController(animated: true)
     }
     
     func initCellDataArray() {
@@ -253,14 +263,11 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         if (temp.isBookmarked == 1) {
             if (temp.bmType == "f") {
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarked")
-                let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
-                let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
-                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-                string.addAttributes(attributes, range: range)
-                cell.lblText.attributedText = string
+                cell.contentView.backgroundColor = Const.highlightColor
             }
             else if (temp.bmType == "p"){
                 cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                cell.backgroundColor = Const.cellBackColor
                 let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
                 for i in 0..<cell.lblText.attributedText.length {
                     let range1 = NSRange(location: i, length: 1)
@@ -275,11 +282,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         }
         else {
             cell.imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
-            let range = NSRange(location: 0, length: cell.lblText.attributedText.length)
-            let string = NSMutableAttributedString(attributedString: cell.lblText.attributedText)
-            let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
-            string.addAttributes(attributes, range: range)
-            cell.lblText.attributedText = string
+            cell.contentView.backgroundColor = Const.cellBackColor
         }
         
         return cell
@@ -321,7 +324,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = true
             self.btnPencil.alpha = 0.0
             self.btnBack.alpha = 0.0
-            self.searchBar.isHidden = true
+            self.heightOfSearchBar.constant = 0.0
         }, completion: nil)
     }
     
@@ -330,7 +333,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
             self.navigationController?.isNavigationBarHidden = false
             self.btnPencil.alpha = 1.0
             self.btnBack.alpha = 1.0
-            self.searchBar.isHidden = false
+            self.heightOfSearchBar.constant = 44.0
         }, completion: nil)
     }
     // ScrollView Delegate

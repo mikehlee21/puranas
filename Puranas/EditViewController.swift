@@ -16,17 +16,28 @@ class EditViewController: UIViewController {
     @IBOutlet weak var btnBookmark: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var txtView: UITextView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerView: UIView!
     
     var isBookmarkMode : Bool = false
     var curCellData : CellData = CellData()
+    var isNavHidden: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
+        if (self.navigationController?.isNavigationBarHidden == true) {
+            isNavHidden = true
+        }
         self.navigationController?.isNavigationBarHidden = false
         
         txtView.text = curCellData.text
         lblChapter.text = "\(curCellData.chapterNo).\(curCellData.contentId)"
+        
+        let fixedWidth = txtView.frame.size.width
+        txtView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = txtView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        heightConstraint.constant = newSize.height
 
         initView()
         
@@ -34,13 +45,25 @@ class EditViewController: UIViewController {
         tap.numberOfTapsRequired = 1
         imgStar.addGestureRecognizer(tap)
         
+        let tap1 = UISwipeGestureRecognizer(target: self, action: #selector(swipeBack))
+        tap1.direction = .right
+        self.view.addGestureRecognizer(tap1)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func swipeBack() {
+        if isNavHidden == true {
+            self.navigationController?.isNavigationBarHidden = true
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func initView() {
         if (curCellData.isBookmarked == 1) {
             if (curCellData.bmType == "f") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
+                containerView.backgroundColor = Const.highlightColor
                 let range = NSRange(location: 0, length: txtView.attributedText.length)
                 let string = NSMutableAttributedString(attributedString: txtView.attributedText)
                 let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
@@ -49,6 +72,7 @@ class EditViewController: UIViewController {
             }
             else if (curCellData.bmType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+                containerView.backgroundColor = Const.cellBackColor
                 let string = NSMutableAttributedString(attributedString: txtView.attributedText)
                 for i in 0..<txtView.attributedText.length {
                     let range1 = NSRange(location: i, length: 1)
@@ -63,6 +87,7 @@ class EditViewController: UIViewController {
         }
         else {
             imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
+            containerView.backgroundColor = Const.cellBackColor
             let range = NSRange(location: 0, length: txtView.attributedText.length)
             let string = NSMutableAttributedString(attributedString: txtView.attributedText)
             let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
@@ -109,19 +134,7 @@ class EditViewController: UIViewController {
         if (curCellData.isBookmarked == 0) {
             imgStar.image = #imageLiteral(resourceName: "bookmarked")
             curCellData.isBookmarked = 1
-            
             curCellData.bmType = "f"
-            var str = ""
-            for _ in 0..<txtView.attributedText.length {
-                str += "1"
-            }
-            curCellData.bmData = str
-            
-            let range = NSRange(location: 0, length: txtView.attributedText.length)
-            let string = NSMutableAttributedString(attributedString: txtView.attributedText)
-            let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-            string.addAttributes(attributes, range: range)
-            txtView.attributedText = string
             
             let db = DBManager()
             db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")
@@ -131,37 +144,19 @@ class EditViewController: UIViewController {
                 imgStar.image = #imageLiteral(resourceName: "bookmarksOnly")
                 curCellData.isBookmarked = 0
                 
-                let range = NSRange(location: 0, length: txtView.attributedText.length)
-                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
-                let attributes = [NSBackgroundColorAttributeName: Const.cellBackColor]
-                string.addAttributes(attributes, range: range)
-                txtView.attributedText = string
-                
                 let db = DBManager()
                 db.deleteBookmark(data: curCellData)
             }
             else if (curCellData.bmType == "p") {
                 imgStar.image = #imageLiteral(resourceName: "bookmarked")
                 curCellData.isBookmarked = 1
-                
                 curCellData.bmType = "f"
-                var str = ""
-                for _ in 0..<txtView.attributedText.length {
-                    str += "1"
-                }
-                curCellData.bmData = str
-                
-                let range = NSRange(location: 0, length: txtView.attributedText.length)
-                let string = NSMutableAttributedString(attributedString: txtView.attributedText)
-                let attributes = [NSBackgroundColorAttributeName: Const.highlightColor]
-                string.addAttributes(attributes, range: range)
-                txtView.attributedText = string
                 
                 let db = DBManager()
                 db.insertBookmark(data: curCellData, startPos: 0, bmlength: 0, totalLength: txtView.attributedText.length, type: "f")
             }
         }
-        
+        initView()
     }
     
     @IBAction func onNoteTapped(_ sender: Any) {
@@ -174,6 +169,7 @@ class EditViewController: UIViewController {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.btnNote.alpha = 0.0
                 self.btnBack.alpha = 0.0
+                self.btnBookmark.setImage(#imageLiteral(resourceName: "save"), for: .normal)
             }, completion: nil)
         }
         else {
@@ -183,6 +179,7 @@ class EditViewController: UIViewController {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.btnNote.alpha = 1.0
                 self.btnBack.alpha = 1.0
+                self.btnBookmark.setImage(#imageLiteral(resourceName: "currentBook"), for: .normal)
             }, completion: nil)
         }
     }
