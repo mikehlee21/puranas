@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navVC = storyboard.instantiateViewController(withIdentifier: "NavigationController")
         window?.rootViewController = navVC
     }
+    
+    func configureFirstScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        window?.rootViewController = vc
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         mainVC?.saveLastReadingPos()

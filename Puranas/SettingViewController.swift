@@ -44,7 +44,7 @@ class SettingViewController: UIViewController ,UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,11 +71,22 @@ class SettingViewController: UIViewController ,UITableViewDelegate, UITableViewD
             cell.lblText1.text = "Ren Nakamura"
             cell.lblText2.text = "App Development"
             break
+        case 4:
+            cell.lblText1.text = "Instructions"
+            cell.lblText2.text = ""
+            break
         default:
             break
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.row == 4) {
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            delegate?.configureFirstScreen()
+        }
     }
 
 

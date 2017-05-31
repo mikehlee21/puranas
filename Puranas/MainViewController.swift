@@ -245,6 +245,10 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
         cell.sectionNo = indexPath.section
         cell.lblChapter.text = "\(temp.chapterNo).\(temp.contentId)"
         cell.lblText.text = temp.text
+        let frame = cell.lblText.frame
+        if frame.height < 100 {
+            cell.lblText.frame.size.height = 100
+        }
         
         
         if (temp.isCont == 1) {
@@ -315,7 +319,7 @@ class MainViewController: UIViewController ,UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
+        return 100
     }
     
     // MARK: - Navigation

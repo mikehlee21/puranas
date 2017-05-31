@@ -40,6 +40,7 @@ class EditViewController: UIViewController {
         let fixedWidth = txtView.frame.size.width
         txtView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = txtView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        
         heightConstraint.constant = newSize.height
 
         initView()
